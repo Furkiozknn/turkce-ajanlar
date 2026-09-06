@@ -14,12 +14,6 @@ bitince "bitti" denebilecek kadar net olmalı.
 
 ## Sırada
 
-- [ ] **Plugin paketleme** — `.claude-plugin/plugin.json` ve
-      `.claude-plugin/marketplace.json` ekle ki
-      `claude plugin install turkce-ajanlar@<marketplace>` ile
-      kurulabilsin. Biçimi kurulu bir plugin'den doğrula, uydurma.
-      Kurulumu gerçekten test et.
-
 - [ ] **Doğrulama script'i** — `otomasyon\dogrula.js`: her ajan
       dosyasının frontmatter'ı geçerli mi (name kebab-case, description
       dolu ve tetikleyici ifade içeriyor, tools geçerli araç adları),
@@ -68,3 +62,13 @@ bitince "bitti" denebilecek kadar net olmalı.
       düğmesi, kurulum komutu. Açık/koyu tema sistem tercihine uysun.
       Türkçe.
       *(2026-09-06 — canlı test edildi: arama, Türkçe büyük-küçük harf, boş sonuç, detay penceresi, konsol hatası yok)*
+
+- [x] **Plugin paketleme** — `.claude-plugin/plugin.json` ve
+      `.claude-plugin/marketplace.json` ekle ki
+      `claude plugin install turkce-ajanlar@<marketplace>` ile
+      kurulabilsin. Biçimi kurulu bir plugin'den doğrula, uydurma.
+      Kurulumu gerçekten test et.
+      *(2026-09-06 — `claude plugin validate --strict` iki manifestte de
+      geçti; yerel pazar yerinden kurulup 5 ajanın da yüklendiği
+      `claude plugin details` ve canlı oturumla doğrulandı, sonra
+      ortam eski hâline döndürüldü)*
