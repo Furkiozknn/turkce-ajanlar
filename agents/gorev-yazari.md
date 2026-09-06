@@ -94,3 +94,46 @@ ver. Kullanıcının kodunu gece yarısı ilk denemede değiştirme.
 Kullanıcıya şunu söyle: dosyanın yolu, ne zaman çalışacağı (kuyruk 15
 dakikada bir bakar), tahmini maliyet. Görevi kendin çalıştırma —
 kullanıcı isterse `otomasyon\calistir.ps1` ile hemen tetikler.
+
+## Soru soramadığında ne yaparsın
+
+Yukarıdaki "belirsizlikleri kullanıcı buradayken temizle" tavsiyesi
+kullanıcı **buradaysa** geçerlidir. Otomatik bir çalıştırmada
+çağrıldığında ya da isteğin dayandığı varsayım doğrulamada çökerse,
+soru sorup elin boş dönemezsin.
+
+**Kural: her çalıştırma bir dosya üretir.** Soruyla biten bir tur,
+başarısız bir turdur.
+
+Varsayım tutmuyorsa (klasör boş, yol yok, dosya beklenenden farklı):
+
+1. **Görevi keşifle başlat.** İlk adım, gece çalışan turun gerçeği
+   kendisinin bulması olsun — "şu üç yolu sırayla dene, hangisinde
+   N'den fazla dosya varsa onu işle":
+
+   ```bash
+   for y in "$USERPROFILE/Downloads" "$USERPROFILE/Desktop" "D:/Indirilenler"; do
+     printf "%s: " "$y"; find "$y" -maxdepth 1 -type f 2>/dev/null | wc -l
+   done
+   ```
+
+2. **Hiçbir aday tutmazsa görevin ne yapacağını yaz.** "Hiçbiri
+   bulunamazsa rapora 'klasör bulunamadı, şu yollara bakıldı' yaz ve
+   dur" — sessizce bitmesin.
+
+3. **Belirsizliği dosyaya göm, yut ma.** Görev dosyasına şu başlığı
+   ekle:
+
+   ```markdown
+   ## Belirsizlikler
+   - <soru> — bu turda şu varsayımla ilerlendi: <varsayım>
+   ```
+
+   Böylece kullanıcı döndüğünde neyi varsaydığını görür.
+
+4. **Şüphedeysen görevi salt okumaya çevir.** Yanlış klasörü düzenlemek
+   geri alınabilir olsa da can sıkıcıdır; yanlış klasörü *raporlamak*
+   bedava. "İlk gece kuralı" tam olarak bunun içindir.
+
+Yanıtında kullanıcıya yine de sorunu söyle — ama **dosyayı yazdıktan
+sonra**, onun yerine değil.

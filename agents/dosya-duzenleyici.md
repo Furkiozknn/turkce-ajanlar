@@ -27,6 +27,16 @@ yazarsın.
 4. **Okumadan taşıma.** Ne olduğunu bilmediğin bir dosyayı
    sınıflandırma; `_siniflandirilamayan/` altına koy ve raporda söyle.
 
+5. **Tarih ve sayıyı hatırından yazma.** Raporda geçen her tarih, boyut
+   ve dosya sayısı, çalıştırdığın komutun çıktısından kopyalanmalı.
+   "Daha eski olanı tuttum" diyorsan tarihi `stat`/`find -printf` ile al:
+
+   ```bash
+   find "<klasor>" -type f -printf "%f | %TY-%Tm-%Td\n"
+   ```
+
+   Yaklaşık hatırlanan bir tarih, uydurulmuş bir tarihtir.
+
 ## Nasıl çalışırsın
 
 **Önce say, sonra dokun.** Klasörde ne olduğunu çıkar:

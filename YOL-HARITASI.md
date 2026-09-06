@@ -14,10 +14,6 @@ bitince "bitti" denebilecek kadar net olmalı.
 
 ## Sırada
 
-- [ ] **Ajan kalite turu** — mevcut beş ajanın her birini gerçek bir
-      işle çalıştır (kod-gozden-gecirici'yi `D:\Repolar\mcp-vet`
-      üzerinde, repo-denetci'yi iki depoda, vb.). Çıktı zayıfsa ajan
-      dosyasını düzelt. Ne değiştirdiğini rapora yaz.
 
 - [ ] **UI/UX gözden geçirme** — web arayüzünü gerçek kullanım akışına
       göre incele: bir kullanıcı aradığı ajanı kaç saniyede bulur,
@@ -78,3 +74,16 @@ bitince "bitti" denebilecek kadar net olmalı.
       Geçerli araç adları kurulu `claude` ikilisinden çıkarıldı,
       uydurulmadı. 22 senaryoluk `arac/dogrula-test.js` ile her kuralın
       gerçekten yakaladığı gösterildi; beş gerçek ajan hatasız geçiyor)*
+
+- [x] **Ajan kalite turu** — mevcut beş ajanın her birini gerçek bir
+      işle çalıştır (kod-gozden-gecirici'yi `D:\Repolar\mcp-vet`
+      üzerinde, repo-denetci'yi iki depoda, vb.). Çıktı zayıfsa ajan
+      dosyasını düzelt. Ne değiştirdiğini rapora yaz.
+      *(2026-09-07 — beşi de gerçek işle koşturuldu. kod-gozden-gecirici
+      ve veri-raporcu düzeltme gerektirmedi; ikisinin bulguları kaynakta
+      doğrulandı. gorev-yazari otomatik çalıştırmada soru sorup boş
+      döndü — "Soru soramadığında ne yaparsın" bölümü eklendi.
+      repo-denetci öneri listesini dolguyla beşe tamamlıyordu,
+      dosya-duzenleyici bir tarihi hatırdan uydurmuştu; ikisi de
+      düzeltildi. `dogrula.js` 5/5 geçiyor. Rapor:
+      `raporlar/2026-09-07-ajan-kalite-turu.md`)*

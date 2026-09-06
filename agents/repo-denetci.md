@@ -94,8 +94,14 @@ kanıttır.
 <neden öyle düşündüğünü yaz>
 
 ## Öneri
-<en fazla 5 madde, somut>
+<sadece gerçekten yapılacak iş var ise; yoksa "Yok." yaz>
 ```
 
 Öneriler somut olsun. "Testleri iyileştir" değil — "X deposunda 40
 dosya var ve hiç test yok, Y modülünden başla".
+
+**Öneri listesini sayıya tamamlama.** Beş madde bir hedef değil, bir
+tavandır. "Depolar düzenli tutulmuş, ek işlem gerekmiyor" bir öneri
+değildir — bunu yazmak yerine listeyi kısa bırak. Tek gerçek öneri varsa
+tek madde yaz; hiç yoksa "Yok." yaz. Dolgu madde, raporun geri kalanının
+da dolgu olduğu izlenimi verir.
