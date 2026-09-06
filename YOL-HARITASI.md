@@ -14,11 +14,6 @@ bitince "bitti" denebilecek kadar net olmalı.
 
 ## Sırada
 
-- [ ] **Doğrulama script'i** — `otomasyon\dogrula.js`: her ajan
-      dosyasının frontmatter'ı geçerli mi (name kebab-case, description
-      dolu ve tetikleyici ifade içeriyor, tools geçerli araç adları),
-      gövde boş değil mi, Türkçe mi. Bozuksa sıfırdan farklı çıkış kodu.
-
 - [ ] **Ajan kalite turu** — mevcut beş ajanın her birini gerçek bir
       işle çalıştır (kod-gozden-gecirici'yi `D:\Repolar\mcp-vet`
       üzerinde, repo-denetci'yi iki depoda, vb.). Çıktı zayıfsa ajan
@@ -72,3 +67,14 @@ bitince "bitti" denebilecek kadar net olmalı.
       geçti; yerel pazar yerinden kurulup 5 ajanın da yüklendiği
       `claude plugin details` ve canlı oturumla doğrulandı, sonra
       ortam eski hâline döndürüldü)*
+
+- [x] **Doğrulama script'i** — `otomasyon\dogrula.js`: her ajan
+      dosyasının frontmatter'ı geçerli mi (name kebab-case, description
+      dolu ve tetikleyici ifade içeriyor, tools geçerli araç adları),
+      gövde boş değil mi, Türkçe mi. Bozuksa sıfırdan farklı çıkış kodu.
+      *(2026-09-06 — depodaki araç klasörü `arac/` olduğu için
+      `arac/dogrula.js` olarak yazıldı; `otomasyon/` adı
+      `D:\Claude Projeleri\otomasyon` zamanlayıcısıyla çakışıyordu.
+      Geçerli araç adları kurulu `claude` ikilisinden çıkarıldı,
+      uydurulmadı. 22 senaryoluk `arac/dogrula-test.js` ile her kuralın
+      gerçekten yakaladığı gösterildi; beş gerçek ajan hatasız geçiyor)*

@@ -132,3 +132,20 @@ atlar, `Esc` aramayı temizler. Her ajanın detayında tam markdown ve
 
 Tema sistem tercihine uyar, sağ üstten değiştirilebilir ve seçim
 tarayıcıda hatırlanır.
+
+## Doğrulama
+
+`arac/dogrula.js` ajan dosyalarını kontrol eder: frontmatter geçerli mi,
+`name` kebab-case mi, `description` dolu ve tetikleyici ifade içeriyor
+mu, `tools` gerçek araç adları mı, gövde boş değil ve Türkçe mi.
+
+```powershell
+node arac/dogrula.js          # agents/ altındaki her şeyi doğrular
+node arac/dogrula.js --kati   # uyarıları da hata sayar
+node arac/dogrula.js agents/repo-denetci.md   # tek dosya
+```
+
+Hata bulursa çıkış kodu 1 olur — betiği bir kancaya ya da CI adımına
+doğrudan bağlayabilirsin. Doğrulayıcının kendi testi:
+`node arac/dogrula-test.js` (geçici klasörde bozuk örnekler üretir,
+her kuralın gerçekten yakaladığını gösterir).
