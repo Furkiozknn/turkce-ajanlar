@@ -35,6 +35,36 @@ der.
 
 ## Kurulum
 
+### Eklenti olarak (önerilen)
+
+Depo aynı zamanda bir Claude Code eklentisidir. Kendi kopyandan kurmak
+için depoyu bir pazar yeri olarak ekle, sonra kur:
+
+```powershell
+claude plugin marketplace add "D:\Repolar\turkce-ajanlar"
+claude plugin install turkce-ajanlar@turkce-ajanlar
+```
+
+Depo GitHub'a çıktıktan sonra klonlamadan da olur:
+
+```powershell
+claude plugin marketplace add Furkiozknn/turkce-ajanlar
+claude plugin install turkce-ajanlar@turkce-ajanlar
+```
+
+Kurulduktan sonra beş ajan da her projede görünür. Kontrol:
+
+```powershell
+claude plugin details turkce-ajanlar
+```
+
+Kaldırmak için `claude plugin uninstall turkce-ajanlar@turkce-ajanlar`.
+
+### Dosya kopyalayarak
+
+Eklenti istemiyorsan `kur.ps1` ajan dosyalarını doğrudan
+`.claude/agents/` altına kopyalar:
+
 ```powershell
 # Varsayilan projeye (D:\Claude Projeleri)
 powershell -ExecutionPolicy Bypass -File kur.ps1
@@ -65,7 +95,7 @@ ifadeler eşleştiğinde kendisi çağırır:
 
 ## Kendine uyarla
 
-Ajanlar düz markdown. `ajanlar/` altındaki dosyayı aç, kendi kurallarını
+Ajanlar düz markdown. `agents/` altındaki dosyayı aç, kendi kurallarını
 ekle, `kur.ps1` ile yeniden kur. Frontmatter alanları:
 
 ```yaml
@@ -88,7 +118,7 @@ MIT. Al, değiştir, kullan.
 ## Web arayüzü
 
 `web/index.html` — tek dosya, bağımlılık yok, `file://` ile de açılır.
-Ajan verisi `ajanlar/*.md` frontmatter'ından üretilip HTML'e gömülür.
+Ajan verisi `agents/*.md` frontmatter'ından üretilip HTML'e gömülür.
 
 ```powershell
 node arac/web-uret.js          # ajanlardan sayfayı yeniden üret

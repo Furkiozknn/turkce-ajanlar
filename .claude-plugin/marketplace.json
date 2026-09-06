@@ -1,0 +1,20 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "turkce-ajanlar",
+  "description": "Turkce alt-ajanlar icin tek eklentilik pazar yeri.",
+  "owner": {
+    "name": "Furkiozknn",
+    "email": "121863222+Furkiozknn@users.noreply.github.com"
+  },
+  "plugins": [
+    {
+      "name": "turkce-ajanlar",
+      "source": "./",
+      "description": "Claude Code icin Turkce alt-ajan seti: kod gozden gecirme, depo denetimi, dosya duzenleme, veri raporlama ve gorev yazma. Ciktilar Turkce.",
+      "version": "0.1.0",
+      "license": "MIT",
+      "category": "development",
+      "keywords": ["turkce", "turkish", "agents", "subagents"]
+    }
+  ]
+}

@@ -1,5 +1,5 @@
 /*
- * web-uret.js — ajanlar/*.md dosyalarindan tek dosyalik web arayuzu uretir.
+ * web-uret.js — agents/*.md dosyalarindan tek dosyalik web arayuzu uretir.
  *
  *   node arac/web-uret.js
  *
@@ -13,7 +13,7 @@ const fs = require("fs");
 const path = require("path");
 
 const KOK = path.resolve(__dirname, "..");
-const KAYNAK = path.join(KOK, "ajanlar");
+const KAYNAK = path.join(KOK, "agents");
 const CIKTI_KLASOR = path.join(KOK, "web");
 const CIKTI = path.join(CIKTI_KLASOR, "index.html");
 
@@ -66,7 +66,7 @@ function tetikleyiciler(aciklama) {
 
 // --- ajanlari oku ----------------------------------------------------------
 if (!fs.existsSync(KAYNAK)) {
-  console.error("ajanlar klasoru yok: " + KAYNAK);
+  console.error("agents klasoru yok: " + KAYNAK);
   process.exit(1);
 }
 

@@ -23,8 +23,8 @@ param(
 
 $ErrorActionPreference = "Stop"
 
-$Kaynak = Join-Path $PSScriptRoot "ajanlar"
-if (-not (Test-Path $Kaynak)) { throw "ajanlar klasoru bulunamadi: $Kaynak" }
+$Kaynak = Join-Path $PSScriptRoot "agents"
+if (-not (Test-Path $Kaynak)) { throw "agents klasoru bulunamadi: $Kaynak" }
 
 if ($Kullanici) {
     $Hedef = Join-Path $env:USERPROFILE ".claude\agents"
@@ -36,7 +36,7 @@ if ($Kullanici) {
 }
 
 $dosyalar = Get-ChildItem -Path $Kaynak -Filter *.md -File
-if ($dosyalar.Count -eq 0) { throw "ajanlar klasorunde .md dosyasi yok." }
+if ($dosyalar.Count -eq 0) { throw "agents klasorunde .md dosyasi yok." }
 
 Write-Output "Kaynak : $Kaynak  ($($dosyalar.Count) ajan)"
 Write-Output "Hedef  : $Hedef"
