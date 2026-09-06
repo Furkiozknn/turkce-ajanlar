@@ -1,4 +1,4 @@
-<#
+﻿<#
     kur.ps1 - Turkce ajanlari bir projeye veya tum kullaniciya kurar.
 
     Kullanim:

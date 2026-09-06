@@ -84,3 +84,21 @@ Tetikleyici ifadeleri oraya yaz.
 ## Lisans
 
 MIT. Al, değiştir, kullan.
+
+## Web arayüzü
+
+`web/index.html` — tek dosya, bağımlılık yok, `file://` ile de açılır.
+Ajan verisi `ajanlar/*.md` frontmatter'ından üretilip HTML'e gömülür.
+
+```powershell
+node arac/web-uret.js          # ajanlardan sayfayı yeniden üret
+node arac/sunucu.js 8787       # http://127.0.0.1:8787 (sadece yerel)
+```
+
+Arama ad, açıklama ve tam tanım içinde geçer ve Türkçe büyük-küçük harf
+kurallarına uyar (`TÜRKÇE` yazınca `türkçe` bulunur). `/` tuşu aramaya
+atlar, `Esc` aramayı temizler. Her ajanın detayında tam markdown ve
+"kopyala" düğmesi var — pano engellenirse metni seçer, `Ctrl+C` yeter.
+
+Tema sistem tercihine uyar, sağ üstten değiştirilebilir ve seçim
+tarayıcıda hatırlanır.
