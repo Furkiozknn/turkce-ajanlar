@@ -15,10 +15,6 @@ bitince "bitti" denebilecek kadar net olmalı.
 ## Sırada
 
 
-- [ ] **Paylaşıma hazırlık** — README'ye web arayüzünden ekran
-      görüntüsü, rozetler, "neden bu var" bölümünü keskinleştir.
-      GitHub'a push için hazır hâle getir (push'u kullanıcı onaylar).
-
 - [ ] **GitHub sosyal kartı ve CI** — `assets/banner.svg`'yi 1280x640
       PNG'ye çevir (`assets/social.png`; GitHub sosyal önizleme SVG
       kabul etmiyor). Ayrıca `.github/workflows/dogrula.yml`: her
@@ -71,6 +67,26 @@ bitince "bitti" denebilecek kadar net olmalı.
 ## Bitti
 
 <!-- Tamamlanan maddeler tarihiyle buraya taşınır -->
+
+- [x] **Paylaşıma hazırlık** — README'ye web arayüzünden ekran
+      görüntüsü, rozetler, "neden bu var" bölümünü keskinleştir.
+      GitHub'a push için hazır hâle getir (push'u kullanıcı onaylar).
+      *(2026-09-07 — README başına beş rozet (eklenti / 8 ajan / Türkçe /
+      0 bağımlılık / MIT), hepsi shields.io'dan 200 dönüyor ve bağlandığı
+      başlık mevcut. Arayüzden açık + koyu tema ekran görüntüsü çekildi
+      (`arac/ekran-goruntusu.js`, 1280x960 2x), README'de `<picture>` ile
+      sistem temasına göre değişiyor. "Neden bu var" baştan yazıldı:
+      rakip sayıları GitHub API ile ölçüldü (wshobson/agents 39.465★ /
+      137 benzersiz ajan, VoltAgent 24.899★ / 157 ajan, ikisinde de
+      "Türkçe" geçen dosya sayısı 0), kaynağı bulunamayan "172 ajan"
+      iddiası kaldırıldı, dört fark ve "kimin işine yaramaz" eklendi.
+      Kök klasördeki test dosyaları `_eski/` altına taşındı, `.gitignore`
+      yinelenenleri temizlendi. Doğrulama: dogrula.js --kati 8/8,
+      dogrula-test.js 22/22, web-test.js 40/40 (gerçek Chromium),
+      web-uret/banner-uret farksız, kur.ps1 -Deneme temiz, README
+      `gh api markdown` ile render edilip picture/rozet/çapa kontrol
+      edildi. Commit `a26ceab`. **Push edilmedi** — depo GitHub'da henüz
+      yok, komutlarıyla `raporlar\ONAY-BEKLEYENLER.md` içine yazıldı.)*
 
 - [x] **Katkı rehberi** — Türkçe `KATKIDA-BULUNMA.md`: yeni ajan nasıl
       yazılır, frontmatter alanları, dürüstlük disiplini neden var,
