@@ -113,10 +113,23 @@ const VERI = JSON.stringify(ajanlar)
   .replace(/>/g, "\\u003e")
   .replace(/&/g, "\\u0026");
 
-const damga = new Date().toLocaleString("tr-TR", {
+// Tarih damgasi DETERMINISTIK olmali: CI "web/index.html bayat mi" diye
+// yeniden uretip diff aliyor; "simdi" yazilirsa her CI kosusu farkli cikar.
+// Kaynak: agents/ klasorunun son commit tarihi; git yoksa bugun.
+function sonGuncellemeTarihi() {
+  try {
+    const iso = require("child_process")
+      .execFileSync("git", ["-C", KOK, "log", "-1", "--format=%cs", "--", "agents"], { encoding: "utf8" })
+      .trim();
+    if (/^\d{4}-\d{2}-\d{2}$/.test(iso)) return new Date(iso + "T12:00:00Z");
+  } catch {}
+  return new Date();
+}
+const damga = sonGuncellemeTarihi().toLocaleString("tr-TR", {
   day: "2-digit",
   month: "long",
   year: "numeric",
+  timeZone: "UTC",
 });
 
 const html = `<!doctype html>

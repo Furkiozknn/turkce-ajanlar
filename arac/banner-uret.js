@@ -116,6 +116,42 @@ const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 320" widt
 fs.mkdirSync(CIKTI_KLASOR, { recursive: true });
 fs.writeFileSync(CIKTI, svg, "utf8");
 
+// --- Sosyal kart: 1280x640 (GitHub "social preview" orani) -------------------
+// GitHub SVG kabul etmiyor; bu SVG arac/sosyal-kart.js ile PNG'ye cevrilir.
+const SOSYAL = path.join(CIKTI_KLASOR, "social.svg");
+const sosyalNoktalar = NOKTALAR.slice(0, Math.max(ajanSayisi, 1))
+  .map((c, i) => `<circle cx="${120 + i * 40}" cy="486" r="9" fill="${c}"/>`)
+  .join("\n    ");
+const sosyal = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 640" width="1280" height="640" role="img" aria-label="turkce-ajanlar">
+  <defs>
+    <style>
+      ${blok || "/* gomulu font yok */"}
+      .baslik { font-family: ${AILE}; font-weight: 400; }
+      .metin  { font-family: ${AILE}; font-weight: 400; }
+    </style>
+    <linearGradient id="cizgi2" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0"   stop-color="${R.vurgu}" stop-opacity="0"/>
+      <stop offset=".2"  stop-color="${R.vurgu}" stop-opacity=".9"/>
+      <stop offset=".8"  stop-color="${R.vurgu}" stop-opacity=".9"/>
+      <stop offset="1"   stop-color="${R.vurgu}" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <rect width="1280" height="640" fill="${R.zemin}"/>
+  <rect x="64" y="64" width="1152" height="512" rx="20" fill="${R.kart}" stroke="${R.kenar}" stroke-width="1.5"/>
+  <rect x="64" y="64" width="1152" height="3" fill="url(#cizgi2)"/>
+  <text class="metin" x="120" y="170" font-size="24" fill="${R.sonuk}">$ claude</text>
+  <text class="baslik" x="120" y="270" font-size="76" fill="${R.metin}" letter-spacing="-2">turkce-ajanlar</text>
+  <text class="metin" x="120" y="330" font-size="28" fill="${R.sonuk}">Claude Code icin Turkce alt-ajan seti</text>
+  <text class="metin" x="120" y="386" font-size="22" fill="${R.sonuk}">Az sayida, gercekten kullanilan, calistigi makinenin tuzaklarini bilen ajanlar.</text>
+  <rect x="120" y="432" width="1040" height="1.5" fill="${R.kenar}"/>
+  ${sosyalNoktalar}
+  <text class="metin" x="${120 + Math.max(ajanSayisi, 1) * 40 + 12}" y="494" font-size="22" fill="${R.sonuk}">${ajanSayisi} ajan</text>
+  <text class="metin" x="1160" y="494" font-size="22" fill="${R.vurgu}" text-anchor="end">ciktilar Turkce · bulgu sismez · MIT</text>
+</svg>
+`;
+fs.writeFileSync(SOSYAL, sosyal, "utf8");
+console.log("Uretildi: " + SOSYAL + "  (" + (Buffer.byteLength(sosyal, "utf8") / 1024).toFixed(1) + " KB)");
+
 console.log("Uretildi: " + CIKTI);
 console.log("  ajan sayisi : " + ajanSayisi);
 console.log("  boyut       : " + (Buffer.byteLength(svg, "utf8") / 1024).toFixed(1) + " KB");

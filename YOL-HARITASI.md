@@ -14,14 +14,6 @@ bitince "bitti" denebilecek kadar net olmalı.
 
 ## Sırada
 
-
-- [ ] **GitHub sosyal kartı ve CI** — `assets/banner.svg`'yi 1280x640
-      PNG'ye çevir (`assets/social.png`; GitHub sosyal önizleme SVG
-      kabul etmiyor). Ayrıca `.github/workflows/dogrula.yml`: her
-      push ve PR'da `node arac/dogrula.js` + `node arac/web-uret.js`
-      çalıştır, üretilen `web/index.html` commit'lenenden farklıysa
-      başarısız ol (bayat arayüz sorununu kalıcı çöz).
-
 - [ ] **Çoklu araç desteği** — En büyük rakip `wshobson/agents`
       (39k★) ajanlarını Claude Code dışında Cursor, Codex, OpenCode ve
       Copilot'ta da çalıştırıyor (`.cursor-plugin/`, `.agents/`,
@@ -67,6 +59,14 @@ bitince "bitti" denebilecek kadar net olmalı.
 ## Bitti
 
 <!-- Tamamlanan maddeler tarihiyle buraya taşınır -->
+
+- [x] **GitHub sosyal kartı ve CI** — `assets/banner.svg`'yi 1280x640
+      PNG'ye çevir (`assets/social.png`; GitHub sosyal önizleme SVG
+      kabul etmiyor). Ayrıca `.github/workflows/dogrula.yml`: her
+      push ve PR'da `node arac/dogrula.js` + `node arac/web-uret.js`
+      çalıştır, üretilen `web/index.html` commit'lenenden farklıysa
+      başarısız ol (bayat arayüz sorununu kalıcı çöz).
+      *(2026-09-07 — social.svg+png 1280x640 Chromium ile; CI: dogrula + web yeniden uretim diff'i; web-uret tarihi git commit'inden (deterministik) — hepsi yerelde test edildi)*
 
 - [x] **Paylaşıma hazırlık** — README'ye web arayüzünden ekran
       görüntüsü, rozetler, "neden bu var" bölümünü keskinleştir.

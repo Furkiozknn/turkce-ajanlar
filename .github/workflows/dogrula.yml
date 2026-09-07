@@ -1,0 +1,48 @@
+# Her push ve PR'da:
+#   1. ajan dosyalarinin frontmatter/govde dogrulamasi (arac/dogrula.js)
+#   2. web arayuzunun kaynaktan yeniden uretimi ve commit'lenenle KARSILASTIRMASI
+#      -> agents/ degisip web/index.html yenilenmediyse CI kirmizi.
+#      (Gece kosusunda 3 ajan eklendi, arayuz 5'te kaldi; bu kontrol o
+#       sinifi kalici olarak kapatir.)
+#
+# banner.svg bilerek kontrol DISI: uretici fontu kullanicinin makinesindeki
+# kardes depodan (mcp-vet) aliyor; CI'da o dosya yok, farkli cikti verir.
+name: dogrula
+
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  dogrula:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # web-uret tarih damgasini agents/ son commit'inden alir
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Ajan dosyalari
+        run: node arac/dogrula.js
+
+      - name: Web arayuzu guncel mi
+        run: |
+          node arac/web-uret.js
+          if ! git diff --exit-code --quiet -- web/index.html; then
+            echo "::error file=web/index.html::web/index.html bayat. Calistir: node arac/web-uret.js ve commit'le."
+            git --no-pager diff --stat -- web/index.html
+            exit 1
+          fi
+          echo "web/index.html kaynakla uyumlu."
+
+      - name: Plugin manifestleri gecerli JSON mu
+        run: |
+          node -e "JSON.parse(require('fs').readFileSync('.claude-plugin/plugin.json','utf8')); console.log('plugin.json OK')"
+          node -e "JSON.parse(require('fs').readFileSync('.claude-plugin/marketplace.json','utf8')); console.log('marketplace.json OK')"
