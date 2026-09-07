@@ -1,8 +1,8 @@
 {
   "$schema": "https://anthropic.com/claude-code/plugin.schema.json",
   "name": "turkce-ajanlar",
-  "version": "0.1.0",
-  "description": "Claude Code icin Turkce alt-ajan seti: kod gozden gecirme, depo denetimi, dosya duzenleme, veri raporlama ve gorev yazma. Ciktilar Turkce.",
+  "version": "0.2.0",
+  "description": "Claude Code icin Turkce alt-ajan seti: kod gozden gecirme, depo denetimi, dosya duzenleme, veri raporlama, gorev yazma, Windows betikciligi, hata avciligi ve web arastirmasi. Ciktilar Turkce.",
   "author": {
     "name": "Furkiozknn",
     "email": "121863222+Furkiozknn@users.noreply.github.com"
@@ -17,6 +17,10 @@
     "repo-audit",
     "file-organizer",
     "data-report",
-    "task-writer"
+    "task-writer",
+    "powershell",
+    "windows",
+    "debugging",
+    "research"
   ]
 }

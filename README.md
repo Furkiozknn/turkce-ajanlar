@@ -1,3 +1,5 @@
+![turkce-ajanlar — Claude Code için Türkçe alt-ajan seti](assets/banner.svg)
+
 # turkce-ajanlar
 
 **Claude Code için Türkçe alt-ajan seti.** Bir İngilizce koleksiyonun
@@ -9,7 +11,7 @@ tuzaklarını içine gömmüş ajanlar.
 Hazır ajan koleksiyonları var; en büyüğünde 172 ajan bulunuyor. İki
 sorun: hiçbirinde Türkçe yok, ve 172 tanım her oturumda bağlama giriyor.
 
-Buradaki yaklaşım tersi: **beş ajan, hepsi Türkçe, hepsi kullanılıyor.**
+Buradaki yaklaşım tersi: **sekiz ajan, hepsi Türkçe, hepsi kullanılıyor.**
 Her biri şunları içeriyor:
 
 - Türkçe çıktı ve Türkçe biçimlendirme kuralları (ondalık virgül,
@@ -32,6 +34,9 @@ der.
 | `dosya-duzenleyici` | Klasör düzenler. Kalıcı silmez — `_eski/` altına taşır. Toplu işlemden önce planı log'a yazar, geri alınabilir. |
 | `veri-raporcu` | CSV/Excel/JSON/Parquet'i DuckDB ile sorgular, Türkçe rapor üretir. Her rakamın arkasında gösterilen bir sorgu var. |
 | `gorev-yazari` | Belirsiz bir isteği, kullanıcı yokken çalışacak eksiksiz görev dosyasına çevirir. Belirsizliği çalışma anına bırakmaz. |
+| `betik-ustasi` | Windows'ta PowerShell 5.1 / Node betiği yazar ve tamir eder. Kodlama, kaçış, çıkış kodu ve zamanlayıcı tuzakları içine gömülü. Yazdığını çalıştırıp gösterir. |
+| `hata-avcisi` | Başarısız bir çalıştırmanın kök nedenini log'dan kanıtla çıkarır. Kodu kendisi düzeltmez, en küçük düzeltmeyi önerir. |
+| `arastirmaci` | Web araştırması yapar; yıldız, son commit, sürüm ve fiyatı `gh`/`npm`/`curl` ile doğrular. Uydurma bağlantı vermez. |
 
 ## Kurulum
 
@@ -52,7 +57,7 @@ claude plugin marketplace add Furkiozknn/turkce-ajanlar
 claude plugin install turkce-ajanlar@turkce-ajanlar
 ```
 
-Kurulduktan sonra beş ajan da her projede görünür. Kontrol:
+Kurulduktan sonra sekiz ajan da her projede görünür. Kontrol:
 
 ```powershell
 claude plugin details turkce-ajanlar
@@ -92,6 +97,9 @@ ifadeler eşleştiğinde kendisi çağırır:
 - *"indirilenler klasörünü topla"* → `dosya-duzenleyici`
 - *"bu CSV'den rapor çıkar"* → `veri-raporcu`
 - *"buna gece için görev yaz"* → `gorev-yazari`
+- *"bu ps1 zamanlayıcıda çalışmıyor"* → `betik-ustasi`
+- *"gece çalıştırması patlamış, log'a bak"* → `hata-avcisi`
+- *"bunun ücretsiz alternatifini araştır"* → `arastirmaci`
 
 ## Kendine uyarla
 

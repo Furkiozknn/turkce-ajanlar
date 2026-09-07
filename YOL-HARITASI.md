@@ -15,17 +15,6 @@ bitince "bitti" denebilecek kadar net olmalı.
 ## Sırada
 
 
-- [ ] **UI/UX gözden geçirme** — web arayüzünü gerçek kullanım akışına
-      göre incele: bir kullanıcı aradığı ajanı kaç saniyede bulur,
-      kopyaladıktan sonra ne yapacağını biliyor mu, mobilde okunuyor
-      mu, klavyeyle gezinilebiliyor mu. Bulguları uygula.
-
-- [ ] **Yeni ajan araştırması** — rakip koleksiyonları tara
-      (wshobson/agents 39k★, VoltAgent 25k★), bizde olmayan ama bu
-      kullanıcının işine yarayacak **en fazla üç** rol belirle,
-      Türkçe olarak yaz. Sayı için ajan ekleme; her yeni ajanın
-      gerekçesi olsun.
-
 - [ ] **Katkı rehberi** — Türkçe `KATKIDA-BULUNMA.md`: yeni ajan nasıl
       yazılır, frontmatter alanları, dürüstlük disiplini neden var,
       PR göndermeden önce `dogrula.js` çalıştır.
@@ -33,6 +22,47 @@ bitince "bitti" denebilecek kadar net olmalı.
 - [ ] **Paylaşıma hazırlık** — README'ye web arayüzünden ekran
       görüntüsü, rozetler, "neden bu var" bölümünü keskinleştir.
       GitHub'a push için hazır hâle getir (push'u kullanıcı onaylar).
+
+- [ ] **GitHub sosyal kartı ve CI** — `assets/banner.svg`'yi 1280x640
+      PNG'ye çevir (`assets/social.png`; GitHub sosyal önizleme SVG
+      kabul etmiyor). Ayrıca `.github/workflows/dogrula.yml`: her
+      push ve PR'da `node arac/dogrula.js` + `node arac/web-uret.js`
+      çalıştır, üretilen `web/index.html` commit'lenenden farklıysa
+      başarısız ol (bayat arayüz sorununu kalıcı çöz).
+
+- [ ] **Çoklu araç desteği** — En büyük rakip `wshobson/agents`
+      (39k★) ajanlarını Claude Code dışında Cursor, Codex, OpenCode ve
+      Copilot'ta da çalıştırıyor (`.cursor-plugin/`, `.agents/`,
+      kök `AGENTS.md`). Bizim ajanlarımız sadece Claude Code'da
+      çalışıyor. Önce **araştır**: `AGENTS.md` standardı ne, hangi
+      araçlar okuyor, frontmatter farkları neler. Sonra
+      `arac/disari-aktar.js` yaz: `agents/*.md`'den her hedef için
+      uygun biçimi üret. Tek kaynak `agents/` kalsın, gerisi türetilsin.
+
+- [ ] **Türkçe slash komutları** — Plugin sadece ajan değil komut da
+      taşıyabiliyor. `commands/` altına en çok işe yarayacak üç tanesini
+      ekle: örneğin `/ajanlar` (kurulu ajanları ve ne işe yaradıklarını
+      listeler), `/gorev` (gorev-yazari'yı çağırıp kuyruğa görev bırakır),
+      `/denetle` (repo-denetci'yi mevcut depoda çalıştırır). Biçimi
+      kurulu bir plugin'in `commands/` klasöründen doğrula.
+
+- [ ] **Türkçe beceri (skill) seti** — Ajanlar bir görevi devralır;
+      beceriler ise Claude'un kendi akışına bilgi katar. Bizde hiç beceri
+      yok. Araştır: hangi tekrar eden iş beceri olmalı (Türkçe rapor
+      biçimlendirme, Windows/PowerShell tuzakları, Türkçe metin
+      denetimi). En fazla iki tane yaz, `skills/` altına koy.
+
+- [ ] **Yayına alma: web arayüzü** — `web/` klasörünü herkese açık bir
+      adrese taşı ki depo linkiyle birlikte paylaşılabilsin. Vercel MCP
+      bağlı; statik dağıtım yeterli. **Yayınlamadan önce
+      `raporlar\ONAY-BEKLEYENLER.md` dosyasına yaz ve kullanıcının
+      onayını bekle** — dışarı açılan bir işlem, kendi başına yapma.
+
+- [ ] **İngilizce tanıtım bölümü** — Ajanların kendisi Türkçe kalacak,
+      bu setin varlık sebebi bu. Ama README'nin başına kısa bir İngilizce
+      bölüm ekle: bunun ne olduğu, kimin işine yarayacağı, neden Türkçe.
+      Uluslararası bir geliştirici ne olduğunu anlayabilsin, yanlışlıkla
+      kurup hayal kırıklığına uğramasın.
 
 - [ ] **Araştırma turu ve yol haritası yenileme** — bu maddeye
       gelindiğinde: rakipleri ve Claude Code'un yeni özelliklerini
@@ -45,6 +75,18 @@ bitince "bitti" denebilecek kadar net olmalı.
 ## Bitti
 
 <!-- Tamamlanan maddeler tarihiyle buraya taşınır -->
+
+- [x] **Yeni ajan araştırması** — rakip koleksiyonları tara
+      (wshobson/agents 39k★, VoltAgent 25k★), bizde olmayan ama bu
+      kullanıcının işine yarayacak **en fazla üç** rol belirle,
+      Türkçe olarak yaz. Sayı için ajan ekleme; her yeni ajanın
+      gerekçesi olsun.
+      *(2026-09-07 — wshobson/agents'ta 137, VoltAgent'ta 158 benzersiz
+      rol tarandı; üçü seçilip yazıldı: `betik-ustasi`, `hata-avcisi`,
+      `arastirmaci`. wshobson'da PowerShell ajanı hiç yok, VoltAgent'ınki
+      kurumsal AD/GPO odaklı — bu makinenin tuzakları canlı ölçülüp
+      `betik-ustasi`ye gömüldü. `dogrula.js` 8/8, web testi 40/40 geçti.
+      Rapor: `raporlar/2026-09-07-yeni-ajan-arastirmasi.md`)*
 
 - [x] **Web arayüzü v1** — `web/index.html`: tek dosya, bağımlılıksız,
       dosyadan açılınca da çalışan bir ajan tarayıcısı. Ajan verisi
@@ -87,3 +129,18 @@ bitince "bitti" denebilecek kadar net olmalı.
       dosya-duzenleyici bir tarihi hatırdan uydurmuştu; ikisi de
       düzeltildi. `dogrula.js` 5/5 geçiyor. Rapor:
       `raporlar/2026-09-07-ajan-kalite-turu.md`)*
+
+- [x] **UI/UX gözden geçirme** — web arayüzünü gerçek kullanım akışına
+      göre incele: bir kullanıcı aradığı ajanı kaç saniyede bulur,
+      kopyaladıktan sonra ne yapacağını biliyor mu, mobilde okunuyor
+      mu, klavyeyle gezinilebiliyor mu. Bulguları uygula.
+      *(2026-09-07 — arayüz gerçek Chromium'da masaüstü/mobil/koyu temada
+      denendi. Sekiz bulgu düzeltildi: kartlar artık Claude'a yazılmış
+      "Sen bir…" cümlesi yerine ajanın ne yaptığını + tetikleyici
+      cümleleri + sınırını gösteriyor; arama Türkçe harfsiz yazımı da
+      buluyor ve sonuçları puanlıyor; klavye odak halkası geri geldi,
+      `↓` ve `Enter` eklendi; detayda "Kur ve kullan" 3 adımı kopyaladan
+      sonra ne yapılacağını söylüyor; `h3:first-child` yüzünden birbirine
+      giren bölümler ayrıldı; mobilde pencere sabit yükseklik hesabı
+      yerine flex; `#ajan=` derin bağlantısı; favicon 404'ü giderildi.
+      40 testlik `arac/web-test.js` yazıldı, hepsi geçiyor)*
