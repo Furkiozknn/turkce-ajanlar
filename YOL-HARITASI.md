@@ -23,13 +23,6 @@ bitince "bitti" denebilecek kadar net olmalı.
       `arac/disari-aktar.js` yaz: `agents/*.md`'den her hedef için
       uygun biçimi üret. Tek kaynak `agents/` kalsın, gerisi türetilsin.
 
-- [ ] **Türkçe slash komutları** — Plugin sadece ajan değil komut da
-      taşıyabiliyor. `commands/` altına en çok işe yarayacak üç tanesini
-      ekle: örneğin `/ajanlar` (kurulu ajanları ve ne işe yaradıklarını
-      listeler), `/gorev` (gorev-yazari'yı çağırıp kuyruğa görev bırakır),
-      `/denetle` (repo-denetci'yi mevcut depoda çalıştırır). Biçimi
-      kurulu bir plugin'in `commands/` klasöründen doğrula.
-
 - [ ] **Türkçe beceri (skill) seti** — Ajanlar bir görevi devralır;
       beceriler ise Claude'un kendi akışına bilgi katar. Bizde hiç beceri
       yok. Araştır: hangi tekrar eden iş beceri olmalı (Türkçe rapor
@@ -42,12 +35,6 @@ bitince "bitti" denebilecek kadar net olmalı.
       `raporlar\ONAY-BEKLEYENLER.md` dosyasına yaz ve kullanıcının
       onayını bekle** — dışarı açılan bir işlem, kendi başına yapma.
 
-- [ ] **İngilizce tanıtım bölümü** — Ajanların kendisi Türkçe kalacak,
-      bu setin varlık sebebi bu. Ama README'nin başına kısa bir İngilizce
-      bölüm ekle: bunun ne olduğu, kimin işine yarayacağı, neden Türkçe.
-      Uluslararası bir geliştirici ne olduğunu anlayabilsin, yanlışlıkla
-      kurup hayal kırıklığına uğramasın.
-
 - [ ] **Araştırma turu ve yol haritası yenileme** — bu maddeye
       gelindiğinde: rakipleri ve Claude Code'un yeni özelliklerini
       tara, eksik gördüğün özellikleri **bu dosyanın "Sırada"
@@ -59,6 +46,21 @@ bitince "bitti" denebilecek kadar net olmalı.
 ## Bitti
 
 <!-- Tamamlanan maddeler tarihiyle buraya taşınır -->
+
+- [x] **İngilizce tanıtım bölümü** — Ajanların kendisi Türkçe kalacak,
+      bu setin varlık sebebi bu. Ama README'nin başına kısa bir İngilizce
+      bölüm ekle: bunun ne olduğu, kimin işine yarayacağı, neden Türkçe.
+      Uluslararası bir geliştirici ne olduğunu anlayabilsin, yanlışlıkla
+      kurup hayal kırıklığına uğramasın.
+      *(2026-09-07 — README başında katlanabilir In English bloğu; ajanlar ve geri kalan her şey Türkçe kaldı)*
+
+- [x] **Türkçe slash komutları** — Plugin sadece ajan değil komut da
+      taşıyabiliyor. `commands/` altına en çok işe yarayacak üç tanesini
+      ekle: örneğin `/ajanlar` (kurulu ajanları ve ne işe yaradıklarını
+      listeler), `/gorev` (gorev-yazari'yı çağırıp kuyruğa görev bırakır),
+      `/denetle` (repo-denetci'yi mevcut depoda çalıştırır). Biçimi
+      kurulu bir plugin'in `commands/` klasöründen doğrula.
+      *(2026-09-07 — commands/ajanlar.md, gorev.md, denetle.md; ad-alanlı çağrı /turkce-ajanlar:<komut>, headless testte üç turda doğrulandı)*
 
 - [x] **GitHub sosyal kartı ve CI** — `assets/banner.svg`'yi 1280x640
       PNG'ye çevir (`assets/social.png`; GitHub sosyal önizleme SVG

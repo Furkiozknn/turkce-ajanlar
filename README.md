@@ -1,5 +1,26 @@
 ![turkce-ajanlar — Claude Code için Türkçe alt-ajan seti](assets/banner.svg)
 
+<details>
+<summary><strong>In English</strong> — what this is and why it is in Turkish</summary>
+
+**turkce-ajanlar** is a small set of Claude Code sub-agents whose *output
+language is Turkish*: code review, repository audit, file organization, data
+reporting, task-file writing, Windows scripting, root-cause debugging and web
+research. Eight agents, each installable via `kur.ps1` or as a Claude Code
+plugin (`.claude-plugin/`).
+
+It exists because none of the large agent collections ship a Turkish
+localization, and a translated prompt is not the same as an agent that knows
+the machine it runs on (PowerShell 5.1 quirks, cp1254 encoding, no Python on
+PATH). Every agent also carries an *honesty discipline*: do not inflate
+findings, verify before claiming, say "not checked" when it was not checked.
+
+If you do not need Turkish output, this repository is probably not for you —
+see `wshobson/agents` or `VoltAgent/awesome-claude-code-subagents` instead.
+Everything below is in Turkish on purpose.
+
+</details>
+
 # turkce-ajanlar
 
 [![Claude Code eklentisi](https://img.shields.io/badge/Claude%20Code-eklenti-b45309?style=flat-square)](#eklenti-olarak-önerilen)
@@ -159,6 +180,21 @@ tools: ["Read", "Grep", "Glob", "Bash"]
 
 `description` alanı en önemlisi: Claude ajanı buna bakarak seçer.
 Tetikleyici ifadeleri oraya yaz.
+
+## Slash komutları
+
+Plugin üç komut da taşır (`commands/`). Plugin komutları **ad-alanlıdır**:
+`/turkce-ajanlar:<komut>` diye çağrılır; çıplak `/ajanlar` "Unknown command" verir.
+
+| Komut | Ne yapar |
+|---|---|
+| `/turkce-ajanlar:ajanlar` | Kurulu Türkçe ajanları ve tetikleyici ifadelerini tablo olarak listeler. Salt okuma. |
+| `/turkce-ajanlar:gorev <istek>` | İsteği `gorev-yazari` ile kuyruğa bırakılacak eksiksiz bir görev dosyasına çevirir; belirsizliği şimdi temizler, çalıştırmaz. |
+| `/turkce-ajanlar:denetle [yol]` | Bulunduğun depoyu `repo-denetci` ile denetler; salt okuma, tek çıktı bir rapor dosyası. |
+
+Komutlar plugin olarak kurulduğunda gelir (`claude plugin install turkce-ajanlar@turkce-ajanlar`);
+tek oturumluk deneme için `claude --plugin-dir <bu depo>`. Doğrulandı: headless (`claude -p`)
+çağrıda `/turkce-ajanlar:ajanlar` üç turda tabloyu üretti.
 
 ## Web arayüzü
 
