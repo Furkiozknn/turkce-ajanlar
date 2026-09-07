@@ -157,3 +157,10 @@ Hata bulursa çıkış kodu 1 olur — betiği bir kancaya ya da CI adımına
 doğrudan bağlayabilirsin. Doğrulayıcının kendi testi:
 `node arac/dogrula-test.js` (geçici klasörde bozuk örnekler üretir,
 her kuralın gerçekten yakaladığını gösterir).
+
+## Katkı
+
+Yeni ajan yazmak, mevcut birini düzeltmek ya da araçlara dokunmak
+istiyorsan: [KATKIDA-BULUNMA.md](KATKIDA-BULUNMA.md). Frontmatter
+alanları, gövde iskeleti, dürüstlük disiplininin neden zorunlu olduğu
+ve PR öncesi çalıştırman gereken doğrulamalar orada.

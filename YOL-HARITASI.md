@@ -15,10 +15,6 @@ bitince "bitti" denebilecek kadar net olmalı.
 ## Sırada
 
 
-- [ ] **Katkı rehberi** — Türkçe `KATKIDA-BULUNMA.md`: yeni ajan nasıl
-      yazılır, frontmatter alanları, dürüstlük disiplini neden var,
-      PR göndermeden önce `dogrula.js` çalıştır.
-
 - [ ] **Paylaşıma hazırlık** — README'ye web arayüzünden ekran
       görüntüsü, rozetler, "neden bu var" bölümünü keskinleştir.
       GitHub'a push için hazır hâle getir (push'u kullanıcı onaylar).
@@ -75,6 +71,20 @@ bitince "bitti" denebilecek kadar net olmalı.
 ## Bitti
 
 <!-- Tamamlanan maddeler tarihiyle buraya taşınır -->
+
+- [x] **Katkı rehberi** — Türkçe `KATKIDA-BULUNMA.md`: yeni ajan nasıl
+      yazılır, frontmatter alanları, dürüstlük disiplini neden var,
+      PR göndermeden önce `dogrula.js` çalıştır.
+      *(2026-09-07 — 11 bölümlük rehber yazıldı: ajan gerekli mi
+      elemesi, frontmatter alan tablosu, `description` yazım kuralı,
+      gövde iskeleti, `tools` geçerli ad listesi, dürüstlük disiplininin
+      gerekçesi (depoda gerçekten yaşanmış üç örnekle), türetilmiş
+      dosyaları yenileme, PR öncesi doğrulama tablosu, commit/PR biçimi,
+      araç katkısı kuralları, dil. README'ye "## Katkı" bağlantısı
+      eklendi. Doğrulama: `dogrula.js --kati` 8/8 (0 hata, 0 uyarı),
+      `dogrula-test.js` 22/22; rehberdeki iskeletle geçici bir örnek
+      ajan üretilip `--kati` ile geçirildi, sonra silindi. Doğrulayıcı
+      kuralları `arac/dogrula.js` kaynağından okunarak yazıldı.)*
 
 - [x] **Yeni ajan araştırması** — rakip koleksiyonları tara
       (wshobson/agents 39k★, VoltAgent 25k★), bizde olmayan ama bu
