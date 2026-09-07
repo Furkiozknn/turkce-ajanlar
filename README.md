@@ -2,28 +2,69 @@
 
 # turkce-ajanlar
 
+[![Claude Code eklentisi](https://img.shields.io/badge/Claude%20Code-eklenti-b45309?style=flat-square)](#eklenti-olarak-önerilen)
+[![8 ajan](https://img.shields.io/badge/ajan-8-4b5563?style=flat-square)](#ajanlar)
+[![Dil: Türkçe](https://img.shields.io/badge/dil-T%C3%BCrk%C3%A7e-b91c1c?style=flat-square)](#neden-bu-var)
+[![Bağımlılık: 0](https://img.shields.io/badge/ba%C4%9F%C4%B1ml%C4%B1l%C4%B1k-0-166534?style=flat-square)](#web-arayüzü)
+[![Lisans: MIT](https://img.shields.io/badge/lisans-MIT-1f6feb?style=flat-square)](LICENSE)
+
 **Claude Code için Türkçe alt-ajan seti.** Bir İngilizce koleksiyonun
 çevirisi değil — az sayıda, gerçekten kullanılan, ve çalıştığı makinenin
 tuzaklarını içine gömmüş ajanlar.
 
-## Neden bir tane daha
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/ekran-goruntusu-koyu.png">
+  <img alt="Web arayüzü: sekiz ajan, arama kutusu, her kart için tetikleyici ifadeler ve ajanın sınırı" src="assets/ekran-goruntusu.png">
+</picture>
 
-Hazır ajan koleksiyonları var; en büyüğünde 172 ajan bulunuyor. İki
-sorun: hiçbirinde Türkçe yok, ve 172 tanım her oturumda bağlama giriyor.
+<sub><code>web/index.html</code> — tek dosya, bağımlılık yok,
+<code>file://</code> ile de açılır. Ajan verisi <code>agents/*.md</code>
+içinden üretilip HTML'e gömülür.</sub>
 
-Buradaki yaklaşım tersi: **sekiz ajan, hepsi Türkçe, hepsi kullanılıyor.**
-Her biri şunları içeriyor:
+## Neden bu var
 
-- Türkçe çıktı ve Türkçe biçimlendirme kuralları (ondalık virgül,
-  tarih düzeni)
-- Bu makinenin bilinen tuzakları — PowerShell 5.1'de `&&` yok, Python
-  PATH'te yok, heredoc ters bölüyü yiyor
-- **Dürüstlük disiplini**: bulgu şişirmemek, doğrulanmamışı doğrulanmış
-  gibi sunmamak, "bu sorun değil" diyebilmek
+Hazır alt-ajan koleksiyonları büyük ve iyi bilinen: `wshobson/agents`
+39,5 bin yıldız ve 137 ayrı ajan, `VoltAgent/awesome-claude-code-subagents`
+24,9 bin yıldız ve 157 ajan. İkisinde de "Türkçe" geçen tek bir dosya
+yok. *(GitHub API ve kod araması, 7 Eylül 2026 — sayılar hatırdan değil,
+ölçüldü.)*
 
-Son madde asıl fark. Çoğu ajan promptu "kapsamlı ol" der; bu da uydurma
-bulgu üretir. Buradakiler "emin değilsen bak, bakamıyorsan işaretle"
-der.
+Bu depo o koleksiyonların küçük bir kopyası değil; dört noktada bilerek
+ters yönde duruyor.
+
+**1. Türkçe çıktı — çeviri değil, kural.** Ajanlar Türkçe rapor yazar ve
+Türkçe biçimlendirme kurallarına uyar: ondalık **virgül** (0,57), gün.ay.yıl
+tarih düzeni, Türkçe büyük-küçük harf (`İ`/`ı`). Arayüzdeki arama da aynı
+kurala uyar — `TÜRKÇE` yazınca `türkçe` bulunur, `turkce` yazınca da.
+
+**2. Sekiz ajan, hepsi kullanılıyor.** Claude, kurulu **her** ajanın adını
+ve `description`'ını her oturumda sisteme yükler; ajanın gövdesi ancak o
+ajan çağrılınca okunur. Yani ajan sayısı bedava değil: 137 tanımlık bir
+katalog, hiç çağırmayacağın ajanların her oturumda bağlamda durması ve
+Claude'un seçim yaparken 137 aday elemesi demek. Buradaki sekiz tanımın
+tamamı **~2.800 karakter** — `agents/*.md` frontmatter'larındaki
+`description` alanlarının toplamı, kabaca 900 token. Sayı için ajan
+eklenmiyor; her ajanın bir gerekçesi var.
+
+**3. Dürüstlük disiplini gövdeye gömülü.** Çoğu ajan promptu "kapsamlı ol"
+der; bu da uydurma bulgu üretir — beş madde istendiği için dolguyla beşe
+tamamlanan öneri listeleri, hatırdan yazılmış tarihler. Buradakiler tersini
+söyler: **emin değilsen bak, bakamıyorsan işaretle, sorun yoksa "sorun yok"
+de.** Her ajanda bir de açık sınır var — `arastirmaci` kod yazmaz,
+`hata-avcisi` düzeltmeyi kendisi uygulamaz, `dosya-duzenleyici` kalıcı
+silmez.
+
+**4. Bu makinenin tuzakları içeride.** PowerShell 5.1'de `&&` yok, Python
+`PATH`'te yok, heredoc ters bölüyü yiyor, Türkçe yerel ayarda
+`[double]::TryParse("0,5")` başka sonuç verir. Bunlar burada gerçekten
+yaşanmış hatalar; hepsi [BILINEN-TUZAKLAR.md](BILINEN-TUZAKLAR.md) içinde
+ve ilgili ajanların gövdesinde. Genel bir "Windows uzmanı" promptunun
+bilemeyeceği şeyler.
+
+**Kimin işine yarar:** Windows'ta Claude Code kullanan, çıktıyı Türkçe
+isteyen ve az sayıda güvenilir ajanı çok sayıda genel ajana tercih eden
+biri. Türkçe çıktı istemiyorsan bu depo sana bir şey katmaz — yukarıdaki
+iki büyük koleksiyon daha geniş.
 
 ## Ajanlar
 
@@ -119,10 +160,6 @@ tools: ["Read", "Grep", "Glob", "Bash"]
 `description` alanı en önemlisi: Claude ajanı buna bakarak seçer.
 Tetikleyici ifadeleri oraya yaz.
 
-## Lisans
-
-MIT. Al, değiştir, kullan.
-
 ## Web arayüzü
 
 `web/index.html` — tek dosya, bağımlılık yok, `file://` ile de açılır.
@@ -141,6 +178,14 @@ atlar, `Esc` aramayı temizler. Her ajanın detayında tam markdown ve
 Tema sistem tercihine uyar, sağ üstten değiştirilebilir ve seçim
 tarayıcıda hatırlanır.
 
+Yukarıdaki ekran görüntüleri de üretilmiş dosyadır — arayüz değişince
+yenilenir:
+
+```powershell
+node arac/sunucu.js 8789
+node arac/ekran-goruntusu.js http://127.0.0.1:8789/   # assets/ekran-goruntusu*.png
+```
+
 ## Doğrulama
 
 `arac/dogrula.js` ajan dosyalarını kontrol eder: frontmatter geçerli mi,
@@ -156,7 +201,8 @@ node arac/dogrula.js agents/repo-denetci.md   # tek dosya
 Hata bulursa çıkış kodu 1 olur — betiği bir kancaya ya da CI adımına
 doğrudan bağlayabilirsin. Doğrulayıcının kendi testi:
 `node arac/dogrula-test.js` (geçici klasörde bozuk örnekler üretir,
-her kuralın gerçekten yakaladığını gösterir).
+her kuralın gerçekten yakaladığını gösterir). Arayüzün kendi testi de
+var: `node arac/web-test.js` (gerçek tarayıcıda 40 kontrol).
 
 ## Katkı
 
@@ -164,3 +210,7 @@ Yeni ajan yazmak, mevcut birini düzeltmek ya da araçlara dokunmak
 istiyorsan: [KATKIDA-BULUNMA.md](KATKIDA-BULUNMA.md). Frontmatter
 alanları, gövde iskeleti, dürüstlük disiplininin neden zorunlu olduğu
 ve PR öncesi çalıştırman gereken doğrulamalar orada.
+
+## Lisans
+
+MIT. Al, değiştir, kullan.

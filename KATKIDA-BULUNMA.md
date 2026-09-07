@@ -208,15 +208,33 @@ okuyup öyle yazdı — yukarıdaki kural listesi hatırdan değil.
 
 ## 7. Türetilmiş dosyaları yenile
 
-`web/index.html`, `assets/banner.svg` ve `.claude/agents/` altındaki
-kopyalar **türetilmiş** dosyalardır. Tek kaynak `agents/*.md`. Bir ajan
-ekler, siler veya `description`'ını değiştirirsen üçünü de yenile:
+`web/index.html`, `assets/banner.svg`, `assets/ekran-goruntusu*.png` ve
+`.claude/agents/` altındaki kopyalar **türetilmiş** dosyalardır. Tek kaynak
+`agents/*.md`. Bir ajan ekler, siler veya `description`'ını değiştirirsen
+hepsini yenile:
 
 ```powershell
 node arac/web-uret.js       # web/index.html
 node arac/banner-uret.js    # assets/banner.svg
 powershell -ExecutionPolicy Bypass -File kur.ps1   # yerel .claude/agents/
+
+# README'deki arayuz gorseli (ayri bir pencerede sunucu acikken)
+node arac/sunucu.js 8789
+node arac/ekran-goruntusu.js http://127.0.0.1:8789/
 ```
+
+`ekran-goruntusu.js` ve `web-test.js` Playwright'ı **bağımlılık olarak
+istemez**, makinede kurulu kopyayı kullanır. Bulamazsa `2` ile çıkar —
+"geçti" sanma. Yolunu ortam değişkeniyle verirsin:
+
+```powershell
+$env:NODE_PATH   = "<playwright'in bulundugu>\node_modules"
+$env:CHROME_YOL  = "$env:LOCALAPPDATA\ms-playwright\chromium-<surum>\chrome-win64\chrome.exe"
+```
+
+Ajan sayısı değiştiyse README'nin başındaki **"ajan: 8" rozetini** ve
+"Neden bu var" bölümündeki karakter ölçümünü de güncelle — ikisi elle
+yazılıyor, üretilmiyor.
 
 Bu bir kez unutuldu ve depoda üç yeni ajan varken web arayüzü beş ajan
 göstermeye devam etti. `kur.ps1` sadece senin makineni etkiler, PR'a
@@ -294,8 +312,9 @@ sanılmasın diye. 0 dönmediyse test koşmamıştır.
   çalıştırdın, çıktısı ne oldu, `dogrula.js` çıktısı ne dedi. "Yazdım,
   herhalde çalışıyor" yeterli değil — bu depodaki hiçbir dosya öyle
   girmedi.
-- Türetilmiş dosyaları (`web/index.html`, `assets/banner.svg`)
-  yenilediysen **onları da commit'le**; yenilemediysen PR'da söyle.
+- Türetilmiş dosyaları (`web/index.html`, `assets/banner.svg`,
+  `assets/ekran-goruntusu*.png`) yenilediysen **onları da commit'le**;
+  yenilemediysen PR'da söyle.
 
 ---
 
