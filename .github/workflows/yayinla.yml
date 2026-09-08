@@ -1,0 +1,53 @@
+# web/ klasorunu GitHub Pages'e yayinlar.
+#
+# Bilerek SADECE elle tetiklenir (workflow_dispatch): yayina alma disari acilan
+# bir islemdir, kullanici onayi olmadan calismaz. Onay sonrasi:
+#   1. GitHub -> turkce-ajanlar -> Settings -> Pages -> Source: "GitHub Actions"
+#   2. Actions sekmesinden bu is akisini bir kez calistir
+#   -> https://furkiozknn.github.io/turkce-ajanlar/
+# Sonraki her push'ta otomatik yayin istenirse `on:` altina push tetikleyicisi eklenir.
+name: yayinla
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  yayinla:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # web-uret tarih damgasini agents/ son commit'inden alir
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Arayuz kaynakla uyumlu mu
+        run: |
+          node arac/web-uret.js
+          if ! git diff --exit-code --quiet -- web/index.html; then
+            echo "::error::web/index.html bayat; once node arac/web-uret.js calistirip commit'le."
+            exit 1
+          fi
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: web
+
+      - id: deploy
+        uses: actions/deploy-pages@v4

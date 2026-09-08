@@ -14,7 +14,9 @@ bitince "bitti" denebilecek kadar net olmalı.
 
 ## Sırada
 
-- [ ] **Yayına alma: web arayüzü** — `web/` klasörünü herkese açık bir
+`[~]` = kullanıcı onayı bekliyor (`raporlar/ONAY-BEKLEYENLER.md`); döngü bu maddeyi atlar.
+
+- [~] **Yayına alma: web arayüzü** — `web/` klasörünü herkese açık bir
       adrese taşı ki depo linkiyle birlikte paylaşılabilsin. Vercel MCP
       bağlı; statik dağıtım yeterli. **Yayınlamadan önce
       `raporlar\ONAY-BEKLEYENLER.md` dosyasına yaz ve kullanıcının
