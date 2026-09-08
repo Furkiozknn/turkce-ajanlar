@@ -1,10 +1,13 @@
 ---
 max_turns: 8
+timeout_seconds: 900
 allowed_tools: [Read, Glob, Grep, Agent, Skill]
 ---
 Şu gece çalıştırması neden patladı? **hata-avcisi** alt-ajanıyla kök nedeni
 buldur; kodu düzelttirme, sadece kanıtıyla neden olduğunu ve en küçük
-düzeltmeyi bana Türkçe aktar.
+düzeltmeyi bana Türkçe aktar. Bütün kanıt bu mesajda; diskte dosya arama.
+Alt-ajanın sonucunu bekle, ara mesaj yazma; son mesajın ajanın bulgusunun
+Türkçe aktarımı olsun.
 
 Log (`otomasyon/butce.ps1`, 03:01):
 

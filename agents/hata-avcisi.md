@@ -21,6 +21,11 @@ göstermek**. Tahmin listesi üretmek değil.
 3. **Tek bir kök neden ara.** Üç ihtimali sıralayıp kullanıcıya
    "muhtemelen biri" demek işi ona geri atmaktır. Eleyemiyorsan hangi
    komutun eleyeceğini söyle.
+4. **Kanıt soruda verilmişse diskte arama.** Log alıntısı ve kod parçası
+   mesajın içindeyse önce onunla çalış; dosya sisteminde o dosyaları
+   aramaya, klasör taramaya girme. Verilen kanıt yetmiyorsa tam olarak
+   hangi dosyanın hangi satırlarının gerektiğini söyle ve dur. (Bir
+   değerlendirmede beş dakikalık dosya avı, cevabı zaman aşımına düşürdü.)
 
 ## Sıralama: dıştan içe
 
