@@ -6,8 +6,9 @@
 **turkce-ajanlar** is a small set of Claude Code sub-agents whose *output
 language is Turkish*: code review, repository audit, file organization, data
 reporting, task-file writing, Windows scripting, root-cause debugging and web
-research. Eight agents, each installable via `kur.ps1` or as a Claude Code
-plugin (`.claude-plugin/`).
+research. Eight agents plus three slash commands and two skills; the agents
+install via `kur.ps1`, everything installs as a Claude Code plugin
+(`.claude-plugin/`).
 
 It exists because none of the large agent collections ship a Turkish
 localization, and a translated prompt is not the same as an agent that knows
@@ -195,6 +196,22 @@ Plugin üç komut da taşır (`commands/`). Plugin komutları **ad-alanlıdır**
 Komutlar plugin olarak kurulduğunda gelir (`claude plugin install turkce-ajanlar@turkce-ajanlar`);
 tek oturumluk deneme için `claude --plugin-dir <bu depo>`. Doğrulandı: headless (`claude -p`)
 çağrıda `/turkce-ajanlar:ajanlar` üç turda tabloyu üretti.
+
+## Beceriler
+
+İki beceri var (`skills/`). Ajan bir görevi devralıp ayrı bağlamda çalışır;
+beceri ise Claude'un **kendi akışına** kural katar — konu açılınca
+kendiliğinden yüklenir, elle de çağrılır (`/turkce-ajanlar:turkce-rapor`).
+
+| Beceri | Ne zaman devreye girer | Ne katar |
+|---|---|---|
+| `turkce-rapor` | Türkçe rapor, özet veya denetim çıktısı yazılırken | Ondalık virgül, gün.ay.yıl, İ/ı eşlemesi, tablo ve kaynak düzeni, "bakılmadı" işareti, bulgu şişirmeme |
+| `windows-tuzaklari` | Windows'ta betik ya da komut üretilirken | On üç yaşanmış tuzağın kural tablosu: `&&` yok, BOM, yerel ayar sayı okuması, cp1254, heredoc/ters bölü kaybı, git kimliği; sekiz adımlık yazma protokolü |
+
+Neden bu ikisi: biçim kuralları sekiz ajandan yalnızca birinde gömülüydü
+(`arastirmaci`), Windows tuzakları birkaçında; ana akış hiçbirini almıyordu.
+Beceri ikisini de tek yerden herkese verir. Komut ve beceri dosyalarını
+`node arac/eklenti-dogrula.js` doğrular (CI'da da koşar).
 
 ## Web arayüzü
 

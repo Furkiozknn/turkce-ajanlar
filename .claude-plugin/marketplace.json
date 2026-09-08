@@ -11,7 +11,7 @@
       "name": "turkce-ajanlar",
       "source": "./",
       "description": "Claude Code icin Turkce alt-ajan seti: kod gozden gecirme, depo denetimi, dosya duzenleme, veri raporlama, gorev yazma, Windows betikciligi, hata avciligi ve web arastirmasi. Ciktilar Turkce.",
-      "version": "0.2.0",
+      "version": "0.3.0",
       "license": "MIT",
       "category": "development",
       "keywords": ["turkce", "turkish", "agents", "subagents"]

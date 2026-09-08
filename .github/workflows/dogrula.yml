@@ -32,6 +32,9 @@ jobs:
       - name: Ajan dosyalari
         run: node arac/dogrula.js
 
+      - name: Komut ve beceri dosyalari
+        run: node arac/eklenti-dogrula.js
+
       - name: Web arayuzu guncel mi
         run: |
           node arac/web-uret.js

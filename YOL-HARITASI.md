@@ -23,12 +23,6 @@ bitince "bitti" denebilecek kadar net olmalı.
       `arac/disari-aktar.js` yaz: `agents/*.md`'den her hedef için
       uygun biçimi üret. Tek kaynak `agents/` kalsın, gerisi türetilsin.
 
-- [ ] **Türkçe beceri (skill) seti** — Ajanlar bir görevi devralır;
-      beceriler ise Claude'un kendi akışına bilgi katar. Bizde hiç beceri
-      yok. Araştır: hangi tekrar eden iş beceri olmalı (Türkçe rapor
-      biçimlendirme, Windows/PowerShell tuzakları, Türkçe metin
-      denetimi). En fazla iki tane yaz, `skills/` altına koy.
-
 - [ ] **Yayına alma: web arayüzü** — `web/` klasörünü herkese açık bir
       adrese taşı ki depo linkiyle birlikte paylaşılabilsin. Vercel MCP
       bağlı; statik dağıtım yeterli. **Yayınlamadan önce
@@ -46,6 +40,13 @@ bitince "bitti" denebilecek kadar net olmalı.
 ## Bitti
 
 <!-- Tamamlanan maddeler tarihiyle buraya taşınır -->
+
+- [x] **Türkçe beceri (skill) seti** — Ajanlar bir görevi devralır;
+      beceriler ise Claude'un kendi akışına bilgi katar. Bizde hiç beceri
+      yok. Araştır: hangi tekrar eden iş beceri olmalı (Türkçe rapor
+      biçimlendirme, Windows/PowerShell tuzakları, Türkçe metin
+      denetimi). En fazla iki tane yaz, `skills/` altına koy.
+      *(2026-09-08 — skills/turkce-rapor ve skills/windows-tuzaklari; headless testte ikisi de yüklendi ve kuralı uyguladı; doğrulayıcı arac/eklenti-dogrula.js CI'da koşuyor; plugin 0.3.0)*
 
 - [x] **İngilizce tanıtım bölümü** — Ajanların kendisi Türkçe kalacak,
       bu setin varlık sebebi bu. Ama README'nin başına kısa bir İngilizce

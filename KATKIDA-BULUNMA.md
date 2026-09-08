@@ -6,7 +6,8 @@ ediyor — ama hedefi koleksiyonu büyütmek değil. Rakip koleksiyonlarda
 gerçekten kullanılıyor ve doğrulanmış olması.
 
 Aşağıdaki kurallar bunu korumak için. Uzun görünüyorlar ama çoğu tek
-komutla kontrol ediliyor: `node arac/dogrula.js`.
+komutla kontrol ediliyor: `node arac/dogrula.js` (ajanlar) ve
+`node arac/eklenti-dogrula.js` (komutlar ve beceriler).
 
 ---
 
@@ -20,6 +21,11 @@ Aceleci için sıra bu:
    dosyaları yenile.
 4. `node arac/dogrula-test.js` çalıştır (doğrulayıcıya dokunduysan şart).
 5. Türkçe commit mesajıyla commit at, PR aç.
+
+Komut (`commands/<ad>.md`) ya da beceri (`skills/<ad>/SKILL.md`) ekliyorsan
+aynı sıra geçerli; doğrulayıcı `node arac/eklenti-dogrula.js`. Beceri
+adı klasör adıyla aynı olmalı, `description` alanı tetikleyici ifadeleri
+taşımalı — Claude beceriyi ona bakarak yükler.
 
 Detaylar aşağıda.
 
