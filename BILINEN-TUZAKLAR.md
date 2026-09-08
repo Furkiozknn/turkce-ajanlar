@@ -131,3 +131,20 @@ yeniden üretti, iki satır fark buldu ve "bayat" dedi (8 Eylül 2026, 3e1aecc).
 Şimdi `agents/` altında commit'lenmemiş değişiklik varsa damga **bugün**
 oluyor; temizse son commit tarihi. Genel ders: türetilmiş dosyayı üretip
 commit'e koymadan önce "CI bunu aynı girdilerle üretir mi?" diye sor.
+
+## 15. Gece döngüsü ile canlı oturum aynı ağaçta yarışır — "bozukluk" zaten kapanmış olabilir
+
+Gece döngüsünün değerlendirme adımı her turda depoyu tarar; canlı bir
+oturum o sırada commit atmamış dosyalarla çalışıyorsa bunu "yarım kalmış
+gece işi" sanıp bir düzeltme görevi üretir. 8 Eylül 2026 04:07'de üretilen
+`duzeltme-turkce-ajanlar.md` görevi tam bu oldu: canlı oturumun sürmekte
+olan eval pilotu dosyaları taranmıştı, ama görev çalışana kadar canlı
+oturum kendi commit'ini zaten atmıştı (`8ca63b1`, aynı dakika: 04:07:16).
+Düzeltme görevi başladığında `git status` zaten tertemizdi.
+
+**Kural:** düzeltme görevine girer girmez önce `git status` / `git diff`
+çalıştır. Ağaç temizse "bozukluk kendiliğinden kapanmış" demektir —
+zorla bir şey commit'leme, geri alma; sadece doğrulama komutlarını
+(`node arac/dogrula.js` vb.) tekrar çalıştırıp sonucu günlüğe yaz ve
+görevi kapat. Kanıt olmayan bir şeyi düzeltmeye çalışmak yeni bir
+bozukluk yaratma riski taşır.
