@@ -45,6 +45,16 @@ jobs:
           fi
           echo "web/index.html kaynakla uyumlu."
 
+      - name: Diger arac bicimleri guncel mi
+        run: |
+          node arac/disari-aktar-test.js
+          if [ -n "$(git status --porcelain -- .cursor .opencode .github/agents .codex)" ]; then
+            echo "::error::Uretilmis ajan kopyalari bayat. Calistir: node arac/disari-aktar.js ve commit'le."
+            git status --short -- .cursor .opencode .github/agents .codex
+            exit 1
+          fi
+          echo "Diger arac bicimleri kaynakla uyumlu."
+
       - name: Plugin manifestleri gecerli JSON mu
         run: |
           node -e "JSON.parse(require('fs').readFileSync('.claude-plugin/plugin.json','utf8')); console.log('plugin.json OK')"

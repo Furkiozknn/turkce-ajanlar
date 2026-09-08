@@ -14,15 +14,6 @@ bitince "bitti" denebilecek kadar net olmalı.
 
 ## Sırada
 
-- [ ] **Çoklu araç desteği** — En büyük rakip `wshobson/agents`
-      (39k★) ajanlarını Claude Code dışında Cursor, Codex, OpenCode ve
-      Copilot'ta da çalıştırıyor (`.cursor-plugin/`, `.agents/`,
-      kök `AGENTS.md`). Bizim ajanlarımız sadece Claude Code'da
-      çalışıyor. Önce **araştır**: `AGENTS.md` standardı ne, hangi
-      araçlar okuyor, frontmatter farkları neler. Sonra
-      `arac/disari-aktar.js` yaz: `agents/*.md`'den her hedef için
-      uygun biçimi üret. Tek kaynak `agents/` kalsın, gerisi türetilsin.
-
 - [ ] **Yayına alma: web arayüzü** — `web/` klasörünü herkese açık bir
       adrese taşı ki depo linkiyle birlikte paylaşılabilsin. Vercel MCP
       bağlı; statik dağıtım yeterli. **Yayınlamadan önce
@@ -40,6 +31,16 @@ bitince "bitti" denebilecek kadar net olmalı.
 ## Bitti
 
 <!-- Tamamlanan maddeler tarihiyle buraya taşınır -->
+
+- [x] **Çoklu araç desteği** — En büyük rakip `wshobson/agents`
+      (39k★) ajanlarını Claude Code dışında Cursor, Codex, OpenCode ve
+      Copilot'ta da çalıştırıyor (`.cursor-plugin/`, `.agents/`,
+      kök `AGENTS.md`). Bizim ajanlarımız sadece Claude Code'da
+      çalışıyor. Önce **araştır**: `AGENTS.md` standardı ne, hangi
+      araçlar okuyor, frontmatter farkları neler. Sonra
+      `arac/disari-aktar.js` yaz: `agents/*.md`'den her hedef için
+      uygun biçimi üret. Tek kaynak `agents/` kalsın, gerisi türetilsin.
+      *(2026-09-08 — arac/disari-aktar.js agents/ tek kaynağından .cursor/agents, .opencode/agents, .github/agents, .codex/agents üretir; test + CI bayatlık kontrolü; kök AGENTS.md)*
 
 - [x] **Türkçe beceri (skill) seti** — Ajanlar bir görevi devralır;
       beceriler ise Claude'un kendi akışına bilgi katar. Bizde hiç beceri

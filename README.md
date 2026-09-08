@@ -8,7 +8,8 @@ language is Turkish*: code review, repository audit, file organization, data
 reporting, task-file writing, Windows scripting, root-cause debugging and web
 research. Eight agents plus three slash commands and two skills; the agents
 install via `kur.ps1`, everything installs as a Claude Code plugin
-(`.claude-plugin/`).
+(`.claude-plugin/`). The same source is exported to Cursor, OpenCode,
+GitHub Copilot and Codex (`node arac/disari-aktar.js`).
 
 It exists because none of the large agent collections ship a Turkish
 localization, and a translated prompt is not the same as an agent that knows
@@ -212,6 +213,28 @@ Neden bu ikisi: biçim kuralları sekiz ajandan yalnızca birinde gömülüydü
 (`arastirmaci`), Windows tuzakları birkaçında; ana akış hiçbirini almıyordu.
 Beceri ikisini de tek yerden herkese verir. Komut ve beceri dosyalarını
 `node arac/eklenti-dogrula.js` doğrular (CI'da da koşar).
+
+## Diğer araçlarda kullanım
+
+Kaynak `agents/` tek; Cursor, OpenCode, GitHub Copilot ve Codex için
+kopyalar `node arac/disari-aktar.js` ile üretilir ve depoda durur
+(bayat kalırsa CI kırmızı yanar, `arac/disari-aktar-test.js` her dosyayı
+kaynakla karşılaştırır):
+
+| Araç | Üretilen yol | Ne değişir |
+|---|---|---|
+| Cursor | `.cursor/agents/<ad>.md` | `tools`/`color` düşer; `model: inherit` ve `readonly` eklenir. Cursor `.claude/agents/` klasörünü de doğrudan okur — `kur.ps1` ile kurulan ajanlar Cursor'da zaten görünür. |
+| OpenCode | `.opencode/agents/<ad>.md` | Dosya adı = ajan adı; `mode: subagent`; `tools` listesi `permission` bloğuna çevrilir (`edit`, `write`, `bash`, `webfetch`, `websearch`). |
+| GitHub Copilot | `.github/agents/<ad>.agent.md` | `tools` Copilot takma adlarına iner: `read`, `search`, `execute`, `edit`, `web`. Gövde sınırı 30.000 karakter; en uzun ajanımız 7 bin baytın altında. |
+| Codex CLI | `.codex/agents/<ad>.toml` | TOML: `name`, `description`, `sandbox_mode`, `developer_instructions`. `model` yazılmaz, oturumdan miras alınır. |
+
+Kendi projende kullanmak için ilgili klasörü projenin köküne kopyala
+(örneğin `.cursor/agents/`); bu depoyu açtığında araç zaten görür.
+Kum havuzu dürüstlüğü: sekiz ajanın hepsi `Bash` taşıdığı için Cursor'da
+`readonly: true`, Codex'te `read-only` **verilmez** — Bash dosya
+yazabilir. Salt okuma vaadi ajan gövdesindeki kuralla, OpenCode'da ise
+`edit: deny` / `write: deny` ile tutulur. Kök `AGENTS.md` bu depoda
+çalışan her ajana aynı kuralları verir.
 
 ## Web arayüzü
 
