@@ -343,11 +343,24 @@ node arac/dogrula.js --kati   # uyarıları da hata sayar
 node arac/dogrula.js agents/repo-denetci.md   # tek dosya
 ```
 
-Hata bulursa çıkış kodu 1 olur — betiği bir kancaya ya da CI adımına
-doğrudan bağlayabilirsin. Doğrulayıcının kendi testi:
-`node arac/dogrula-test.js` (geçici klasörde bozuk örnekler üretir,
-her kuralın gerçekten yakaladığını gösterir). Arayüzün kendi testi de
-var: `node arac/web-test.js` (gerçek tarayıcıda 40 kontrol).
+Çıktıda her dosya `OK` / `UYARI` / `HATA` ile işaretlenir. **Hata** çıkış
+kodunu 1 yapar (betiği bir kancaya ya da CI adımına doğrudan
+bağlayabilirsin); **uyarı** kod 0 bırakır, `--kati` ile o da hataya döner.
+Sık görülen hata/uyarı mesajları ve anlamları:
+
+| Mesaj | Ne demek | Ne yapılır |
+|---|---|---|
+| `dosya bos` | Dosyada frontmatter da gövde de yok | İçine `---` bloğu ve ajan talimatı yaz |
+| `frontmatter bulunamadi` | Dosya `---` ile başlamıyor ya da kapanmıyor | Frontmatter'ı `---`/`---` çifti içine al |
+| `dosya BOM ile basliyor` (uyarı) | Dosya UTF-8 BOM ile kaydedilmiş | Editörde "UTF-8" (BOM'suz) olarak yeniden kaydet |
+| `gecersiz UTF-8 baytlari var` (uyarı) | Dosyada bozuk karakter (`�`) var, yanlış kodlamayla kaydedilmiş | UTF-8 olarak yeniden kaydet |
+| `govde cok uzun` (uyarı) | Gövde 30.000 karakteri geçiyor, `disari-aktar.js` Copilot'a aktarırken keser | Ajanı bölmeyi ya da kısaltmayı düşün |
+| `govde Turkce degil` / `gorunmuyor` | Türkçe'ye özgü harf hiç yok ya da İngilizce sözcük ağır bastı | Gövdeyi Türkçe yaz |
+
+Doğrulayıcının kendi testi: `node arac/dogrula-test.js` (geçici klasörde
+27 senaryo için bozuk/eksik/aşırı büyük örnekler üretir, her kuralın
+gerçekten yakaladığını gösterir). Arayüzün kendi testi de var:
+`node arac/web-test.js` (gerçek tarayıcıda 40 kontrol).
 
 ## Katkı
 

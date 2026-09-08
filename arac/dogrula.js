@@ -10,7 +10,8 @@
  *   - name: dolu, kebab-case
  *   - description: dolu ve tetikleyici ifade iceriyor
  *   - tools: gecerli arac adlari
- *   - govde bos degil
+ *   - govde bos degil, asiri uzun degil (30.000 karakter)
+ *   - dosya bos degil, BOM/bozuk kodlama icermiyor
  *   - metin Turkce
  *
  * Cikis kodu: hata varsa 1, yoksa 0. (--kati ile uyari da 1 yapar.)
@@ -68,6 +69,9 @@ const BILINEN_ALANLAR = new Set([
   "background",
   "isolation",
 ]);
+
+// arac/disari-aktar.js ayni siniri Copilot disa aktariminda kullaniyor.
+const MAX_GOVDE_UZUNLUK = 30000;
 
 const GECERLI_MODELLER = new Set([
   "inherit",
@@ -212,9 +216,15 @@ function dosyaDogrula(tamYol) {
   } catch (e) {
     return { ad, hatalar: ["okunamadi: " + e.message], uyarilar: [] };
   }
+  if (!ham.trim()) {
+    return { ad, hatalar: ["dosya bos — icine frontmatter (---) ve ajan talimati yazilmali"], uyarilar: [] };
+  }
   if (ham.charCodeAt(0) === 0xfeff) {
-    uyar("dosya BOM ile basliyor; UTF-8 (BOM'suz) tercih edilir");
+    uyar("dosya BOM ile basliyor; duzeltmek icin UTF-8 (BOM'suz) olarak yeniden kaydet");
     ham = ham.slice(1);
+  }
+  if (ham.includes("�")) {
+    uyar("dosyada gecersiz UTF-8 baytlari var (bozuk karakter � olarak okundu); duzeltmek icin dosyayi UTF-8 olarak yeniden kaydet");
   }
 
   const c = frontmatterAyristir(ham);
@@ -320,6 +330,11 @@ function dosyaDogrula(tamYol) {
     hata("govde bos — frontmatter'dan sonra ajanin talimatlari yok");
   } else if (govde.length < 200) {
     uyar("govde cok kisa (" + govde.length + " karakter); ajan talimati genelde daha ayrintili olur");
+  } else if (govde.length > MAX_GOVDE_UZUNLUK) {
+    uyar(
+      "govde cok uzun (" + govde.length + " karakter, " + MAX_GOVDE_UZUNLUK +
+        " siniri asildi); arac/disari-aktar.js bunu Copilot'a aktarirken keser, ajani boluyu ya da kisaltmayi dusun"
+    );
   }
 
   // --- dil ---

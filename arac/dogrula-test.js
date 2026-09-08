@@ -240,6 +240,36 @@ const SENARYOLAR = [
     kod: 0,
     bekle: /dosya adiyla .* ayni degil/,
   },
+  {
+    ad: "dosya tamamen bos",
+    icerik: "",
+    kod: 1,
+    bekle: /dosya bos/,
+  },
+  {
+    ad: "dosya sadece bosluk",
+    icerik: "   \n\t\n",
+    kod: 1,
+    bekle: /dosya bos/,
+  },
+  {
+    ad: "UTF-8 BOM ile baslayan dosya uyari uretir ama gecer",
+    icerik: "﻿" + SAGLAM,
+    kod: 0,
+    bekle: /dosya BOM ile basliyor/,
+  },
+  {
+    ad: "bozuk UTF-8 karakteri uyari uretir",
+    icerik: degistir(SAGLAM_GOVDE, SAGLAM_GOVDE + "\n\nBozuk bayt: �"),
+    kod: 0,
+    bekle: /gecersiz UTF-8 baytlari/,
+  },
+  {
+    ad: "cok buyuk govde uyari uretir",
+    icerik: degistir(SAGLAM_GOVDE, SAGLAM_GOVDE + "\n\n" + "x".repeat(30001)),
+    kod: 0,
+    bekle: /govde cok uzun/,
+  },
 ];
 
 // --- kosum ------------------------------------------------------------------
