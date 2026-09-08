@@ -35,6 +35,9 @@ jobs:
       - name: Komut ve beceri dosyalari
         run: node arac/eklenti-dogrula.js
 
+      - name: Turkce bicim kancasi (birim + kanca modu)
+        run: node arac/bicim-kontrol-test.js
+
       - name: Web arayuzu guncel mi
         run: |
           node arac/web-uret.js

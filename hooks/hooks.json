@@ -1,0 +1,18 @@
+{
+  "description": "Türkçe biçim kancası: Write/Edit ile yazılan Türkçe .md dosyalarını turkce-rapor kurallarına göre tarar, ihlali uyarı olarak Claude'a iletir; engellemez.",
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node",
+            "args": ["${CLAUDE_PLUGIN_ROOT}/arac/bicim-kontrol.js"],
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  }
+}

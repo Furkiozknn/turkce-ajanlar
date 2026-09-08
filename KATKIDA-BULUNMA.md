@@ -27,6 +27,11 @@ aynı sıra geçerli; doğrulayıcı `node arac/eklenti-dogrula.js`. Beceri
 adı klasör adıyla aynı olmalı, `description` alanı tetikleyici ifadeleri
 taşımalı — Claude beceriyi ona bakarak yükler.
 
+Kancaya (`hooks/hooks.json` → `arac/bicim-kontrol.js`) kural ekliyorsan
+önce `arac/bicim-kontrol-test.js`'e hem yakalaması hem susması gereken
+örnekleri yaz, sonra `node arac/bicim-kontrol.js --dosya` ile gerçek Türkçe
+belgelerde yanlış alarm oranını ölç; ölçmeden kural açılmaz.
+
 Detaylar aşağıda.
 
 ---

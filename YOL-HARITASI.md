@@ -29,13 +29,6 @@ bitince "bitti" denebilecek kadar net olmalı.
       düzeltmez). Grader'lar Türkçe. CI'da koşmaz (API maliyeti); yerel komut
       + `raporlar/` altına sonuç. Önce iki ajanla pilot, maliyeti ölç.
 
-- [ ] **Türkçe biçim kancası** — `hooks/hooks.json` ile plugin kancası
-      (PostToolUse, `Write|Edit`, yalnızca `*.md`): Node betiği ondalık
-      nokta (`0.57`), İngilizce tarih (`2026-09-08` düzyazıda, `Sep 8`),
-      sonda yüzde (`96%`) gibi `turkce-rapor` kurallarının ihlalini uyarı
-      olarak basar, engellemez. Deterministik ve testli (`arac/bicim-kontrol-test.js`);
-      yanlış alarm oranı ölçülmeden açılmaz — beceri kuralı mekanik zorlanır.
-
 - [ ] **Araştırma turu ve yol haritası yenileme** — bu maddeye
       gelindiğinde: rakipleri ve Claude Code'un yeni özelliklerini
       tara, eksik gördüğün özellikleri **bu dosyanın "Sırada"
@@ -47,6 +40,14 @@ bitince "bitti" denebilecek kadar net olmalı.
 ## Bitti
 
 <!-- Tamamlanan maddeler tarihiyle buraya taşınır -->
+
+- [x] **Türkçe biçim kancası** — `hooks/hooks.json` ile plugin kancası
+      (PostToolUse, `Write|Edit`, yalnızca `*.md`): Node betiği ondalık
+      nokta (`0.57`), İngilizce tarih (`2026-09-08` düzyazıda, `Sep 8`),
+      sonda yüzde (`96%`) gibi `turkce-rapor` kurallarının ihlalini uyarı
+      olarak basar, engellemez. Deterministik ve testli (`arac/bicim-kontrol-test.js`);
+      yanlış alarm oranı ölçülmeden açılmaz — beceri kuralı mekanik zorlanır.
+      *(2026-09-08 — hooks/hooks.json PostToolUse(Write|Edit) → arac/bicim-kontrol.js: R1 ondalık nokta, R2 yüzde sonda, R3 İngilizce/cümle içi ISO tarih, R4 binlik virgül; uyarı verir, engellemez; 33 test CI'da; üç depoda ölçüm: geniş ISO kuralı 120+ yanlış alarm → daraltıldı, kalan 24 bulgunun hepsi gerçek)*
 
 - [x] **Web arayüzünde komutlar ve beceriler** — `arac/web-uret.js` sadece
       `agents/` okuyor; bugün eklenen üç komut ve iki beceri arayüzde yok.

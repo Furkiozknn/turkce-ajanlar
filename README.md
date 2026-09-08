@@ -233,6 +233,30 @@ Neden bu ikisi: biçim kuralları sekiz ajandan yalnızca birinde gömülüydü
 Beceri ikisini de tek yerden herkese verir. Komut ve beceri dosyalarını
 `node arac/eklenti-dogrula.js` doğrular (CI'da da koşar).
 
+## Kanca: Türkçe biçim uyarısı
+
+Plugin bir de kanca taşır (`hooks/hooks.json`, `PostToolUse` · `Write|Edit`).
+Claude Türkçe bir `.md` dosyası yazdığında `arac/bicim-kontrol.js` dosyayı
+`turkce-rapor` kurallarına göre tarar ve ihlali **uyarı** olarak Claude'a
+iletir; engellemez, dosyaya dokunmaz, çıkış kodu hep 0.
+
+| Kural | Yakalar | Önerir |
+|---|---|---|
+| R1 | `4.5 saat`, `0.57 oran`, `%96.5` | `4,5 saat`, `0,57 oran`, `%96,5` |
+| R2 | `96%`, `% 96` | `%96` |
+| R3 | `Sep 8, 2026`, `8 September 2026`, düzyazıda `2026-09-08'de` | `8 Eylül 2026` |
+| R4 | `1,234,567` | `1.234.567` |
+
+Kod blokları, satır içi kod, URL'ler, frontmatter, saatli zaman damgaları ve
+dosya adları taranmaz; `agents/`, `skills/`, `commands/`, `web/` gibi tanım ve
+üretim klasörleri atlanır; Türkçe harf içermeyen belgeye hiç bakılmaz.
+Kesinlik geri çağırmadan önce: ilk sürümdeki "düzyazıda ISO tarih" kuralı
+üç depoda 120'den fazla yanlış alarm verdi (yol haritası damgaları, "son push
+2026-09-04" gibi veri alanları); kural cümle içi kullanıma ("…'de",
+"tarihinde") daraltıldı ve aynı örneklemde kalan 24 bulgunun hepsi gerçek
+çıktı. Test: `node arac/bicim-kontrol-test.js` (33 kontrol, CI'da koşar);
+elle ölçüm: `node arac/bicim-kontrol.js --dosya <md dosyaları>`.
+
 ## Diğer araçlarda kullanım
 
 Kaynak `agents/` tek; Cursor, OpenCode, GitHub Copilot ve Codex için
