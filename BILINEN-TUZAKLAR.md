@@ -148,3 +148,15 @@ zorla bir şey commit'leme, geri alma; sadece doğrulama komutlarını
 (`node arac/dogrula.js` vb.) tekrar çalıştırıp sonucu günlüğe yaz ve
 görevi kapat. Kanıt olmayan bir şeyi düzeltmeye çalışmak yeni bir
 bozukluk yaratma riski taşır.
+
+## 16. PowerShell'de cast kültürden bağımsız, Parse/TryParse kültüre bağlı
+
+Tuzak #4 "Türkçe yerel ayar `0.5742`'yi 5742 okur" der; bu **`[double]::TryParse($s, [ref]$d)`**
+ve `[double]::Parse($s)` için doğrudur (geçerli kültür). `[double]"0.5742"` **cast**
+biçimi ise InvariantCulture kullanır ve 0,5742 verir. Eval pilotunda (8 Eylül
+2026) fixture cast biçimiyle yazılınca `hata-avcisi` öncülü haklı olarak
+sorguladı; yanılan ajan değil, fixture'dı.
+
+**Kural:** kültür tuzağını anlatırken ya da test ederken `Parse`/`TryParse`/`-as`
+yolunu örnek ver; cast'i "güvenli" say. Eval fixture'ı yazarken iddiayı önce
+gerçek makinede çalıştırıp doğrula.

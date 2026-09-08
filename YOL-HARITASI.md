@@ -22,12 +22,15 @@ bitince "bitti" denebilecek kadar net olmalı.
       `raporlar\ONAY-BEKLEYENLER.md` dosyasına yaz ve kullanıcının
       onayını bekle** — dışarı açılan bir işlem, kendi başına yapma.
 
-- [ ] **Plugin eval seti** — Yerel CLI 2.1.263'te `claude plugin eval` var
-      (`evals/**/case.yaml` ya da `prompt.md + graders/*.md`). Her ajan için
-      en az bir vaka: Türkçe çıktı, ondalık virgül, bulgu şişirmeme
-      ("sorun yok" diyebilme), sınır ihlali yok (`hata-avcisi` kod
-      düzeltmez). Grader'lar Türkçe. CI'da koşmaz (API maliyeti); yerel komut
-      + `raporlar/` altına sonuç. Önce iki ajanla pilot, maliyeti ölç.
+- [ ] **Eval: kalan altı ajan ve düzenli koşu** — Pilot (8 Eylül 2026,
+      `raporlar/2026-09-08-eval-pilot.md`) iki ajanda çalıştı; koşu başına
+      plugin kolu ~0,5 USD, plugin'siz ~1–1,5 USD. Şimdi `repo-denetci`,
+      `veri-raporcu`, `dosya-duzenleyici`, `gorev-yazari`, `betik-ustasi`,
+      `arastirmaci` için birer vaka (her birinin "sınır" cümlesini test eden:
+      silmez, değiştirmez, çalıştırmaz, uydurmaz); düzeltilmiş
+      `hata-avcisi` fixture'ıyla 3. tur; `--runs 3 --judge-model sonnet`
+      ile yargıç dağılımını ölç. Vaka başına fixture iddiasını önce gerçek
+      makinede doğrula (tuzak #16). Sonucu rapora ekle, README tablosunu güncelle.
 
 - [ ] **Araştırma turu ve yol haritası yenileme** — bu maddeye
       gelindiğinde: rakipleri ve Claude Code'un yeni özelliklerini
@@ -40,6 +43,14 @@ bitince "bitti" denebilecek kadar net olmalı.
 ## Bitti
 
 <!-- Tamamlanan maddeler tarihiyle buraya taşınır -->
+
+- [x] **Plugin eval seti** — Yerel CLI 2.1.263'te `claude plugin eval` var
+      (`evals/**/case.yaml` ya da `prompt.md + graders/*.md`). Her ajan için
+      en az bir vaka: Türkçe çıktı, ondalık virgül, bulgu şişirmeme
+      ("sorun yok" diyebilme), sınır ihlali yok (`hata-avcisi` kod
+      düzeltmez). Grader'lar Türkçe. CI'da koşmaz (API maliyeti); yerel komut
+      + `raporlar/` altına sonuç. Önce iki ajanla pilot, maliyeti ölç.
+      *(2026-09-08 — pilot: 2 vaka (kod-gozden-gecirici temiz kod, hata-avcisi kök neden), 2 tur, 5,18 USD; plugin kolu temiz koda 'sorun yok' dedi (1,00 vs 0,50), 2-3 kat ucuz ve hızlı; iki fixture hatası bulunup düzeltildi; rapor raporlar/2026-09-08-eval-pilot.md; kalan ajanlar yeni maddede)*
 
 - [x] **Türkçe biçim kancası** — `hooks/hooks.json` ile plugin kancası
       (PostToolUse, `Write|Edit`, yalnızca `*.md`): Node betiği ondalık

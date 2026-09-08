@@ -20,7 +20,7 @@ Kod (`butce.ps1`, satır 12-15):
 
 ```powershell
 $toplam = 0
-foreach ($j in Get-Content $log | ConvertFrom-Json) { $toplam += [double]$j.total_cost_usd }
+foreach ($j in Get-Content $log | ConvertFrom-Json) { $toplam += [double]::Parse($j.total_cost_usd) }
 "Bugunku harcama: $toplam USD"
 ```
 

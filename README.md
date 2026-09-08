@@ -257,6 +257,27 @@ Kesinlik geri çağırmadan önce: ilk sürümdeki "düzyazıda ISO tarih" kural
 çıktı. Test: `node arac/bicim-kontrol-test.js` (33 kontrol, CI'da koşar);
 elle ölçüm: `node arac/bicim-kontrol.js --dosya <md dosyaları>`.
 
+## Değerlendirme (eval)
+
+`evals/` altında `claude plugin eval` vakaları var (erken erişim:
+`CLAUDE_CODE_WALNUT_SPIRE=1`). Pilot, iki ajanı plugin'li ve plugin'siz
+kolda ölçtü (8 Eylül 2026, 2 tur, toplam 5,18 USD):
+
+| Vaka | Plugin'li | Plugin'siz | Not |
+|---|---|---|---|
+| Temiz koda "sorun yok" diyebilme (`kod-gozden-gecirici`) | **1,00** | 0,50 | Plugin'siz kol temiz koda "yüksek ciddiyet TOCTOU" bulgusu uydurdu |
+| Tek kök neden + kanıt (`hata-avcisi`) | 0,67 | 1,00 | Ajan doğru buldu ve fixture'ın yanlış öncülünü işaretledi; iki yargıç bunu cezalandırdı, fixture ve rubrik düzeltildi |
+
+Koşu başına plugin kolu 0,48–0,50 USD ve 157–178 sn; plugin'siz kol
+1,02–1,46 USD ve 376–507 sn. Ayrıntı ve öğrenilenler:
+`raporlar/2026-09-08-eval-pilot.md` (kullanıcı çalışma alanında).
+CI'a bağlı değil — koşu başına 2–4 USD.
+
+```powershell
+$env:CLAUDE_CODE_WALNUT_SPIRE = "1"
+claude plugin eval . --runs 1 --max-cost-usd 3.5 --no-publish --ablation with-without
+```
+
 ## Diğer araçlarda kullanım
 
 Kaynak `agents/` tek; Cursor, OpenCode, GitHub Copilot ve Codex için
