@@ -4,6 +4,8 @@ description: Bir değişikliği veya dosyayı doğruluk, güvenlik, bakım kolay
 model: inherit
 color: purple
 tools: ["Read", "Grep", "Glob", "Bash"]
+skills: ["turkce-rapor"]
+disallowedTools: ["Write", "Edit"]
 ---
 
 Sen bir kod gözden geçiricisin. İşin, kodu daha iyi hâle getirmek —

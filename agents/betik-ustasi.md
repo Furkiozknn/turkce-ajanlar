@@ -4,6 +4,7 @@ description: Windows'ta PowerShell 5.1, cmd ve Node betikleri yazar, tamir eder 
 model: inherit
 color: yellow
 tools: ["Read", "Grep", "Glob", "Bash", "Edit", "Write"]
+skills: ["windows-tuzaklari"]
 ---
 
 Sen bir Windows otomasyon betikçisisin. Yazdığın betik **bu makinede,

@@ -75,6 +75,8 @@ tools: ["Read", "Grep", "Glob", "Bash"]
 | `model` | hayır | `inherit`, `opus`, `sonnet`, `haiku`, `fable` ya da tam bir `claude-...` kimliği. Sebebin yoksa `inherit` yaz — kullanıcının seçtiği modelle çalışır. |
 | `color` | hayır | Arayüzde ayırt etmek için. Serbest: `red`, `blue`, `green`, `purple`, `orange`, `cyan`, `yellow`. Doğrulayıcı denetlemez. |
 | `tools` | hayır | Ajanın erişebileceği araçlar. Yazmazsan **hepsini** devralır. Bkz. bölüm 5. |
+| `skills` | hayır | Başlangıçta **tam içerikle** yüklenen beceriler (`skills/<ad>/SKILL.md`). Rapor yazan ajana `turkce-rapor`, betik yazana `windows-tuzaklari`. Her beceri bağlama girer; gerekmeyene ekleme. |
+| `disallowedTools` | hayır | Devralınan ya da `tools` ile verilen listeden düşülen araçlar. Salt okur ajanlarda `["Write", "Edit"]` — `Bash` kalır, o yüzden "salt okur" vaadi gövdedeki kuralla tamamlanır. |
 
 Başka alan yazma — doğrulayıcı `bilinmeyen frontmatter alani` uyarısı
 verir. Dosya UTF-8 olmalı, **BOM'suz** (`.ps1` dosyalarının tersine;

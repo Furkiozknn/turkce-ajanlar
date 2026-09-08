@@ -22,17 +22,6 @@ bitince "bitti" denebilecek kadar net olmalı.
       `raporlar\ONAY-BEKLEYENLER.md` dosyasına yaz ve kullanıcının
       onayını bekle** — dışarı açılan bir işlem, kendi başına yapma.
 
-- [ ] **Ajan frontmatter modernizasyonu** — Resmî belgeye göre plugin
-      ajanları `skills:` (beceriyi başlangıçta tam içerik olarak yükler),
-      `disallowedTools`, `maxTurns`, `memory` alanlarını destekliyor
-      (code.claude.com/docs/en/sub-agents, 8 Eylül 2026). Rapor yazan
-      ajanlara `skills: [turkce-rapor]`, betik yazanlara
-      `[windows-tuzaklari]` ön yükle; salt okur ajanlara
-      `disallowedTools: Write, Edit` ekle; `windows-tuzaklari` becerisine
-      `paths: "*.ps1,*.psm1,*.cmd,*.bat"` koy ki PowerShell dosyasına
-      dokununca kendiliğinden açılsın. `arac/dogrula.js` yeni alanları
-      tanısın, `disari-aktar.js` eşlemesi bozulmasın; headless testle doğrula.
-
 - [ ] **Web arayüzünde komutlar ve beceriler** — `arac/web-uret.js` sadece
       `agents/` okuyor; bugün eklenen üç komut ve iki beceri arayüzde yok.
       Ayrı sekme ya da bölüm olarak kartla (ad, ne zaman, nasıl çağrılır),
@@ -74,6 +63,18 @@ bitince "bitti" denebilecek kadar net olmalı.
 ## Bitti
 
 <!-- Tamamlanan maddeler tarihiyle buraya taşınır -->
+
+- [x] **Ajan frontmatter modernizasyonu** — Resmî belgeye göre plugin
+      ajanları `skills:` (beceriyi başlangıçta tam içerik olarak yükler),
+      `disallowedTools`, `maxTurns`, `memory` alanlarını destekliyor
+      (code.claude.com/docs/en/sub-agents, 8 Eylül 2026). Rapor yazan
+      ajanlara `skills: [turkce-rapor]`, betik yazanlara
+      `[windows-tuzaklari]` ön yükle; salt okur ajanlara
+      `disallowedTools: Write, Edit` ekle; `windows-tuzaklari` becerisine
+      `paths: "*.ps1,*.psm1,*.cmd,*.bat"` koy ki PowerShell dosyasına
+      dokununca kendiliğinden açılsın. `arac/dogrula.js` yeni alanları
+      tanısın, `disari-aktar.js` eşlemesi bozulmasın; headless testle doğrula.
+      *(2026-09-08 — skills ön yükleme (5 ajanda turkce-rapor, 3'ünde windows-tuzaklari), salt okur 5 ajanda disallowedTools; dogrula.js yeni alanları ve var olmayan beceriyi denetliyor; headless test: repo-denetci beceri metnini alt ajanda gördü. paths eklenmedi: belgeye göre otomatik yüklemeyi o dosyalarla sınırlıyor)*
 
 - [x] **Araştırma turu ve yol haritası yenileme** — bu maddeye
       gelindiğinde: rakipleri ve Claude Code'un yeni özelliklerini

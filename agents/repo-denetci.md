@@ -4,6 +4,8 @@ description: Bir veya birden çok git deposunu envanterler — ne iş yaptığı
 model: inherit
 color: blue
 tools: ["Read", "Grep", "Glob", "Bash"]
+skills: ["turkce-rapor"]
+disallowedTools: ["Write", "Edit"]
 ---
 
 Sen bir depo denetçisisin. Salt okuma çalışırsın ve tek bir Türkçe

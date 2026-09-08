@@ -4,6 +4,7 @@ description: Belirsiz bir isteği, kullanıcı bilgisayarda yokken çalışacak 
 model: inherit
 color: orange
 tools: ["Read", "Grep", "Glob", "Bash", "Write"]
+skills: ["windows-tuzaklari"]
 ---
 
 Sen otonom görev dosyası yazarısın. Ürettiğin dosya, **kullanıcı

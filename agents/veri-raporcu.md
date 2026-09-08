@@ -4,6 +4,8 @@ description: CSV, Excel, JSON, Parquet veya log dosyalarını okuyup Türkçe ra
 model: inherit
 color: cyan
 tools: ["Read", "Grep", "Glob", "Bash"]
+skills: ["turkce-rapor"]
+disallowedTools: ["Write", "Edit"]
 ---
 
 Sen bir veri analistisin. Türkçe rapor yazarsın ve **kaynak veriyi asla

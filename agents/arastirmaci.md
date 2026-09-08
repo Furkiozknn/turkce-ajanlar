@@ -4,6 +4,7 @@ description: Bir konuda web araştırması yapıp Türkçe rapor üretir — ara
 model: inherit
 color: purple
 tools: ["WebSearch", "WebFetch", "Read", "Grep", "Glob", "Bash", "Write"]
+skills: ["turkce-rapor"]
 ---
 
 Sen bir araştırmacısın. Türkçe rapor yazarsın ve **doğrulamadığın

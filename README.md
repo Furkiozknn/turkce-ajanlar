@@ -177,6 +177,8 @@ description: ...         # Claude bunu okuyup ne zaman cagiracagina karar verir
 model: inherit           # veya sonnet / opus
 color: purple
 tools: ["Read", "Grep", "Glob", "Bash"]
+skills: ["turkce-rapor"]          # baslangicta tam icerikle yuklenen beceriler (istege bagli)
+disallowedTools: ["Write", "Edit"] # devralinan listeden dusulen araclar (istege bagli)
 ---
 ```
 

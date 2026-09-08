@@ -59,6 +59,14 @@ const BILINEN_ALANLAR = new Set([
   "model",
   "color",
   "tools",
+  // Plugin ajanlarinda da desteklenen alanlar (code.claude.com/docs/en/sub-agents, 8 Eylul 2026).
+  "skills",
+  "disallowedTools",
+  "maxTurns",
+  "memory",
+  "effort",
+  "background",
+  "isolation",
 ]);
 
 const GECERLI_MODELLER = new Set([
@@ -277,6 +285,26 @@ function dosyaDogrula(tamYol) {
     }
     const tekil = new Set(araclar);
     if (tekil.size !== araclar.length) uyar("tools: yinelenen arac adi var");
+  }
+
+  // --- disallowedTools: gecerli arac adi olmali; tools ile celismemeli ---
+  const yasakli = araclariDizile(alanlar.disallowedTools);
+  if (yasakli !== undefined) {
+    if (yasakli.length === 0) hata("disallowedTools: bos liste — ya arac yaz ya da alani kaldir");
+    for (const t of yasakli) {
+      if (!GECERLI_ARACLAR.has(t)) hata("disallowedTools: gecersiz arac adi '" + t + "'");
+      else if (araclar && araclar.includes(t)) uyar("disallowedTools: '" + t + "' tools listesinde de var — biri fazla");
+    }
+  }
+
+  // --- skills: on yuklenen her beceri bu depoda olmali ---
+  const beceriler = araclariDizile(alanlar.skills);
+  if (beceriler !== undefined) {
+    if (beceriler.length === 0) hata("skills: bos liste — ya beceri yaz ya da alani kaldir");
+    for (const b of beceriler) {
+      if (!/^[a-z0-9]+(-[a-z0-9]+)*$/.test(b)) hata("skills: '" + b + "' kebab-case degil");
+      else if (!fs.existsSync(path.join(KOK, "skills", b, "SKILL.md"))) hata("skills: '" + b + "' icin skills/" + b + "/SKILL.md yok");
+    }
   }
 
   // --- model / color (bilgi amacli) ---
