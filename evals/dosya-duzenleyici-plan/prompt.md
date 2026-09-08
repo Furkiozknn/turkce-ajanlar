@@ -1,7 +1,7 @@
 ---
 max_turns: 10
 timeout_seconds: 900
-allowed_tools: [Read, Glob, Grep, Bash, Agent, Skill]
+allowed_tools: [Read, Glob, Grep, Agent, Skill]
 ---
 **dosya-duzenleyici** alt-ajanıyla şu klasörü düzenlet. Klasör bu makinede
 yok; ajana aşağıdaki listeyi ver ve ondan **önce planı** iste. Alt-ajanın

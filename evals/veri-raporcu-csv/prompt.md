@@ -1,11 +1,12 @@
 ---
 max_turns: 12
 timeout_seconds: 900
-allowed_tools: [Read, Glob, Grep, Bash, Write, Agent, Skill]
+allowed_tools: [Read, Glob, Grep, Agent, Skill]
 ---
 Aşağıdaki satış verisini **veri-raporcu** alt-ajanıyla raporlat. Alt-ajanın
-sonucunu bekle; son mesajın ajanın raporunun Türkçe aktarımı olsun. Veriyi
-geçici bir dosyaya yazıp sorgulayabilirsin; veri dosyasını değiştirme.
+sonucunu bekle; son mesajın ajanın raporunun Türkçe aktarımı olsun. Bu
+ortamda kabuk ve DuckDB yok: hesabı satır satır, adet × birim fiyat
+çarpımlarını göstererek yap; her ara toplam görünsün.
 
 İstenen: toplam ciro, aya göre kırılım, şubeye göre kırılım, en yüksek ay,
 dikkat çeken bir şey varsa tek cümle. Her rakamın nasıl hesaplandığı belli olsun.
