@@ -119,3 +119,15 @@ atılmıştı.
 - Reddedilen commit'ler yalnızca yeniden yazarak (yazar e-postası) ya da
   GitHub ayarını geçici kapatarak push edilebilir — ikisi de kullanıcının
   kararı.
+
+## 14. Türetilmiş dosyanın damgası commit tarihine bağlıysa yerel üretim CI'dan farklı çıkar
+
+`web-uret.js` sayfaya "son güncelleme" olarak `agents/` klasörünün son commit
+tarihini yazıyordu. Ajan dosyalarını değiştirip sayfayı **commit'ten önce**
+üretince damga bir önceki günü aldı; CI aynı commit'i bugünün tarihiyle
+yeniden üretti, iki satır fark buldu ve "bayat" dedi (8 Eylül 2026, 3e1aecc).
+
+**Kural:** damga girdisi commit'te değişecekse üretici bunu öngörmeli.
+Şimdi `agents/` altında commit'lenmemiş değişiklik varsa damga **bugün**
+oluyor; temizse son commit tarihi. Genel ders: türetilmiş dosyayı üretip
+commit'e koymadan önce "CI bunu aynı girdilerle üretir mi?" diye sor.

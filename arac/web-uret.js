@@ -116,11 +116,15 @@ const VERI = JSON.stringify(ajanlar)
 // Tarih damgasi DETERMINISTIK olmali: CI "web/index.html bayat mi" diye
 // yeniden uretip diff aliyor; "simdi" yazilirsa her CI kosusu farkli cikar.
 // Kaynak: agents/ klasorunun son commit tarihi; git yoksa bugun.
+// agents/ altinda commit'lenmemis degisiklik varsa damga BUGUN olur: o degisiklik
+// bugun commit'lenecek ve CI ayni tarihi gorecek. (Aksi halde yerel uretim dunku
+// tarihi yazar, CI bugunkuyle yeniden uretir, "bayat" der — 8 Eylul 2026'da yasandi.)
 function sonGuncellemeTarihi() {
   try {
-    const iso = require("child_process")
-      .execFileSync("git", ["-C", KOK, "log", "-1", "--format=%cs", "--", "agents"], { encoding: "utf8" })
-      .trim();
+    const cp = require("child_process");
+    const kirli = cp.execFileSync("git", ["-C", KOK, "status", "--porcelain", "--", "agents"], { encoding: "utf8" }).trim();
+    if (kirli) return new Date(new Date().toISOString().slice(0, 10) + "T12:00:00Z");
+    const iso = cp.execFileSync("git", ["-C", KOK, "log", "-1", "--format=%cs", "--", "agents"], { encoding: "utf8" }).trim();
     if (/^\d{4}-\d{2}-\d{2}$/.test(iso)) return new Date(iso + "T12:00:00Z");
   } catch {}
   return new Date();
