@@ -84,6 +84,21 @@ yaşanmış hatalar; hepsi [BILINEN-TUZAKLAR.md](BILINEN-TUZAKLAR.md) içinde
 ve ilgili ajanların gövdesinde. Genel bir "Windows uzmanı" promptunun
 bilemeyeceği şeyler.
 
+**Türkçe komşular.** "Türkçe geçen dosya yok" cümlesi yalnızca o iki büyük
+koleksiyon için doğru; Türkçe odaklı küçük depolar var. 8 Eylül 2026'da
+`gh api` ile ölçüldü (yıldız, son push, lisans):
+
+| Depo | Ne | Bizimle ilişkisi |
+|---|---|---|
+| [`nexivionlabs/turkce-agent-skills`](https://github.com/nexivionlabs/turkce-agent-skills) | 48 kod odaklı Türkçe beceri (güvenlik, frontend, backend…), Claude/Codex/Gemini/Copilot kurulum betiği. MIT, 5 Eylül 2026'da açıldı, ★0. | **Tamamlayıcı** — onlar alan bilgisi becerisi, biz görev devralan ajan. Yan yana kurulabilir. |
+| [`ahsenedakocaballi/pixel-agent-office`](https://github.com/ahsenedakocaballi/pixel-agent-office) | Claude Code eklentisi: on Türkçe alt-ajan, beş beceri, iki kanca ve ajanları canlı gösteren pixel-art ofis panosu. Lisans yok, 3 Eylül 2026'da açıldı, ★0. | **En yakın komşu.** Fark: bizde daha az ve doğrulanmış ajan, dürüstlük disiplini, Windows tuzakları, CI'da doğrulama ve dört araca dışa aktarım; onlarda görsel pano. |
+| [`durmazoguzhan/turkish-humanify`](https://github.com/durmazoguzhan/turkish-humanify) | Yapay zekâ kokan Türkçeyi insan yazmış gibi yeniden yazan beceri. ★4, son push 4 Eylül 2026. | **Yanında kullan** — ajan raporunu son okumadan geçirmek için. |
+| [`azizi2407/avaz`](https://github.com/azizi2407/avaz) | Türkçe metni anlamı koruyarak doğallaştıran beceri. ★2, son push 29 Ağustos 2026. | **Yanında kullan** — aynı iş, farklı yaklaşım. |
+
+Hepsi bir haftalık ya da daha genç ve yıldızsız; canlılıklarını bir sonraki
+araştırma turunda yeniden ölçeceğiz. Rakip değil harita: Türkçe isteyen
+biri hangisini ne için kuracağını buradan görsün.
+
 **Kimin işine yarar:** Windows'ta Claude Code kullanan, çıktıyı Türkçe
 isteyen ve az sayıda güvenilir ajanı çok sayıda genel ajana tercih eden
 biri. Türkçe çıktı istemiyorsan bu depo sana bir şey katmaz — yukarıdaki

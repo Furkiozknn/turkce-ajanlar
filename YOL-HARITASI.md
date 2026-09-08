@@ -28,16 +28,6 @@ bitince "bitti" denebilecek kadar net olmalı.
       arama ikisini de kapsasın; README rozetlerine "3 komut · 2 beceri"
       ekle; `arac/web-test.js`'e iki kontrol. Ekran görüntülerini yenile.
 
-- [ ] **Türkçe ekosistem haritası ve README dürüstlüğü** — 8 Eylül 2026'da
-      GitHub aramasında Türkçe odaklı komşular var: `nexivionlabs/turkce-agent-skills`
-      (beceri kütüphanesi, 5 Eylül), `ahsenedakocaballi/pixel-agent-office`
-      (on ajanlık Türkçe ekip eklentisi, 3 Eylül), `durmazoguzhan/turkish-humanify`
-      ve `azizi2407/avaz` (Türkçe metin doğallaştırma becerileri). README'deki
-      "Türkçe geçen dosya yok" cümlesi iki büyük koleksiyon için doğru ama
-      tek başına yanıltıcı: canlılık ve kapsamlarını ölç, tamamlayıcı olanları
-      "Yanında kullan" bölümüne bağlantıyla al, çakışanlarla farkımızı tek
-      cümlede yaz. Sayılar `gh api` ile, hatırdan değil.
-
 - [ ] **Plugin eval seti** — Yerel CLI 2.1.263'te `claude plugin eval` var
       (`evals/**/case.yaml` ya da `prompt.md + graders/*.md`). Her ajan için
       en az bir vaka: Türkçe çıktı, ondalık virgül, bulgu şişirmeme
@@ -63,6 +53,17 @@ bitince "bitti" denebilecek kadar net olmalı.
 ## Bitti
 
 <!-- Tamamlanan maddeler tarihiyle buraya taşınır -->
+
+- [x] **Türkçe ekosistem haritası ve README dürüstlüğü** — 8 Eylül 2026'da
+      GitHub aramasında Türkçe odaklı komşular var: `nexivionlabs/turkce-agent-skills`
+      (beceri kütüphanesi, 5 Eylül), `ahsenedakocaballi/pixel-agent-office`
+      (on ajanlık Türkçe ekip eklentisi, 3 Eylül), `durmazoguzhan/turkish-humanify`
+      ve `azizi2407/avaz` (Türkçe metin doğallaştırma becerileri). README'deki
+      "Türkçe geçen dosya yok" cümlesi iki büyük koleksiyon için doğru ama
+      tek başına yanıltıcı: canlılık ve kapsamlarını ölç, tamamlayıcı olanları
+      "Yanında kullan" bölümüne bağlantıyla al, çakışanlarla farkımızı tek
+      cümlede yaz. Sayılar `gh api` ile, hatırdan değil.
+      *(2026-09-08 — README 'Neden bu var' altına 'Türkçe komşular' tablosu: 4 depo gh api ile ölçüldü (yıldız, tarih, lisans); tamamlayıcı/en yakın komşu/yanında kullan ayrımı; büyük koleksiyon cümlesinin kapsamı daraltıldı)*
 
 - [x] **Ajan frontmatter modernizasyonu** — Resmî belgeye göre plugin
       ajanları `skills:` (beceriyi başlangıçta tam içerik olarak yükler),
