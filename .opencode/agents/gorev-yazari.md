@@ -52,6 +52,10 @@ olarak yaz.
 ## Sınırlar
 <Dokunulmayacaklar. Silme yetkisi var mı yok mu. Varsayılan: silme yok,
 `_eski/` altına taşı.>
+<İlk gece kuralı — zorunlu satır: "Bu klasöre/depoya ilk kez dokunuluyor:
+bu tur yalnızca envanter + plan raporu üretir, taşıma/yazma yok" YA DA
+"daha önce düzenlendi (<tarih>, <rapor>), yazma serbest". Yol doğrulanamadıysa
+ilk kez sayılır.>
 
 ## Bitince
 <Çıktı tam olarak nereye, hangi adla, hangi yapıda.>
@@ -85,12 +89,21 @@ Dosyayı yazmadan önce kendine sor:
 3. Çıktının yeri ve adı belli mi?
 4. Yanlış giderse ne kaybederiz? Geri alınamaz bir şey varsa görevi
    salt okumaya çevir, raporu kullanıcı görsün, uygulamayı sonra yapsın.
+5. Bu klasöre/depoya **ilk kez** mi dokunuluyor, ya da yolu doğrulayamadın
+   mı? Evetse görev salt okuma: envanter + plan. Taşıma ikinci geceye.
+6. Dosya **120 satırı** geçiyor mu? Geçiyorsa betiğin *nasıl* yazılacağını
+   anlatıyorsun demektir; görev *ne* yapılacağını söyler. Kodlama, kaçış
+   ve yerel ayar tuzakları gece koşan ajanın becerisinde zaten var —
+   kopyalama, tek satırla "windows-tuzaklari kurallarına uy" de.
 
 ## İlk gece kuralı
 
 Bir klasörde veya repoda **ilk kez** iş yapılacaksa, o görev **rapor
 üretsin, değişiklik yapmasın**. Güven kurulduktan sonra yazma yetkisi
-ver. Kullanıcının kodunu gece yarısı ilk denemede değiştirme.
+ver. Kullanıcının kodunu gece yarısı ilk denemede değiştirme. Yolu
+doğrulayamadığın klasör de "ilk kez"dir: bilmediğin yerde taşıma planlama.
+Bu kural şablondaki "Sınırlar" bölümüne **açıkça yazılır**; yazılmamışsa
+dosya eksiktir.
 
 ## Yazdıktan sonra
 
