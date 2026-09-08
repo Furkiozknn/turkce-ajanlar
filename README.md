@@ -27,6 +27,8 @@ Everything below is in Turkish on purpose.
 
 [![Claude Code eklentisi](https://img.shields.io/badge/Claude%20Code-eklenti-b45309?style=flat-square)](#eklenti-olarak-önerilen)
 [![8 ajan](https://img.shields.io/badge/ajan-8-4b5563?style=flat-square)](#ajanlar)
+[![3 komut](https://img.shields.io/badge/komut-3-4b5563?style=flat-square)](#slash-komutları)
+[![2 beceri](https://img.shields.io/badge/beceri-2-4b5563?style=flat-square)](#beceriler)
 [![Dil: Türkçe](https://img.shields.io/badge/dil-T%C3%BCrk%C3%A7e-b91c1c?style=flat-square)](#neden-bu-var)
 [![Bağımlılık: 0](https://img.shields.io/badge/ba%C4%9F%C4%B1ml%C4%B1l%C4%B1k-0-166534?style=flat-square)](#web-arayüzü)
 [![Lisans: MIT](https://img.shields.io/badge/lisans-MIT-1f6feb?style=flat-square)](LICENSE)

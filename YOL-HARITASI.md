@@ -22,12 +22,6 @@ bitince "bitti" denebilecek kadar net olmalı.
       `raporlar\ONAY-BEKLEYENLER.md` dosyasına yaz ve kullanıcının
       onayını bekle** — dışarı açılan bir işlem, kendi başına yapma.
 
-- [ ] **Web arayüzünde komutlar ve beceriler** — `arac/web-uret.js` sadece
-      `agents/` okuyor; bugün eklenen üç komut ve iki beceri arayüzde yok.
-      Ayrı sekme ya da bölüm olarak kartla (ad, ne zaman, nasıl çağrılır),
-      arama ikisini de kapsasın; README rozetlerine "3 komut · 2 beceri"
-      ekle; `arac/web-test.js`'e iki kontrol. Ekran görüntülerini yenile.
-
 - [ ] **Plugin eval seti** — Yerel CLI 2.1.263'te `claude plugin eval` var
       (`evals/**/case.yaml` ya da `prompt.md + graders/*.md`). Her ajan için
       en az bir vaka: Türkçe çıktı, ondalık virgül, bulgu şişirmeme
@@ -53,6 +47,13 @@ bitince "bitti" denebilecek kadar net olmalı.
 ## Bitti
 
 <!-- Tamamlanan maddeler tarihiyle buraya taşınır -->
+
+- [x] **Web arayüzünde komutlar ve beceriler** — `arac/web-uret.js` sadece
+      `agents/` okuyor; bugün eklenen üç komut ve iki beceri arayüzde yok.
+      Ayrı sekme ya da bölüm olarak kartla (ad, ne zaman, nasıl çağrılır),
+      arama ikisini de kapsasın; README rozetlerine "3 komut · 2 beceri"
+      ekle; `arac/web-test.js`'e iki kontrol. Ekran görüntülerini yenile.
+      *(2026-09-08 — web-uret.js commands/ ve skills/ okuyor; 'Komutlar ve beceriler' bölümü, aynı arama kutusuyla süzme, altbilgi sayaçları, README rozetleri (3 komut · 2 beceri); web-test 43/43 (3 yeni kontrol); ekran görüntüleri yenilendi)*
 
 - [x] **Türkçe ekosistem haritası ve README dürüstlüğü** — 8 Eylül 2026'da
       GitHub aramasında Türkçe odaklı komşular var: `nexivionlabs/turkce-agent-skills`

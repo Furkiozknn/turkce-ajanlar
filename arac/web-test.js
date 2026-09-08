@@ -90,6 +90,23 @@ function ol(ad, kosul, ek) {
   const yok = await ara("qwertzxc");
   ol("sonuc yoksa bos durum cikiyor", yok.n === 0 && !(await p.locator("#bos").isHidden()));
 
+  console.log("\n— Komutlar ve beceriler —");
+  const fs = require("fs");
+  const kok = path.resolve(__dirname, "..");
+  const beklenenEk =
+    fs.readdirSync(path.join(kok, "commands")).filter((f) => f.endsWith(".md")).length +
+    fs.readdirSync(path.join(kok, "skills")).filter((d) => fs.existsSync(path.join(kok, "skills", d, "SKILL.md"))).length;
+  const ekSayisi = await p.locator("#ekler-liste li").count();
+  ol("komut ve beceri listesi kaynakla ayni sayida", ekSayisi === beklenenEk && ekSayisi > 0, ekSayisi + " / " + beklenenEk);
+  await ara("denetle");
+  const ekGorunen = p.locator("#ekler-liste li:not([hidden])");
+  ol("arama komut/beceri listesini de suzuyor",
+    (await ekGorunen.count()) === 1 && /denetle/.test(await ekGorunen.first().innerText()),
+    (await ekGorunen.count()) + " gorunur");
+  await ara("qwertzxc");
+  ol("eslesme yoksa komut/beceri bos durumu cikiyor", !(await p.locator("#ekler-bos").isHidden()));
+  await ara("");
+
   console.log("\n— Klavye —");
   await p.fill("#arama", "");
   await p.keyboard.press("Escape");

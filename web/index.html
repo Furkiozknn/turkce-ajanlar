@@ -132,6 +132,33 @@ kbd {
   border-style: dashed;
 }
 
+/* Komutlar ve beceriler: ajan gibi kart degil, kisa liste. */
+.ekler { margin: 34px 0 0; }
+.ekler h2 { font-size: 17px; margin: 0 0 4px; letter-spacing: -.01em; }
+.ekler-not { margin: 0 0 12px; color: var(--sonuk); font-size: 13.5px; max-width: 72ch; }
+.ekler-not code, .ekler li code {
+  font: 12.5px ui-monospace, monospace; background: var(--kart);
+  border: 1px solid var(--kenar); border-radius: 4px; padding: 1px 6px;
+}
+.ekler ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.ekler li {
+  display: grid; grid-template-columns: auto auto 1fr; gap: 10px; align-items: baseline;
+  background: var(--kart); border: 1px solid var(--kenar); border-radius: var(--r);
+  padding: 10px 14px; box-shadow: var(--golge); font-size: 13.5px;
+}
+.ekler li[hidden] { display: none; }
+.ek-aciklama { color: var(--sonuk); }
+.tur {
+  font: 11px ui-monospace, monospace; text-transform: uppercase; letter-spacing: .05em;
+  border-radius: 5px; padding: 2px 7px; border: 1px solid var(--kenar); color: var(--sonuk);
+}
+.tur-komut { background: var(--vurgu-zemin); }
+.tur-beceri { background: transparent; border-style: dashed; }
+@media (max-width: 640px) {
+  .ekler li { grid-template-columns: auto 1fr; }
+  .ek-aciklama { grid-column: 1 / -1; }
+}
+
 .bos { color: var(--sonuk); padding: 48px 0; text-align: center; }
 
 /* --- detay --- */
@@ -262,8 +289,8 @@ footer a { color: var(--vurgu); }
 </header>
 
 <div class="arama-satir">
-  <input id="arama" type="search" aria-label="Ajanlarda ara"
-         placeholder="Ara — ad, ne yaptığı, tetikleyici ifade…"
+  <input id="arama" type="search" aria-label="Ajan, komut ve becerilerde ara"
+         placeholder="Ara — ajan, komut, beceri, tetikleyici ifade…"
          autocomplete="off" spellcheck="false">
 </div>
 <div class="sayac">
@@ -277,8 +304,24 @@ footer a { color: var(--vurgu); }
 <div class="izgara" id="izgara"></div>
 <div class="bos" id="bos" hidden>Eşleşen ajan yok. Başka bir kelime dene.</div>
 
+<section class="ekler" id="ekler" aria-labelledby="ekler-baslik">
+  <h2 id="ekler-baslik">Komutlar ve beceriler</h2>
+  <p class="ekler-not">Plugin olarak kurulunca gelir:
+     <code>claude plugin install turkce-ajanlar@turkce-ajanlar</code>.
+     Komutu sen çağırırsın; beceri konu açılınca kendiliğinden yüklenir,
+     istersen aynı adla elle de çağrılır.</p>
+  <ul id="ekler-liste">
+    <li><span class="tur tur-komut">komut</span><code>/turkce-ajanlar:ajanlar</code><span class="ek-aciklama">Kurulu Türkçe alt-ajanları ve her birinin ne işe yaradığını listeler. Hangi ajanın hangi işe çağrılacağını hatırlamak için.</span></li>
+    <li><span class="tur tur-komut">komut</span><code>/turkce-ajanlar:denetle depo yolu — boşsa çalışma dizini</code><span class="ek-aciklama">Bulunduğun depoyu (veya verilen yolu) repo-denetci ajanıyla denetler — canlılık, hijyen (README/LICENSE/test/.gitignore), bağımlılıklar, açık işler, sızmış gizli bilgi. Salt okuma; tek çıktı bir rapor dosyası.</span></li>
+    <li><span class="tur tur-komut">komut</span><code>/turkce-ajanlar:gorev &lt;ne yapılsın, hangi klasörde&gt;</code><span class="ek-aciklama">Belirsiz bir isteği, kullanıcı bilgisayarda yokken çalışacak eksiksiz bir görev dosyasına çevirip kuyruğa bırakır (gorev-yazari ajanını kullanır). Örnek — /turkce-ajanlar:gorev indirilenler klasörünü tarihe göre düzenle</span></li>
+    <li><span class="tur tur-beceri">beceri</span><code>/turkce-ajanlar:turkce-rapor</code><span class="ek-aciklama">Türkçe rapor, özet, denetim çıktısı veya markdown belge yazarken uygulanacak biçim ve dürüstlük kuralları — ondalık virgül, gün.ay.yıl tarih, İ/ı büyük-küçük harf, birim ve tablo düzeni, bulgu şişirmeme, her rakama kaynak. Kullanıcı &quot;rapor yaz&quot;, &quot;özetle&quot;, &quot;Türkçe rapor&quot;, &quot;denetim raporu&quot;, &quot;bulguları yaz&quot;, &quot;günlük özeti&quot; dediğinde ya da çıktı Türkçe bir belge olacaksa kullan.</span></li>
+    <li><span class="tur tur-beceri">beceri</span><code>/turkce-ajanlar:windows-tuzaklari</code><span class="ek-aciklama">Windows'ta PowerShell 5.1, cmd, Node veya Python betiği ya da komutu yazmadan ve çalıştırmadan önce uygulanacak tuzak kontrol listesi — &amp;&amp; yok, UTF-8 BOM, Türkçe yerel ayarın sayıyı yanlış okuması, cp1254 çıktı, heredoc ve node -e içinde ters bölü kaybı, iç içe kaçış katmanları, git kimliğini ezme. Kullanıcı &quot;.ps1 yaz&quot;, &quot;betik yaz&quot;, &quot;zamanlanmış görev kur&quot;, &quot;Türkçe karakterler bozuk&quot;, &quot;elde çalışıyor ama zamanlayıcıda çalışmıyor&quot; dediğinde ya da Windows'ta komut üretilecekse kullan.</span></li>
+  </ul>
+  <div class="bos" id="ekler-bos" hidden>Eşleşen komut veya beceri yok.</div>
+</section>
+
 <footer>
-  <strong id="toplam"></strong> ajan · Son güncelleme 08 Eylül 2026 ·
+  <strong id="toplam"></strong> ajan · 3 komut · 2 beceri · Son güncelleme 08 Eylül 2026 ·
   MIT lisansı · Kurulum: <code>kur.ps1</code>
 </footer>
 
@@ -443,6 +486,16 @@ function ciz(sonuc) {
   $("#sayac").textContent = gorunen.length === AJANLAR.length
     ? AJANLAR.length + " ajan"
     : gorunen.length + " / " + AJANLAR.length + " ajan";
+
+  // Komut ve beceri listesi ayni sorguyla suzulur.
+  const q = sade(arama.value.trim());
+  let ekGorunen = 0;
+  for (const li of document.querySelectorAll("#ekler-liste li")) {
+    const goster = !q || sade(li.textContent).includes(q);
+    li.hidden = !goster;
+    if (goster) ekGorunen++;
+  }
+  $("#ekler-bos").hidden = ekGorunen > 0;
 }
 
 // --- detay -----------------------------------------------------------------

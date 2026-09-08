@@ -24,7 +24,7 @@ function ayristir(ham, dosyaAdi) {
 
   const alanlar = {};
   for (const satir of m[1].split(/\r?\n/)) {
-    const k = satir.match(/^([a-zA-Z_]+):\s*(.*)$/);
+    const k = satir.match(/^([a-zA-Z_-]+):\s*(.*)$/);
     if (!k) continue;
     let deger = k[2].trim();
     if (deger.startsWith("[") && deger.endsWith("]")) {
@@ -106,6 +106,36 @@ if (ajanlar.length === 0) {
   console.error("hic ajan bulunamadi");
   process.exit(1);
 }
+
+// --- komutlar ve beceriler (plugin ekleri) ---------------------------------
+// Ajan gibi kart degil, kisa liste: komutu kullanici cagirir, beceri konu
+// acilinca kendiliginden yuklenir. Ikisi de plugin kurulunca gelir.
+const ekler = [];
+const komutKlasor = path.join(KOK, "commands");
+if (fs.existsSync(komutKlasor)) {
+  for (const f of fs.readdirSync(komutKlasor).filter((x) => x.endsWith(".md")).sort()) {
+    const { alanlar } = ayristir(fs.readFileSync(path.join(komutKlasor, f), "utf8"), f);
+    const ad = f.replace(/\.md$/, "");
+    const ipucu = alanlar["argument-hint"] ? " " + alanlar["argument-hint"] : "";
+    ekler.push({ tur: "komut", ad, cagri: "/turkce-ajanlar:" + ad + ipucu, aciklama: alanlar.description || "" });
+  }
+}
+const beceriKlasor = path.join(KOK, "skills");
+if (fs.existsSync(beceriKlasor)) {
+  for (const d of fs.readdirSync(beceriKlasor).sort()) {
+    const sk = path.join(beceriKlasor, d, "SKILL.md");
+    if (!fs.existsSync(sk)) continue;
+    const { alanlar } = ayristir(fs.readFileSync(sk, "utf8"), d + "/SKILL.md");
+    const ad = alanlar.name || d;
+    ekler.push({ tur: "beceri", ad, cagri: "/turkce-ajanlar:" + ad, aciklama: alanlar.description || "" });
+  }
+}
+const kacirHtml = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+const eklerHtml = ekler
+  .map((e) => `    <li><span class="tur tur-${e.tur}">${e.tur}</span><code>${kacirHtml(e.cagri)}</code><span class="ek-aciklama">${kacirHtml(e.aciklama)}</span></li>`)
+  .join("\n");
+const komutSayisi = ekler.filter((e) => e.tur === "komut").length;
+const beceriSayisi = ekler.length - komutSayisi;
 
 // --- HTML --------------------------------------------------------------
 const VERI = JSON.stringify(ajanlar)
@@ -270,6 +300,33 @@ kbd {
   border-style: dashed;
 }
 
+/* Komutlar ve beceriler: ajan gibi kart degil, kisa liste. */
+.ekler { margin: 34px 0 0; }
+.ekler h2 { font-size: 17px; margin: 0 0 4px; letter-spacing: -.01em; }
+.ekler-not { margin: 0 0 12px; color: var(--sonuk); font-size: 13.5px; max-width: 72ch; }
+.ekler-not code, .ekler li code {
+  font: 12.5px ui-monospace, monospace; background: var(--kart);
+  border: 1px solid var(--kenar); border-radius: 4px; padding: 1px 6px;
+}
+.ekler ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.ekler li {
+  display: grid; grid-template-columns: auto auto 1fr; gap: 10px; align-items: baseline;
+  background: var(--kart); border: 1px solid var(--kenar); border-radius: var(--r);
+  padding: 10px 14px; box-shadow: var(--golge); font-size: 13.5px;
+}
+.ekler li[hidden] { display: none; }
+.ek-aciklama { color: var(--sonuk); }
+.tur {
+  font: 11px ui-monospace, monospace; text-transform: uppercase; letter-spacing: .05em;
+  border-radius: 5px; padding: 2px 7px; border: 1px solid var(--kenar); color: var(--sonuk);
+}
+.tur-komut { background: var(--vurgu-zemin); }
+.tur-beceri { background: transparent; border-style: dashed; }
+@media (max-width: 640px) {
+  .ekler li { grid-template-columns: auto 1fr; }
+  .ek-aciklama { grid-column: 1 / -1; }
+}
+
 .bos { color: var(--sonuk); padding: 48px 0; text-align: center; }
 
 /* --- detay --- */
@@ -400,8 +457,8 @@ footer a { color: var(--vurgu); }
 </header>
 
 <div class="arama-satir">
-  <input id="arama" type="search" aria-label="Ajanlarda ara"
-         placeholder="Ara — ad, ne yaptığı, tetikleyici ifade…"
+  <input id="arama" type="search" aria-label="Ajan, komut ve becerilerde ara"
+         placeholder="Ara — ajan, komut, beceri, tetikleyici ifade…"
          autocomplete="off" spellcheck="false">
 </div>
 <div class="sayac">
@@ -415,8 +472,20 @@ footer a { color: var(--vurgu); }
 <div class="izgara" id="izgara"></div>
 <div class="bos" id="bos" hidden>Eşleşen ajan yok. Başka bir kelime dene.</div>
 
+<section class="ekler" id="ekler" aria-labelledby="ekler-baslik">
+  <h2 id="ekler-baslik">Komutlar ve beceriler</h2>
+  <p class="ekler-not">Plugin olarak kurulunca gelir:
+     <code>claude plugin install turkce-ajanlar@turkce-ajanlar</code>.
+     Komutu sen çağırırsın; beceri konu açılınca kendiliğinden yüklenir,
+     istersen aynı adla elle de çağrılır.</p>
+  <ul id="ekler-liste">
+${eklerHtml}
+  </ul>
+  <div class="bos" id="ekler-bos" hidden>Eşleşen komut veya beceri yok.</div>
+</section>
+
 <footer>
-  <strong id="toplam"></strong> ajan · Son güncelleme ${damga} ·
+  <strong id="toplam"></strong> ajan · ${komutSayisi} komut · ${beceriSayisi} beceri · Son güncelleme ${damga} ·
   MIT lisansı · Kurulum: <code>kur.ps1</code>
 </footer>
 
@@ -581,6 +650,16 @@ function ciz(sonuc) {
   $("#sayac").textContent = gorunen.length === AJANLAR.length
     ? AJANLAR.length + " ajan"
     : gorunen.length + " / " + AJANLAR.length + " ajan";
+
+  // Komut ve beceri listesi ayni sorguyla suzulur.
+  const q = sade(arama.value.trim());
+  let ekGorunen = 0;
+  for (const li of document.querySelectorAll("#ekler-liste li")) {
+    const goster = !q || sade(li.textContent).includes(q);
+    li.hidden = !goster;
+    if (goster) ekGorunen++;
+  }
+  $("#ekler-bos").hidden = ekGorunen > 0;
 }
 
 // --- detay -----------------------------------------------------------------
