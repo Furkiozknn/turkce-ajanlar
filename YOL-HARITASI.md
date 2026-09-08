@@ -22,6 +22,47 @@ bitince "bitti" denebilecek kadar net olmalı.
       `raporlar\ONAY-BEKLEYENLER.md` dosyasına yaz ve kullanıcının
       onayını bekle** — dışarı açılan bir işlem, kendi başına yapma.
 
+- [ ] **Ajan frontmatter modernizasyonu** — Resmî belgeye göre plugin
+      ajanları `skills:` (beceriyi başlangıçta tam içerik olarak yükler),
+      `disallowedTools`, `maxTurns`, `memory` alanlarını destekliyor
+      (code.claude.com/docs/en/sub-agents, 8 Eylül 2026). Rapor yazan
+      ajanlara `skills: [turkce-rapor]`, betik yazanlara
+      `[windows-tuzaklari]` ön yükle; salt okur ajanlara
+      `disallowedTools: Write, Edit` ekle; `windows-tuzaklari` becerisine
+      `paths: "*.ps1,*.psm1,*.cmd,*.bat"` koy ki PowerShell dosyasına
+      dokununca kendiliğinden açılsın. `arac/dogrula.js` yeni alanları
+      tanısın, `disari-aktar.js` eşlemesi bozulmasın; headless testle doğrula.
+
+- [ ] **Web arayüzünde komutlar ve beceriler** — `arac/web-uret.js` sadece
+      `agents/` okuyor; bugün eklenen üç komut ve iki beceri arayüzde yok.
+      Ayrı sekme ya da bölüm olarak kartla (ad, ne zaman, nasıl çağrılır),
+      arama ikisini de kapsasın; README rozetlerine "3 komut · 2 beceri"
+      ekle; `arac/web-test.js`'e iki kontrol. Ekran görüntülerini yenile.
+
+- [ ] **Türkçe ekosistem haritası ve README dürüstlüğü** — 8 Eylül 2026'da
+      GitHub aramasında Türkçe odaklı komşular var: `nexivionlabs/turkce-agent-skills`
+      (beceri kütüphanesi, 5 Eylül), `ahsenedakocaballi/pixel-agent-office`
+      (on ajanlık Türkçe ekip eklentisi, 3 Eylül), `durmazoguzhan/turkish-humanify`
+      ve `azizi2407/avaz` (Türkçe metin doğallaştırma becerileri). README'deki
+      "Türkçe geçen dosya yok" cümlesi iki büyük koleksiyon için doğru ama
+      tek başına yanıltıcı: canlılık ve kapsamlarını ölç, tamamlayıcı olanları
+      "Yanında kullan" bölümüne bağlantıyla al, çakışanlarla farkımızı tek
+      cümlede yaz. Sayılar `gh api` ile, hatırdan değil.
+
+- [ ] **Plugin eval seti** — Yerel CLI 2.1.263'te `claude plugin eval` var
+      (`evals/**/case.yaml` ya da `prompt.md + graders/*.md`). Her ajan için
+      en az bir vaka: Türkçe çıktı, ondalık virgül, bulgu şişirmeme
+      ("sorun yok" diyebilme), sınır ihlali yok (`hata-avcisi` kod
+      düzeltmez). Grader'lar Türkçe. CI'da koşmaz (API maliyeti); yerel komut
+      + `raporlar/` altına sonuç. Önce iki ajanla pilot, maliyeti ölç.
+
+- [ ] **Türkçe biçim kancası** — `hooks/hooks.json` ile plugin kancası
+      (PostToolUse, `Write|Edit`, yalnızca `*.md`): Node betiği ondalık
+      nokta (`0.57`), İngilizce tarih (`2026-09-08` düzyazıda, `Sep 8`),
+      sonda yüzde (`96%`) gibi `turkce-rapor` kurallarının ihlalini uyarı
+      olarak basar, engellemez. Deterministik ve testli (`arac/bicim-kontrol-test.js`);
+      yanlış alarm oranı ölçülmeden açılmaz — beceri kuralı mekanik zorlanır.
+
 - [ ] **Araştırma turu ve yol haritası yenileme** — bu maddeye
       gelindiğinde: rakipleri ve Claude Code'un yeni özelliklerini
       tara, eksik gördüğün özellikleri **bu dosyanın "Sırada"
@@ -33,6 +74,13 @@ bitince "bitti" denebilecek kadar net olmalı.
 ## Bitti
 
 <!-- Tamamlanan maddeler tarihiyle buraya taşınır -->
+
+- [x] **Araştırma turu ve yol haritası yenileme** — bu maddeye
+      gelindiğinde: rakipleri ve Claude Code'un yeni özelliklerini
+      tara, eksik gördüğün özellikleri **bu dosyanın "Sırada"
+      bölümünün sonuna** yeni maddeler olarak ekle, sonra bu maddeyi
+      işaretle ve yenisini en sona tekrar ekle. Döngü böyle sürer.
+      *(2026-09-08 — 8 Eylül 2026 turu: resmî belge (sub-agents/skills/plugins-reference), claude plugin eval (CLI 2.1.263), 4 büyük koleksiyon + 5 Türkçe komşu depo ölçüldü; 5 yeni madde eklendi)*
 
 - [x] **Çoklu araç desteği** — En büyük rakip `wshobson/agents`
       (39k★) ajanlarını Claude Code dışında Cursor, Codex, OpenCode ve
