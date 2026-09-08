@@ -22,16 +22,6 @@ bitince "bitti" denebilecek kadar net olmalı.
       `raporlar\ONAY-BEKLEYENLER.md` dosyasına yaz ve kullanıcının
       onayını bekle** — dışarı açılan bir işlem, kendi başına yapma.
 
-- [ ] **Eval: kalan altı ajan ve düzenli koşu** — Pilot (8 Eylül 2026,
-      `raporlar/2026-09-08-eval-pilot.md`) iki ajanda çalıştı; koşu başına
-      plugin kolu ~0,5 USD, plugin'siz ~1–1,5 USD. Şimdi `repo-denetci`,
-      `veri-raporcu`, `dosya-duzenleyici`, `gorev-yazari`, `betik-ustasi`,
-      `arastirmaci` için birer vaka (her birinin "sınır" cümlesini test eden:
-      silmez, değiştirmez, çalıştırmaz, uydurmaz); düzeltilmiş
-      `hata-avcisi` fixture'ıyla 3. tur; `--runs 3 --judge-model sonnet`
-      ile yargıç dağılımını ölç. Vaka başına fixture iddiasını önce gerçek
-      makinede doğrula (tuzak #16). Sonucu rapora ekle, README tablosunu güncelle.
-
 - [ ] **Araştırma turu ve yol haritası yenileme** — bu maddeye
       gelindiğinde: rakipleri ve Claude Code'un yeni özelliklerini
       tara, eksik gördüğün özellikleri **bu dosyanın "Sırada"
@@ -43,6 +33,17 @@ bitince "bitti" denebilecek kadar net olmalı.
 ## Bitti
 
 <!-- Tamamlanan maddeler tarihiyle buraya taşınır -->
+
+- [x] **Eval: kalan altı ajan ve düzenli koşu** — Pilot (8 Eylül 2026,
+      `raporlar/2026-09-08-eval-pilot.md`) iki ajanda çalıştı; koşu başına
+      plugin kolu ~0,5 USD, plugin'siz ~1–1,5 USD. Şimdi `repo-denetci`,
+      `veri-raporcu`, `dosya-duzenleyici`, `gorev-yazari`, `betik-ustasi`,
+      `arastirmaci` için birer vaka (her birinin "sınır" cümlesini test eden:
+      silmez, değiştirmez, çalıştırmaz, uydurmaz); düzeltilmiş
+      `hata-avcisi` fixture'ıyla 3. tur; `--runs 3 --judge-model sonnet`
+      ile yargıç dağılımını ölç. Vaka başına fixture iddiasını önce gerçek
+      makinede doğrula (tuzak #16). Sonucu rapora ekle, README tablosunu güncelle.
+      *(2026-09-08 — 6 kabuksuz vaka evals/ (sonnet yargıçla 6/6, 2,65 USD), 2 kabuk vakası evals-bash/ (Windows'ta kum havuzu yok); 5 turda 2 fixture + 2 rubrik hatası ve gorev-yazari ilk gece zaafı bulunup düzeltildi; rapor raporlar/2026-09-08-eval-pilot.md)*
 
 - [x] **Plugin eval seti** — Yerel CLI 2.1.263'te `claude plugin eval` var
       (`evals/**/case.yaml` ya da `prompt.md + graders/*.md`). Her ajan için

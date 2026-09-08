@@ -259,23 +259,28 @@ elle ölçüm: `node arac/bicim-kontrol.js --dosya <md dosyaları>`.
 
 ## Değerlendirme (eval)
 
-`evals/` altında `claude plugin eval` vakaları var (erken erişim:
-`CLAUDE_CODE_WALNUT_SPIRE=1`). Pilot, iki ajanı plugin'li ve plugin'siz
-kolda ölçtü (8 Eylül 2026, 2 tur, toplam 5,18 USD):
+`evals/` altında sekiz ajanın altısı için `claude plugin eval` vakaları var
+(erken erişim: `CLAUDE_CODE_WALNUT_SPIRE=1`); her vaka ajanın **sınır
+cümlesini** test eder (uydurmaz, silmez, çalıştırmaz, Türkçe yazar). Kabuk
+gerektiren iki vaka (`repo-denetci`, `betik-ustasi`) `evals-bash/` altında:
+Windows'ta kum havuzu olmadığı için yalnızca Linux/macOS'ta koşar.
 
-| Vaka | Plugin'li | Plugin'siz | Not |
-|---|---|---|---|
-| Temiz koda "sorun yok" diyebilme (`kod-gozden-gecirici`) | **1,00** | 0,50 | Plugin'siz kol temiz koda "yüksek ciddiyet TOCTOU" bulgusu uydurdu |
-| Tek kök neden + kanıt (`hata-avcisi`) | 0,67 | 1,00 | Ajan doğru buldu ve fixture'ın yanlış öncülünü işaretledi; iki yargıç bunu cezalandırdı, fixture ve rubrik düzeltildi |
+Son tam koşu (8 Eylül 2026, sonnet yargıç, vaka başına 1 koşu): **6/6,
+genel skor 1,00**, 842 sn, 2,65 USD. Plugin'li/plugin'siz karşılaştırması
+(pilot): temiz koda "sorun yok" diyebilme 1,00 / 0,50 — plugin'siz kol temiz
+koda uydurma bulgu yazdı; plugin kolu koşu başına 2–3 kat ucuz ve hızlı.
 
-Koşu başına plugin kolu 0,48–0,50 USD ve 157–178 sn; plugin'siz kol
-1,02–1,46 USD ve 376–507 sn. Ayrıntı ve öğrenilenler:
-`raporlar/2026-09-08-eval-pilot.md` (kullanıcı çalışma alanında).
-CI'a bağlı değil — koşu başına 2–4 USD.
+Beş turda eval'in bulup düzelttirdikleri: iki fixture hatası (para
+yuvarlama, `[double]` cast kültürden bağımsız), iki rubrik hatası
+(işaretlenmiş belirsizliği cezalandırma, `_eski/` literal beklentisi), bir
+gerçek ajan zaafı (`gorev-yazari` bildiği ilk gece kuralını uygulamıyordu;
+şablona zorunlu satır olarak indi) ve bir iyileştirme (`hata-avcisi` soruda
+verilen kanıtı diskte aramasın). Ayrıntı: `raporlar/2026-09-08-eval-pilot.md`
+(kullanıcı çalışma alanında). CI'a bağlı değil — koşu başına ~2,7 USD.
 
 ```powershell
 $env:CLAUDE_CODE_WALNUT_SPIRE = "1"
-claude plugin eval . --runs 1 --max-cost-usd 3.5 --no-publish --ablation with-without
+claude plugin eval . --runs 1 --ablation none --judge-model sonnet --max-cost-usd 6 --no-publish --allow-tools WebFetch WebSearch
 ```
 
 ## Diğer araçlarda kullanım
