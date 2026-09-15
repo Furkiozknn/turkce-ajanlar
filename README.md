@@ -152,11 +152,11 @@ Eklenti istemiyorsan `kur.ps1` ajan dosyalarını doğrudan
 `.claude/agents/` altına kopyalar:
 
 ```powershell
-# Varsayilan projeye (D:\Claude Projeleri)
+# Bulundugun klasore (varsayilan: icinde bulunulan dizin)
 powershell -ExecutionPolicy Bypass -File kur.ps1
 
 # Baska bir projeye
-powershell -ExecutionPolicy Bypass -File kur.ps1 -Proje "D:\Repolar\buradane"
+powershell -ExecutionPolicy Bypass -File kur.ps1 -Proje "C:\yol\projen"
 
 # Tum projelerde kullanilabilsin
 powershell -ExecutionPolicy Bypass -File kur.ps1 -Kullanici
