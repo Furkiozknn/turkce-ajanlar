@@ -34,6 +34,18 @@ bitince "bitti" denebilecek kadar net olmalı.
 
 <!-- Tamamlanan maddeler tarihiyle buraya taşınır -->
 
+- [x] **Kadro 54 → 70** — Kullanıcı "en az 50, çıkabildiğin kadar" dedi.
+      Portföyde gerçek karşılığı olan on altı rol daha eklendi: konteyner,
+      altyapı, tip, eşzamanlılık, tekrar, teknik borç, yeni katılan, hata
+      mesajı, yerelleştirme, SEO, yedekleme, MCP, prompt, sürüm uyumu,
+      önbellek, oyun. Her biri deponun kendi projelerinden bir karşılık
+      taşıyor (dört MCP sunucusu, iki oyun, iki dilli masal, PostGIS'li
+      buradane, Vercel dağıtımı).
+      *(2026-09-15 — bağlam maliyeti yeniden ölçüldü: 26.783 karakter
+      ≈ 8.612 token, 15.000 eşiğinin %57'si. Koordinatör kadrosu da
+      güncellendi: 69 ajanın hepsini anıyor, hayalet atıf ve anılmayan
+      ajan yok — betikle doğrulandı. `dogrula.js --kati` 70/70.)*
+
 - [x] **Koordinatörlü ekip: 11 → 54 ajan** — Kullanıcı "bir proje verildiğinde
       ana koordinatör analiz etsin, sonra ajanlara dağıtsın" mimarisini istedi.
       Önce belgeden doğrulandı: alt-ajan, ana konuşmanın altında **üç katmana

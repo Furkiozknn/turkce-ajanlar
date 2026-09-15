@@ -26,7 +26,7 @@ Everything below is in Turkish on purpose.
 # turkce-ajanlar
 
 [![Claude Code eklentisi](https://img.shields.io/badge/Claude%20Code-eklenti-b45309?style=flat-square)](#eklenti-olarak-önerilen)
-[![54 ajan](https://img.shields.io/badge/ajan-54-4b5563?style=flat-square)](#ajanlar)
+[![70 ajan](https://img.shields.io/badge/ajan-70-4b5563?style=flat-square)](#ajanlar)
 [![3 komut](https://img.shields.io/badge/komut-3-4b5563?style=flat-square)](#slash-komutları)
 [![2 beceri](https://img.shields.io/badge/beceri-2-4b5563?style=flat-square)](#beceriler)
 [![Dil: Türkçe](https://img.shields.io/badge/dil-T%C3%BCrk%C3%A7e-b91c1c?style=flat-square)](#neden-bu-var)
@@ -39,7 +39,7 @@ tuzaklarını içine gömmüş ajanlar.
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/ekran-goruntusu-koyu.png">
-  <img alt="Web arayüzü: elli dört ajan, arama kutusu, her kart için tetikleyici ifadeler ve ajanın sınırı" src="assets/ekran-goruntusu.png">
+  <img alt="Web arayüzü: yetmiş ajan, arama kutusu, her kart için tetikleyici ifadeler ve ajanın sınırı" src="assets/ekran-goruntusu.png">
 </picture>
 
 <sub><code>web/index.html</code> — tek dosya, bağımlılık yok,
@@ -67,15 +67,15 @@ kurala uyar — `TÜRKÇE` yazınca `türkçe` bulunur, `turkce` yazınca da.
 çağrılınca okunur. Yani ajan sayısı bedava değildir ve bu depo uzun süre
 bilerek sekiz ajanda durdu.
 
-Elli dörde çıkarken bu maliyeti ölçtük, tahmin etmedik: `description`
-alanlarının toplamı **20.220 karakter**, kabaca **6.500 token** — Claude
-Code'un başlangıçta uyarı verdiği 15.000 token eşiğinin **%43'ü**. Rakam
+Yetmişe çıkarken bu maliyeti ölçtük. tahmin etmedik: `description`
+alanlarının toplamı **26.783 karakter**. kabaca **8.612 token** — Claude
+Code'un başlangıçta uyarı verdiği 15.000 token eşiğinin **%57'i**. Rakam
 `agents/*.md` frontmatter'larından sayıldı; artarsa README de artar.
 
 Asıl değişen şu: artık ajanı sen seçmiyorsun. `proje-koordinatoru` projeyi
 ölçüyor, hangi uzmanların gerektiğine karar veriyor ve işi bağımlılık
 sırasına göre dalgalar hâlinde dağıtıyor — arayüzü olmayan bir projede
-arayüz ekibi hiç çağrılmıyor. Elli dört aday arasından seçim yapmak
+arayüz ekibi hiç çağrılmıyor. Yetmiş aday arasından seçim yapmak
 Claude'un değil koordinatörün işi.
 
 Karşılığında dürüst olmak gerekir: bu, deponun ilk günkü "az sayıda ajan"
@@ -120,39 +120,45 @@ iki büyük koleksiyon daha geniş.
 
 ## Ajanlar
 
-Elli dört ajan, on bir grupta. **✎** işaretli on beşi dosya yazabilir;
-kalan otuz dokuzu salt okurdur ve `disallowedTools` ile yazması kapatılmıştır.
+Yetmiş ajan, on bir grupta. **✎** işaretli on beşi dosya yazabilir; kalan
+elli beşi salt okurdur ve `disallowedTools` ile yazması kapatılmıştır.
 
 Tek tek çağırmak zorunda değilsin: `proje-koordinatoru` projeyi ölçüp
 gerekli olanları bağımlılık sırasına göre dalgalar hâlinde çağırır.
+
 
 ### Koordinasyon
 
 | Ajan | Ne yapar | Sınırı |
 |---|---|---|
-| `proje-koordinatoru` **✎** | Bir projeyi baştan analiz eder, hangi uzman ajanların gerektiğine karar verir, işi bağımlılık sırasına… | Kendisi inceleme yapmaz; keşfi yapar, dağıtır,… |
+| `proje-koordinatoru` **✎** | Bir projeyi baştan analiz eder, hangi uzman ajanların gerektiğine karar verir, işi bağımlılık… | Kendisi inceleme yapmaz; keşfi yapar, dağıtır,… |
 
 ### Keşif — projeyi tanı
 
 | Ajan | Ne yapar | Sınırı |
 |---|---|---|
-| `kod-haritacisi` | Tanımadığın bir kod tabanının haritasını çıkarır: giriş noktaları, modül grafiği, en çok değişen dosyalar,… | Tek satır kod değiştirmez, yeniden düzenleme yapmaz;… |
-| `bagimlilik-envanteri` | Doğrudan ve geçişli bağımlılıkları envanterler: kaç paket var, hangisi güncelliğini yitirmiş, hangisi tek… | Paket kurmaz, sürüm yükseltmez, lisans incelemesi yapmaz |
-| `yapilandirma-denetci` | Projenin yapılandırma yüzeyini denetler: koddan gerçekten okunan ortam değişkenleri, varsayılan değerler,… | Ayar dosyası yazmaz, değer düzeltmez ve hiçbir sır… |
+| `kod-haritacisi` | Tanımadığın bir kod tabanının haritasını çıkarır: giriş noktaları, modül grafiği, en çok değişen… | Tek satır kod değiştirmez, yeniden düzenleme yapmaz;… |
+| `bagimlilik-envanteri` | Doğrudan ve geçişli bağımlılıkları envanterler: kaç paket var, hangisi güncelliğini yitirmiş, hangisi… | Paket kurmaz, sürüm yükseltmez, lisans incelemesi yapmaz |
+| `yapilandirma-denetci` | Projenin yapılandırma yüzeyini denetler: koddan gerçekten okunan ortam değişkenleri, varsayılan… | Ayar dosyası yazmaz, değer düzeltmez ve hiçbir sır… |
 | `veri-modeli-cikarici` | Koddan veri modelini çıkarır: tablolar, koleksiyonlar, alanlar, ilişkiler, zorunluluk ve benzersizlik… | Tablo oluşturmaz, göç dosyası yazmaz, sorgu… |
 | `surum-gecmisi-analisti` | Git geçmişinden risk çıkarır: en çok değişen sıcak dosyalar, hep birlikte değişen dosya çiftleri, tek… | Geçmişi değiştirmez, dal oluşturmaz, kod kalitesi… |
+| `teknik-borc-analisti` | Teknik borcu envanterler ve faiziyle ölçer: işaret yoğunluğu, geçici çözümler, eski sürüme bağlı… | Kodu değiştirmez ve toplu temizlik önermez; en çok… |
+| `surum-uyum-denetci` | Sürüm uyumunu denetler: desteklendiği söylenen dil sürümü aralığı ile kullanılan özelliklerin… | Sürüm yükseltmesi yapmaz, dosya değiştirmez |
 | `repo-denetci` | Bir veya birden çok git deposunu envanterler — ne iş yaptığı, canlılığı, hijyeni… | Kod değiştirmez, sadece rapor yazar |
-| `mimari-degerlendirici` | Var olan mimariyi değerlendirir — katman ihlali, döngüsel bağımlılık, tek sorumluluğun dağılması, bağlaşım… | Kod yazmaz, yeniden düzenleme yapmaz ve mimariyi… |
+| `mimari-degerlendirici` | Var olan mimariyi değerlendirir — katman ihlali, döngüsel bağımlılık, tek sorumluluğun dağılması,… | Kod yazmaz, yeniden düzenleme yapmaz ve mimariyi… |
 
 ### Doğruluk
 
 | Ajan | Ne yapar | Sınırı |
 |---|---|---|
 | `kod-gozden-gecirici` | Bir değişikliği veya dosyayı doğruluk, güvenlik, bakım kolaylığı ve performans açısından inceler | Biçim tercihleri (girinti, tırnak) bu ajanın işi değil |
-| `test-doktoru` | Bir test takımının gerçekten bir şey kanıtlayıp kanıtlamadığını ölçer — kod bozulduğu hâlde yeşil kalan… | Test yazmaz; hangi testin eksik olduğunu ve nasıl… |
+| `test-doktoru` | Bir test takımının gerçekten bir şey kanıtlayıp kanıtlamadığını ölçer — kod bozulduğu hâlde yeşil… | Test yazmaz; hangi testin eksik olduğunu ve nasıl… |
 | `test-yazari` **✎** | Eksik testi tarif etmekle kalmaz, gerçekten yazar: önce kırmızı yanan testi ekler, sonra geçirir | Takımın bir şey kanıtlayıp kanıtlamadığını teşhis… |
-| `kapsam-analisti` | Kapsam raporunu üretir ve okur ama ona tapmaz: hangi satır hiç çalışmıyor, hangi satır çalışıp da… | Test yazmaz, kodu değiştirmez; yalnızca ölçer ve raporlar |
-| `sinir-durum-avcisi` | Koddaki karar noktalarından sınır ve uç durum listesi çıkarır: boş girdi, tek eleman, çok büyük girdi,… | Test yazmaz, kodu düzeltmez; yalnızca liste üretir |
+| `kapsam-analisti` | Kapsam raporunu üretir ve okur ama ona tapmaz: hangi satır hiç çalışmıyor, hangi satır çalışıp da… | Test yazmaz, kodu değiştirmez; yalnızca ölçer ve… |
+| `sinir-durum-avcisi` | Koddaki karar noktalarından sınır ve uç durum listesi çıkarır: boş girdi, tek eleman, çok büyük… | Test yazmaz, kodu düzeltmez; yalnızca liste üretir |
+| `tip-denetci` | Tip güvenliğini ölçer | Tip hatalarını kendisi düzeltmez ve dosya… |
+| `eszamanlilik-denetci` | Eşzamanlılık arızalarını avlar: yarış durumu, paylaşılan değişken, kilit sırası ve kilitlenme,… | Kodu değiştirmez; arızanın hangi iki akışın… |
+| `tekrar-avcisi` | Kopyalanmış kodu ve mantık tekrarını bulur: aynı işi yapan iki işlev, kopyala yapıştır bloklar, üç… | Her tekrarı arıza saymaz, erken soyutlamanın… |
 | `hata-avcisi` | Başarısız bir çalıştırmanın kök nedenini bulur — log dosyalarını, hata çıktılarını, yığın izlerini ve… | Kodu kendisi düzeltmez; en küçük düzeltmeyi önerir |
 
 ### Güvenlik ve gizlilik
@@ -160,80 +166,91 @@ gerekli olanları bağımlılık sırasına göre dalgalar hâlinde çağırır.
 | Ajan | Ne yapar | Sınırı |
 |---|---|---|
 | `guvenlik-denetci` | Genel güvenlik incelemesi yapar: tehdit yüzeyi, güvensiz varsayılanlar, kriptografi yanlış kullanımı… | Kod değiştirmez, sömürü tarifi yazmaz; sır, girdi,… |
-| `sir-avcisi` | Çalışma ağacında ve git geçmişinde sızmış kimlik bilgisi arar: API anahtarı, erişim jetonu, özel anahtar,… | Bulduğu sırrın değerini asla yazdırmaz, dosya ve satır… |
-| `girdi-dogrulama-denetci` | Kullanıcı girdisinden doğan açıkları arar: SQL ve komut enjeksiyonu, şablon enjeksiyonu, yol geçişi, SSRF,… | Kod yazmaz, sömürü tarifi vermez; oturum, yetki ve sır… |
+| `sir-avcisi` | Çalışma ağacında ve git geçmişinde sızmış kimlik bilgisi arar | Bulduğu sırrın değerini asla yazdırmaz, dosya ve… |
+| `girdi-dogrulama-denetci` | Kullanıcı girdisinden doğan açıkları arar | Kod yazmaz, sömürü tarifi vermez; oturum, yetki ve… |
 | `yetki-denetci` | Kimlik doğrulama ve yetkilendirmeyi denetler: oturum yönetimi, jeton süresi ve saklanma yeri, JWT… | Kod değiştirmez, sömürü tarifi vermez; girdi… |
-| `bagimlilik-guvenligi` | Bağımlılık güvenlik uyarılarını triyaj eder: npm audit, pip-audit ve Dependabot uyarılarını toplar, sonra… | Paket kurmaz, sürüm yükseltmez; envanter çıkarma işi… |
+| `bagimlilik-guvenligi` | Bağımlılık güvenlik uyarılarını triyaj eder: npm audit, pip-audit ve Dependabot uyarılarını toplar,… | Paket kurmaz, sürüm yükseltmez; envanter çıkarma işi… |
 | `gizlilik-denetci` | Kişisel veri işlemeyi teknik olarak denetler: hangi alan kişisel veri, nereye gidiyor, ne kadar… | Kod değiştirmez ve hukuki tavsiye vermez; uyumluluk… |
+| `mcp-denetci` | Bir MCP sunucusunu kurmadan önce kaynağından denetler: hangi araçları açıyor, hangi ortam… | Denetlediği sunucuyu asla çalıştırmaz, kod değiştirmez |
 
 ### Başarım
 
 | Ajan | Ne yapar | Sınırı |
 |---|---|---|
 | `performans-olcumcu` | Ölçmeden konuşmaz: profil çıkarır, sıcak yolu bulur, süreyi tekrarlanabilir biçimde karşılaştırır | Kodu değiştirmez ve optimize etmez; nerede ne kadar… |
-| `bellek-avcisi` | Bellek sorunlarını ölçerek bulur: sızıntı, gereksiz kopya, büyük dosyayı toptan belleğe alma, sınırsız… | Kodu değiştirmez; nerede ne kadar bellek tutulduğunu… |
+| `bellek-avcisi` | Bellek sorunlarını ölçerek bulur: sızıntı, gereksiz kopya, büyük dosyayı toptan belleğe alma,… | Kodu değiştirmez; nerede ne kadar bellek tutulduğunu… |
 | `web-performans` | Tarayıcı tarafını ölçer: paket boyutu, ilk yükleme, LCP ve CLS ile INP, gereksiz JavaScript, görsel… | Kodu değiştirmez ve derleme ayarına dokunmaz; ölçer,… |
-| `sorgu-optimizasyoncu` | Yavaş sorguyu ölçerek teşhis eder: plan okuma, N+1 çağrısı, eksik indeks, gereksiz birleştirme, gereksiz… | Sorguyu ya da kodu değiştirmez; ölçümü ve önerilen… |
+| `sorgu-optimizasyoncu` | Yavaş sorguyu ölçerek teşhis eder: plan okuma, N+1 çağrısı, eksik indeks, gereksiz birleştirme,… | Sorguyu ya da kodu değiştirmez; ölçümü ve önerilen… |
+| `onbellek-denetci` | Önbellekleme katmanını denetler: nerede önbellek var, anahtarı kullanıcıya göre ayrışıyor mu,… | Önbelleği temizlemez, kod değiştirmez |
 
-### Arayüz
+### Arayüz ve ürün
 
 | Ajan | Ne yapar | Sınırı |
 |---|---|---|
-| `arayuz-gozden-gecirici` | Bileşenleri ve ekranları okuyup durum yönetimi, gereksiz yeniden render, yükleniyor-boş-hata dallarının… | Bileşeni düzeltmez; hangi dosyaya hangi dalın… |
-| `erisilebilirlik-denetci` | WCAG ölçütlerine göre arayüz denetler — anlamlı HTML, alt metin, etiket-girdi eşleşmesi, klavyeyle gezinme… | Kodu düzeltmez; ihlali ölçüyle ve dosya satırıyla bildirir |
-| `responsive-denetci` | Düzenin genişlikler arasında nasıl davrandığını denetler — yatay kaydırma taşması, sabit piksel… | Düzeni düzeltmez; taşmayı üreten öğeyi ve kuralı gösterir |
-| `tasarim-sistemi-bekcisi` | Arayüzün kendi kendisiyle tutarlı olup olmadığını sayarak ölçer — palette kaç ayrı renk var, kaç yerde… | Değer değiştirmez; sapmayı sayıyla raporlar |
-| `kullanilabilirlik-denetci` | Ekranı değil akışı denetler — hedefe kaç tıkla ulaşılıyor, geri dönüş yolu var mı, yıkıcı işlemde onay ve… | Akışı değiştirmez; hangi adımın eksik olduğunu yazar |
+| `arayuz-gozden-gecirici` | Bileşenleri ve ekranları okuyup durum yönetimi, gereksiz yeniden render, yükleniyor-boş-hata… | Bileşeni düzeltmez; hangi dosyaya hangi dalın… |
+| `erisilebilirlik-denetci` | WCAG ölçütlerine göre arayüz denetler — anlamlı HTML, alt metin, etiket-girdi eşleşmesi, klavyeyle… | Kodu düzeltmez; ihlali ölçüyle ve dosya satırıyla… |
+| `responsive-denetci` | Düzenin genişlikler arasında nasıl davrandığını denetler — yatay kaydırma taşması, sabit piksel… | Düzeni düzeltmez; taşmayı üreten öğeyi ve kuralı… |
+| `tasarim-sistemi-bekcisi` | Arayüzün kendi kendisiyle tutarlı olup olmadığını sayarak ölçer — palette kaç ayrı renk var, kaç… | Değer değiştirmez; sapmayı sayıyla raporlar |
+| `kullanilabilirlik-denetci` | Ekranı değil akışı denetler — hedefe kaç tıkla ulaşılıyor, geri dönüş yolu var mı, yıkıcı işlemde… | Akışı değiştirmez; hangi adımın eksik olduğunu yazar |
+| `hata-mesaji-denetci` | Kullanıcıya ve geliştiriciye giden hata mesajlarının kalitesini denetler — ne olduğunu ve ne… | Mesajları kendisi düzeltmez; hangi satırdaki metnin… |
+| `yerellestirme-denetci` | Çok dilli desteği denetler — koda gömülü metin, eksik çeviri anahtarı, çoğul kuralları, tarih, sayı… | Çeviri yazmaz ve dil dosyalarını değiştirmez; hangi… |
+| `seo-denetci` | Arama ve paylaşım görünürlüğünü denetler — başlık ve açıklama etiketleri, canonical adres, site… | Etiketleri kendisi eklemez; eksiği sayfa ve… |
+| `oyun-denetci` | Tarayıcı ve masaüstü oyunlarını denetler: kare hızı kararlılığı, oyun döngüsünde sabit adım ile… | Oyun kodunu değiştirmez, oynanış dengesi tasarlamaz |
 
 ### Veri
 
 | Ajan | Ne yapar | Sınırı |
 |---|---|---|
-| `veritabani-tasarimci` **✎** | Şema tasarlar ve var olan şemayı inceler: normalizasyon, indeks eksiği ve fazlası, yabancı anahtar, NULL… | Göç dosyası yazmaz ve üretim veritabanına dokunmaz; o… |
-| `veri-gocu-ustasi` **✎** | Şema göçlerini güvenli hâle getirir: geri alınabilirlik, kilit süresi, büyük tabloda sütun ekleme, iki… | Geri alınamaz göçü kendi başına çalıştırmaz; önce… |
+| `veritabani-tasarimci` **✎** | Şema tasarlar ve var olan şemayı inceler: normalizasyon, indeks eksiği ve fazlası, yabancı anahtar,… | Göç dosyası yazmaz ve üretim veritabanına dokunmaz;… |
+| `veri-gocu-ustasi` **✎** | Şema göçlerini güvenli hâle getirir: geri alınabilirlik, kilit süresi, büyük tabloda sütun ekleme,… | Geri alınamaz göçü kendi başına çalıştırmaz; önce… |
 | `veri-kalite-denetci` | Bir veri kümesinin güvenilir olup olmadığını ölçer: boş oranı, yinelenen kayıt, aykırı değer, tip… | İş sorusuna yanıt veren rapor yazmaz; o iş… |
-| `veri-raporcu` | CSV, Excel, JSON, Parquet veya log dosyalarını okuyup Türkçe rapor üretir — özet, kırılım, aykırı değer,… | Veri dosyasını değiştirmez |
+| `veri-raporcu` | CSV, Excel, JSON, Parquet veya log dosyalarını okuyup Türkçe rapor üretir — özet, kırılım, aykırı… | Veri dosyasını değiştirmez |
 
 ### API ve dayanıklılık
 
 | Ajan | Ne yapar | Sınırı |
 |---|---|---|
-| `api-tasarimci` **✎** | HTTP API sözleşmesi tasarlar: kaynak adlandırma, yöntem ve durum kodu seçimi, sayfalama, filtreleme, hata… | Uç noktayı gerçekleştirmez; sözleşmeyi ve örnek… |
-| `api-sozlesme-denetci` | Kodun gerçekten döndürdüğü ile belgelenenin ayrışmasını bulur: eksik veya fazla alan, tip farkı, durum… | Belgeyi ya da kodu düzeltmez; sapmaları dosya ve satır… |
-| `dayaniklilik-denetci` | Sistemin hata karşısındaki davranışını denetler: zaman aşımı, üstel geri çekilmeli yeniden deneme, yeniden… | Kod değiştirmez; riskleri dosya ve satır ile listeler |
+| `api-tasarimci` **✎** | HTTP API sözleşmesi tasarlar: kaynak adlandırma, yöntem ve durum kodu seçimi, sayfalama, filtreleme,… | Uç noktayı gerçekleştirmez; sözleşmeyi ve örnek… |
+| `api-sozlesme-denetci` | Kodun gerçekten döndürdüğü ile belgelenenin ayrışmasını bulur: eksik veya fazla alan, tip farkı,… | Belgeyi ya da kodu düzeltmez; sapmaları dosya ve… |
+| `dayaniklilik-denetci` | Sistemin hata karşısındaki davranışını denetler: zaman aşımı, üstel geri çekilmeli yeniden deneme,… | Kod değiştirmez; riskleri dosya ve satır ile listeler |
 | `gozlemlenebilirlik-mimari` | Günlük, iz ve ölçüm düzenini denetler ve tasarlar: neyin ölçüleceği, yapılandırılmış günlük alanları,… | Kod değiştirmez ve günlükten kök neden çıkarmaz |
 
-### Teslim
+### Teslim ve işletme
 
 | Ajan | Ne yapar | Sınırı |
 |---|---|---|
 | `ci-doktoru` **✎** | GitHub Actions iş akışlarını kurar, onarır ve gerçekten kapı görevi görüp görmediklerini denetler —… | İş akışını yazmakla kalmaz, kapının gerçekten… |
-| `paketleme-denetci` | Yayına gidecek paketin temiz bir ortama gerçekten kurulduğunu ve söz verdiği komutun çalıştığını denetler;… | Paketi düzeltmez ve yayınlamaz; hangi dosyada ne bozuk… |
-| `surum-yayinci` **✎** | Sürüm çıkarma işini yürütür: SemVer'e göre sürüm numarası artırma, değişiklik günlüğü yazma, etiket… | Yayınlamayı ve etiket itmeyi kendi başına yapmaz, önce… |
-| `dagitim-planlayici` **✎** | Dağıtım planı yazar: ortamlar arasındaki farklar, göç sırası, kesintisiz dağıtım, sağlık kontrolü uçları,… | Üretime dağıtımı kendisi yapmaz; planı yazar ve onay ister |
-| `geri-alma-planlayici` **✎** | Geri alma ve olay müdahalesi için koşturma kitabı yazar: ne bozulursa ne yapılır, geri alma adımları, veri… | Geri almayı kendisi uygulamaz ve kişi suçlamaz |
-| `maliyet-denetci` | Sistemin çalıştırma maliyetini denetler: model ve API çağrısı başına maliyet, jeton tüketimi, gereksiz… | Kod değiştirmez ve finansal tavsiye vermez |
+| `paketleme-denetci` | Yayına gidecek paketin temiz bir ortama gerçekten kurulduğunu ve söz verdiği komutun çalıştığını… | Paketi düzeltmez ve yayınlamaz; hangi dosyada ne… |
+| `surum-yayinci` **✎** | Sürüm çıkarma işini yürütür | Yayınlamayı ve etiket itmeyi kendi başına yapmaz,… |
+| `dagitim-planlayici` **✎** | Dağıtım planı yazar: ortamlar arasındaki farklar, göç sırası, kesintisiz dağıtım, sağlık kontrolü… | Üretime dağıtımı kendisi yapmaz; planı yazar ve onay… |
+| `geri-alma-planlayici` **✎** | Geri alma ve olay müdahalesi için koşturma kitabı yazar: ne bozulursa ne yapılır, geri alma adımları,… | Geri almayı kendisi uygulamaz ve kişi suçlamaz |
+| `konteyner-denetci` | Dockerfile ve compose dosyalarını denetler: katman sırası ve önbellek verimi, imaj boyutu, kök… | Dosya değiştirmez, imaj yayınlamaz; bulguyu dosya ve… |
+| `altyapi-denetci` | Kod olarak altyapıyı denetler | Altyapıya dokunmaz, uygulama çalıştırmaz; yalnızca… |
+| `yedekleme-denetci` | Yedekleme ve kurtarma düzenini denetler — neyin yedeği alınıyor, ne sıklıkta, nereye, geri yükleme… | Yedek almaz ve geri yükleme çalıştırmaz; kanıtı ve… |
+| `maliyet-denetci` | Sistemin çalıştırma maliyetini denetler: model ve API çağrısı başına maliyet, jeton tüketimi,… | Kod değiştirmez ve finansal tavsiye vermez |
 
 ### Belge ve dil
 
 | Ajan | Ne yapar | Sınırı |
 |---|---|---|
-| `readme-doktoru` | README'nin işini yapıp yapmadığını ölçer — ilk otuz saniyede projenin ne olduğu anlaşılıyor mu, kurulum… | README'yi kendisi yazmaz ya da düzeltmez; hangi… |
+| `readme-doktoru` | README'nin işini yapıp yapmadığını ölçer — ilk otuz saniyede projenin ne olduğu anlaşılıyor mu,… | README'yi kendisi yazmaz ya da düzeltmez; hangi… |
 | `belge-yazari` **✎** | Teknik belge yazar ve günceller — kurulum, kullanım, mimari karar kaydı (ADR) ve sorun giderme sayfaları | Yazdığı her komutu çalıştırıp çıktısını gösterir;… |
-| `degisiklik-gunlugu-yazari` **✎** | CHANGELOG üretir ve günceller | Etiket atmaz, sürüm yayımlamaz ve commit başlıklarını… |
-| `ornek-kod-denetci` | Belgelerdeki ve README'deki kod örneklerinin gerçekten çalışıp çalışmadığını denetler — kopyala-yapıştır… | Örneği kendisi düzeltmez ve belgeyi değiştirmez; hangi… |
-| `turkce-metin-denetci` | Depodaki Türkçe metnin bütünlüğünü denetler — düşmüş şapkalı harfler, kod sayfası yüzünden bozulmuş çıktı,… | Metni kendisi düzeltmez; nerede ne bozulduğunu… |
-| `lisans-denetci` | Bağımlılık ağacındaki lisansları çıkarır — geçişli paketlerin lisansları, kopyasol (GPL/AGPL) bulaşması,… | Hukuki tavsiye vermez, avukat yerine geçmez ve hiçbir… |
+| `degisiklik-gunlugu-yazari` **✎** | CHANGELOG üretir ve günceller | Etiket atmaz, sürüm yayımlamaz ve commit… |
+| `ornek-kod-denetci` | Belgelerdeki ve README'deki kod örneklerinin gerçekten çalışıp çalışmadığını denetler —… | Örneği kendisi düzeltmez ve belgeyi değiştirmez;… |
+| `turkce-metin-denetci` | Depodaki Türkçe metnin bütünlüğünü denetler — düşmüş şapkalı harfler, kod sayfası yüzünden bozulmuş… | Metni kendisi düzeltmez; nerede ne bozulduğunu… |
+| `lisans-denetci` | Bağımlılık ağacındaki lisansları çıkarır — geçişli paketlerin lisansları, kopyasol (GPL/AGPL)… | Hukuki tavsiye vermez, avukat yerine geçmez ve… |
+| `yeni-katilan-rehberi` | Depoya ilk kez gelen birinin kaç dakikada çalışır hâle geldiğini ölçer — kurulum adımları gerçekten… | Belgeyi düzeltmez; nerede takıldığını ölçülmüş… |
+| `prompt-denetci` | Sistem promptu ve ajan talimatı kalitesini ölçer: çelişen kurallar, ölçülemeyen öğüt, eksik sınır,… | Promptu yeniden yazmaz, yalnızca rapor eder |
 
 ### Süreç ve ortam
 
 | Ajan | Ne yapar | Sınırı |
 |---|---|---|
-| `arastirmaci` **✎** | Bir konuda web araştırması yapıp Türkçe rapor üretir — araç/kütüphane karşılaştırması, "bunun ücretsiz… | Araç kurmaz, kod yazmaz; sadece rapor üretir |
-| `betik-ustasi` **✎** | Windows'ta PowerShell 5.1, cmd ve Node betikleri yazar, tamir eder ve Görev Zamanlayıcı'ya bağlanacak hâle… | Betiği yazmakla kalmaz, çalıştırıp gösterir |
-| `git-ustasi` **✎** | Git hijyenini kurar — anlamlı commit mesajı (Conventional Commits), küçük mantıksal commit'lere bölme,… | Zorla gönderme, geçmiş yeniden yazma ve dal silme gibi… |
+| `arastirmaci` **✎** | Bir konuda web araştırması yapıp Türkçe rapor üretir — araç/kütüphane karşılaştırması, "bunun… | Araç kurmaz, kod yazmaz; sadece rapor üretir |
+| `betik-ustasi` **✎** | Windows'ta PowerShell 5.1, cmd ve Node betikleri yazar, tamir eder ve Görev Zamanlayıcı'ya bağlanacak… | Betiği yazmakla kalmaz, çalıştırıp gösterir |
+| `git-ustasi` **✎** | Git hijyenini kurar — anlamlı commit mesajı (Conventional Commits), küçük mantıksal commit'lere… | Zorla gönderme, geçmiş yeniden yazma ve dal silme… |
 | `gorev-yazari` **✎** | Belirsiz bir isteği, kullanıcı bilgisayarda yokken çalışacak eksiksiz bir görev dosyasına çevirir | Görevi kendisi çalıştırmaz, sadece dosyayı yazar |
-| `dosya-duzenleyici` | Bir klasörü düzenler — tarihe/türe/projeye göre ayırma, yeniden adlandırma, yinelenen dosya bulma, arşivleme | Asla kalıcı silmez; her toplu işlemden önce planı yazar |
+| `dosya-duzenleyici` | Bir klasörü düzenler — tarihe/türe/projeye göre ayırma, yeniden adlandırma, yinelenen dosya bulma,… | Asla kalıcı silmez; her toplu işlemden önce planı yazar |
 
 ## Kurulum
 
@@ -254,7 +271,7 @@ claude plugin marketplace add Furkiozknn/turkce-ajanlar
 claude plugin install turkce-ajanlar@turkce-ajanlar
 ```
 
-Kurulduktan sonra elli dört ajan da her projede görünür. Kontrol:
+Kurulduktan sonra yetmiş ajan da her projede görünür. Kontrol:
 
 ```powershell
 claude plugin details turkce-ajanlar
@@ -375,12 +392,12 @@ elle ölçüm: `node arac/bicim-kontrol.js --dosya <md dosyaları>`.
 
 ## Değerlendirme (eval)
 
-`evals/` altında elli dört ajanın altısı için `claude plugin eval` vakaları var
+`evals/` altında yetmiş ajanın altısı için `claude plugin eval` vakaları var
 (erken erişim: `CLAUDE_CODE_WALNUT_SPIRE=1`); her vaka ajanın **sınır
 cümlesini** test eder (uydurmaz, silmez, çalıştırmaz, Türkçe yazar). Kabuk
 gerektiren iki vaka (`repo-denetci`, `betik-ustasi`) `evals-bash/` altında:
 Windows'ta kum havuzu olmadığı için yalnızca Linux/macOS'ta koşar. Toplam
-sekiz ajan kapsanıyor; kalan kırk altısının vakası henüz yazılmadı.
+sekiz ajan kapsanıyor; kalan altmış ikisinin vakası henüz yazılmadı.
 
 Son tam koşu (8 Eylül 2026, sonnet yargıç, vaka başına 1 koşu): **6/6,
 genel skor 1,00**, 842 sn, 2,65 USD. Plugin'li/plugin'siz karşılaştırması
@@ -416,7 +433,7 @@ kaynakla karşılaştırır):
 
 Kendi projende kullanmak için ilgili klasörü projenin köküne kopyala
 (örneğin `.cursor/agents/`); bu depoyu açtığında araç zaten görür.
-Kum havuzu dürüstlüğü: elli dört ajanın hepsi `Bash` taşıdığı için Cursor'da
+Kum havuzu dürüstlüğü: yetmiş ajanın hepsi `Bash` taşıdığı için Cursor'da
 `readonly: true`, Codex'te `read-only` **verilmez** — Bash dosya
 yazabilir. Salt okuma vaadi ajan gövdesindeki kuralla, OpenCode'da ise
 `edit: deny` / `write: deny` ile tutulur. Kök `AGENTS.md` bu depoda

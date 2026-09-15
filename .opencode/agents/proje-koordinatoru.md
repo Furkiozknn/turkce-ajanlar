@@ -62,27 +62,34 @@ Sıra keyfî değil. Sonraki dalga, öncekinin çıktısını girdi olarak alır
 
 **Dalga 1 — Keşif.** Proje haritası çıkar. Sonraki her dalga bunu okur.
 `kod-haritacisi`, `bagimlilik-envanteri`, `surum-gecmisi-analisti`,
-`yapilandirma-denetci`, `veri-modeli-cikarici`
+`yapilandirma-denetci`, `veri-modeli-cikarici`, `teknik-borc-analisti`,
+`surum-uyum-denetci`
 
 **Dalga 2 — Doğruluk ve güvenlik.** Haritayı bilerek derine iner.
 `kod-gozden-gecirici`, `test-doktoru`, `guvenlik-denetci`, `sir-avcisi`,
 `girdi-dogrulama-denetci`, `yetki-denetci`, `bagimlilik-guvenligi`,
-`gizlilik-denetci`, `sinir-durum-avcisi`, `kapsam-analisti`
+`gizlilik-denetci`, `sinir-durum-avcisi`, `kapsam-analisti`, `tip-denetci`,
+`eszamanlilik-denetci`, `tekrar-avcisi`
 
 **Dalga 3 — Alan uzmanları.** Yalnızca o yüzey varsa çağrılır.
 Arayüz: `arayuz-gozden-gecirici`, `erisilebilirlik-denetci`,
-`responsive-denetci`, `tasarim-sistemi-bekcisi`, `kullanilabilirlik-denetci`
+`responsive-denetci`, `tasarim-sistemi-bekcisi`, `kullanilabilirlik-denetci`,
+`yerellestirme-denetci`, `seo-denetci`, `hata-mesaji-denetci`
 API: `api-tasarimci`, `api-sozlesme-denetci`, `dayaniklilik-denetci`,
 `gozlemlenebilirlik-mimari`
 Veri: `veritabani-tasarimci`, `sorgu-optimizasyoncu`, `veri-gocu-ustasi`,
 `veri-kalite-denetci`, `veri-raporcu`
-Başarım: `performans-olcumcu`, `bellek-avcisi`, `web-performans`
+Başarım: `performans-olcumcu`, `bellek-avcisi`, `web-performans`,
+`onbellek-denetci`
+Oyun: `oyun-denetci`
+Ajan/MCP: `mcp-denetci`, `prompt-denetci`
 
 **Dalga 4 — Teslim ve belge.**
 `ci-doktoru`, `paketleme-denetci`, `surum-yayinci`, `dagitim-planlayici`,
 `geri-alma-planlayici`, `readme-doktoru`, `belge-yazari`,
 `degisiklik-gunlugu-yazari`, `ornek-kod-denetci`, `turkce-metin-denetci`,
-`lisans-denetci`, `maliyet-denetci`
+`lisans-denetci`, `maliyet-denetci`, `konteyner-denetci`, `altyapi-denetci`,
+`yedekleme-denetci`, `yeni-katilan-rehberi`
 
 **Dalga 5 — Düzeltme.** Yalnızca bulgular netleştikten sonra, ve yalnızca
 kullanıcı isterse: `test-yazari`, `betik-ustasi`, `git-ustasi`,

@@ -1,6 +1,6 @@
 # Katkıda bulunma
 
-Bu depo Claude Code için **elli dört** Türkçe alt-ajan taşıyor. Katkı kabul
+Bu depo Claude Code için **yetmiş** Türkçe alt-ajan taşıyor. Katkı kabul
 ediyor — ama hedefi koleksiyonu büyütmek değil. Rakip koleksiyonlarda
 39 bin yıldız ve 172 ajan var; buradaki fark sayı değil, her ajanın
 gerçekten kullanılıyor ve doğrulanmış olması.
@@ -44,7 +44,7 @@ diyebiliyor olmalısın:
 
 - **Bunu gerçekten yaptım mı?** Ajanı en az bir gerçek işte
   çalıştırdın mı, yoksa "olsa iyi olurdu" diye mi yazdın? Bu depodaki
-  elli dört ajanın hepsi bir gerekçeyle yazıldı; sayı için ajan eklenmiyor.
+  yetmiş ajanın hepsi bir gerekçeyle yazıldı; sayı için ajan eklenmiyor.
 - **Mevcut bir ajanın işi değil mi?** `betik-ustasi` zaten PowerShell
   yazıyor; "powershell-uzmani" ikinci bir ajan değil, birincinin
   eksiğidir. Eksikse birincisini düzelt.
@@ -121,7 +121,7 @@ tırnaklı kalıplar belirgin biçimde daha iyi eşleşiyor. Yaz.
 
 ## 4. Gövde: ajanın asıl talimatı
 
-Frontmatter'dan sonrası ajanın sistem promptu. Depodaki elli dördü ortak
+Frontmatter'dan sonrası ajanın sistem promptu. Depodaki yetmişi ortak
 bir iskelet kullanıyor — mecburi değil ama sebepsiz sapma:
 
 ```markdown
@@ -245,7 +245,7 @@ $env:NODE_PATH   = "<playwright'in bulundugu>\node_modules"
 $env:CHROME_YOL  = "$env:LOCALAPPDATA\ms-playwright\chromium-<surum>\chrome-win64\chrome.exe"
 ```
 
-Ajan sayısı değiştiyse README'nin başındaki **"ajan: 54" rozetini** ve
+Ajan sayısı değiştiyse README'nin başındaki **"ajan: 70" rozetini** ve
 "Neden bu var" bölümündeki karakter ölçümünü de güncelle — ikisi elle
 yazılıyor, üretilmiyor.
 
@@ -273,7 +273,7 @@ node arac/dogrula.js --kati                 # uyarılar da hata sayılır
 
 Hata varsa çıkış kodu **1**, temizse **0** olur; bir kancaya ya da CI
 adımına doğrudan bağlanabilir. Hedef: `--kati` ile de geçmek. Depodaki
-elli dört ajan şu an 0 hata, 0 uyarı ile geçiyor; bu çıtayı düşürme.
+yetmiş ajan şu an 0 hata, 0 uyarı ile geçiyor; bu çıtayı düşürme.
 
 Ne bakıyor:
 
