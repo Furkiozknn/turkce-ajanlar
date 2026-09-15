@@ -34,6 +34,30 @@ bitince "bitti" denebilecek kadar net olmalı.
 
 <!-- Tamamlanan maddeler tarihiyle buraya taşınır -->
 
+- [x] **İkinci ajan turu: üç yeni rol** — Kullanıcı ajan sayısını artırmak
+      istedi; bu dosyanın kuralı gereği sayı için değil gerekçeyle eklendi.
+      wshobson/agents ve VoltAgent yeniden tarandı: test, CI, lisans ve
+      yayın rolleri **ikisinde de var**, yani "onlarda yok" gerekçesi
+      geçerli değildi. Seçim ölçütü `betik-ustasi`nin kurduğu ölçüte
+      döndürüldü: rol başka yerde olabilir, ama bizimki Türkçe olacak ve
+      **bu makinede ölçülmüş** gerçeği taşıyacak.
+      *(2026-09-15 — `test-doktoru`, `ci-doktoru`, `turkce-metin-denetci`
+      yazıldı; 8 → 11 ajan. Gömülen ölçümler: tırnaksız glob yüzünden 142
+      testin 137'sinin sessizce koşması; 50 geçen + 14 atlananın "64 test"
+      diye toplanamayacağı; 68 fonksiyon → 96 vaka parametrik genişlemesi;
+      142 testi olup hiç CI'ı olmayan depo; `npm ci`nin lockfile'sız her
+      koşuda düşmesi; derleme anında Google Fonts çeken projenin çevrimdışı
+      kırılması; pytest'in 3.9 ve 3.10 bacaklarında farklı kısıt istemesi;
+      bir README'nin son bölümünde şapkalı harflerin düşmesi; cp857'de
+      borulanan Türkçe çıktının okunmaz hâle gelmesi; PowerShell 5.1'in
+      `Set-Content -Encoding UTF8` ile commit başlığına BOM sızdırması.
+      Doğrulama: `dogrula.js --kati` 11/11 (0 hata, 0 uyarı),
+      `dogrula-test.js` 27/27, `bicim-kontrol-test.js` 33/33,
+      `disari-aktar-test.js` 11 ajan x 4 hedef 0 hata, `web-test.js` 43/43,
+      `eklenti-dogrula.js` 0 hata. README'deki bağlam ölçümü yeniden
+      ölçüldü: 2.800 → 3.948 karakter. Yeni üçünün eval vakası yok, README
+      bunu açıkça yazıyor.)*
+
 - [x] **Eval: kalan altı ajan ve düzenli koşu** — Pilot (8 Eylül 2026,
       `raporlar/2026-09-08-eval-pilot.md`) iki ajanda çalıştı; koşu başına
       plugin kolu ~0,5 USD, plugin'siz ~1–1,5 USD. Şimdi `repo-denetci`,

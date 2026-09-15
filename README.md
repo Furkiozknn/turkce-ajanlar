@@ -26,7 +26,7 @@ Everything below is in Turkish on purpose.
 # turkce-ajanlar
 
 [![Claude Code eklentisi](https://img.shields.io/badge/Claude%20Code-eklenti-b45309?style=flat-square)](#eklenti-olarak-önerilen)
-[![8 ajan](https://img.shields.io/badge/ajan-8-4b5563?style=flat-square)](#ajanlar)
+[![11 ajan](https://img.shields.io/badge/ajan-11-4b5563?style=flat-square)](#ajanlar)
 [![3 komut](https://img.shields.io/badge/komut-3-4b5563?style=flat-square)](#slash-komutları)
 [![2 beceri](https://img.shields.io/badge/beceri-2-4b5563?style=flat-square)](#beceriler)
 [![Dil: Türkçe](https://img.shields.io/badge/dil-T%C3%BCrk%C3%A7e-b91c1c?style=flat-square)](#neden-bu-var)
@@ -39,7 +39,7 @@ tuzaklarını içine gömmüş ajanlar.
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/ekran-goruntusu-koyu.png">
-  <img alt="Web arayüzü: sekiz ajan, arama kutusu, her kart için tetikleyici ifadeler ve ajanın sınırı" src="assets/ekran-goruntusu.png">
+  <img alt="Web arayüzü: on bir ajan, arama kutusu, her kart için tetikleyici ifadeler ve ajanın sınırı" src="assets/ekran-goruntusu.png">
 </picture>
 
 <sub><code>web/index.html</code> — tek dosya, bağımlılık yok,
@@ -62,13 +62,13 @@ Türkçe biçimlendirme kurallarına uyar: ondalık **virgül** (0,57), gün.ay.
 tarih düzeni, Türkçe büyük-küçük harf (`İ`/`ı`). Arayüzdeki arama da aynı
 kurala uyar — `TÜRKÇE` yazınca `türkçe` bulunur, `turkce` yazınca da.
 
-**2. Sekiz ajan, hepsi kullanılıyor.** Claude, kurulu **her** ajanın adını
+**2. On bir ajan, hepsi kullanılıyor.** Claude, kurulu **her** ajanın adını
 ve `description`'ını her oturumda sisteme yükler; ajanın gövdesi ancak o
 ajan çağrılınca okunur. Yani ajan sayısı bedava değil: 137 tanımlık bir
 katalog, hiç çağırmayacağın ajanların her oturumda bağlamda durması ve
-Claude'un seçim yaparken 137 aday elemesi demek. Buradaki sekiz tanımın
-tamamı **~2.800 karakter** — `agents/*.md` frontmatter'larındaki
-`description` alanlarının toplamı, kabaca 900 token. Sayı için ajan
+Claude'un seçim yaparken 137 aday elemesi demek. Buradaki on bir tanımın
+tamamı **~3.900 karakter** — `agents/*.md` frontmatter'larındaki
+`description` alanlarının toplamı, kabaca 1.250 token. Sayı için ajan
 eklenmiyor; her ajanın bir gerekçesi var.
 
 **3. Dürüstlük disiplini gövdeye gömülü.** Çoğu ajan promptu "kapsamlı ol"
@@ -118,6 +118,9 @@ iki büyük koleksiyon daha geniş.
 | `betik-ustasi` | Windows'ta PowerShell 5.1 / Node betiği yazar ve tamir eder. Kodlama, kaçış, çıkış kodu ve zamanlayıcı tuzakları içine gömülü. Yazdığını çalıştırıp gösterir. |
 | `hata-avcisi` | Başarısız bir çalıştırmanın kök nedenini log'dan kanıtla çıkarır. Kodu kendisi düzeltmez, en küçük düzeltmeyi önerir. |
 | `arastirmaci` | Web araştırması yapar; yıldız, son commit, sürüm ve fiyatı `gh`/`npm`/`curl` ile doğrular. Uydurma bağlantı vermez. |
+| `test-doktoru` | Test takımının bir şey kanıtlayıp kanıtlamadığını ölçer: sessizce koşmayan dosya, atlanan test, hiç test edilmeyen paketleme. Bir satırı bilerek bozup kırmızı yanıyor mu diye bakar. Test yazmaz. |
+| `ci-doktoru` | GitHub Actions iş akışı kurar ve onarır; kapının gerçekten kapandığını kasıtlı bir ihlalle gösterir. Kırmızıyı `continue-on-error` ile yeşile çevirmez. |
+| `turkce-metin-denetci` | Depodaki Türkçe metnin bütünlüğünü denetler: düşmüş şapkalı harf, kod sayfası hasarı, BOM, İ/ı dönüşümü, ek uyumu, terim tutarsızlığı. Salt okuma. |
 
 ## Kurulum
 
@@ -138,7 +141,7 @@ claude plugin marketplace add Furkiozknn/turkce-ajanlar
 claude plugin install turkce-ajanlar@turkce-ajanlar
 ```
 
-Kurulduktan sonra sekiz ajan da her projede görünür. Kontrol:
+Kurulduktan sonra on bir ajan da her projede görünür. Kontrol:
 
 ```powershell
 claude plugin details turkce-ajanlar
@@ -228,7 +231,7 @@ kendiliğinden yüklenir, elle de çağrılır (`/turkce-ajanlar:turkce-rapor`).
 | `turkce-rapor` | Türkçe rapor, özet veya denetim çıktısı yazılırken | Ondalık virgül, gün.ay.yıl, İ/ı eşlemesi, tablo ve kaynak düzeni, "bakılmadı" işareti, bulgu şişirmeme |
 | `windows-tuzaklari` | Windows'ta betik ya da komut üretilirken | On üç yaşanmış tuzağın kural tablosu: `&&` yok, BOM, yerel ayar sayı okuması, cp1254, heredoc/ters bölü kaybı, git kimliği; sekiz adımlık yazma protokolü |
 
-Neden bu ikisi: biçim kuralları sekiz ajandan yalnızca birinde gömülüydü
+Neden bu ikisi: biçim kuralları ajanlardan yalnızca birinde gömülüydü
 (`arastirmaci`), Windows tuzakları birkaçında; ana akış hiçbirini almıyordu.
 Beceri ikisini de tek yerden herkese verir. Komut ve beceri dosyalarını
 `node arac/eklenti-dogrula.js` doğrular (CI'da da koşar).
@@ -259,11 +262,13 @@ elle ölçüm: `node arac/bicim-kontrol.js --dosya <md dosyaları>`.
 
 ## Değerlendirme (eval)
 
-`evals/` altında sekiz ajanın altısı için `claude plugin eval` vakaları var
+`evals/` altında on bir ajanın altısı için `claude plugin eval` vakaları var
 (erken erişim: `CLAUDE_CODE_WALNUT_SPIRE=1`); her vaka ajanın **sınır
 cümlesini** test eder (uydurmaz, silmez, çalıştırmaz, Türkçe yazar). Kabuk
 gerektiren iki vaka (`repo-denetci`, `betik-ustasi`) `evals-bash/` altında:
-Windows'ta kum havuzu olmadığı için yalnızca Linux/macOS'ta koşar.
+Windows'ta kum havuzu olmadığı için yalnızca Linux/macOS'ta koşar. Toplam
+sekiz ajan kapsanıyor; en yeni üçünün (`test-doktoru`, `ci-doktoru`,
+`turkce-metin-denetci`) vakası henüz yazılmadı.
 
 Son tam koşu (8 Eylül 2026, sonnet yargıç, vaka başına 1 koşu): **6/6,
 genel skor 1,00**, 842 sn, 2,65 USD. Plugin'li/plugin'siz karşılaştırması
@@ -299,7 +304,7 @@ kaynakla karşılaştırır):
 
 Kendi projende kullanmak için ilgili klasörü projenin köküne kopyala
 (örneğin `.cursor/agents/`); bu depoyu açtığında araç zaten görür.
-Kum havuzu dürüstlüğü: sekiz ajanın hepsi `Bash` taşıdığı için Cursor'da
+Kum havuzu dürüstlüğü: on bir ajanın hepsi `Bash` taşıdığı için Cursor'da
 `readonly: true`, Codex'te `read-only` **verilmez** — Bash dosya
 yazabilir. Salt okuma vaadi ajan gövdesindeki kuralla, OpenCode'da ise
 `edit: deny` / `write: deny` ile tutulur. Kök `AGENTS.md` bu depoda
