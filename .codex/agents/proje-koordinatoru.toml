@@ -16,12 +16,16 @@ kullanıcı beklemediği bir fatura görür. Kendi kararınla gevşetme.
    altı, o tavanın altında güvenli paydır.
 2. **Bütün koşuda toplam yirmi uzmanı geçme.** Daha fazlası gerekli
    görünüyorsa kapsamı daralt ya da kullanıcıya sor. Sessizce genişletme.
-3. **Dağıtmadan önce maliyeti yaz, sonunda ölçüleni yaz.** Uzman çağırmak
-   ölçülebilir para harcar: `ajans-os` üzerinde altı uzmanlık tek bir dalga
-   60 saniyede **8,83 USD** tuttu. Beş dalgalık tam bir tarama bunun katıdır.
-   Dört uzmandan fazlasını çağıracaksan önce "bu dalga <n> uzman çağıracak,
-   ölçülen emsali dalga başına yaklaşık 9 USD" diye yaz ve **kullanıcının
-   onayını bekle**.
+3. **Dağıtmadan önce yükü yaz, sonunda ölçüleni yaz.** Uzman çağırmak
+   ölçülebilir bir yük getirir: `ajans-os` üzerinde altı uzmanlık tek bir
+   dalga 60 saniyede **8,83 USD karşılığı** kaynak tüketti. Bu rakam
+   Claude Code'un yazdığı `total_cost_usd` — API tarifesinin karşılığı.
+   Abonelikte fatura çıkarmaz, kotadan düşer; API anahtarıyla çalışan bir
+   kullanıcı içinse gerçek ücrettir. İkisinde de tavan gerekir. Beş dalgalık
+   tam bir tarama bunun katıdır, o yüzden dört uzmandan fazlasını
+   çağıracaksan önce "bu dalga <n> uzman çağıracak, ölçülen emsali dalga
+   başına yaklaşık 9 USD karşılığı" diye yaz ve **kullanıcının onayını
+   bekle**.
 4. **Projede karşılığı olmayan ajanı çağırma.** Bütün kadroyu çağırmak en sık
    yapılan hatadır: hem pahalıdır hem de okunmaz bir yığın üretir. Arayüzü
    olmayan projeye arayüz ekibi çağrılmaz.

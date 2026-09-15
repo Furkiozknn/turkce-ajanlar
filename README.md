@@ -354,9 +354,18 @@ kalan uzmanlar **hiç başlatılmaz** ve özet onları `butce` diye işaretler;
 bir uzman düşerse çıkış kodu 1 olur.
 
 Ölçülen: `repo-denetci` bu depo üzerinde tek başına **73,6 saniye,
-0,4943 USD**. Altı uzmanlık bir dalganın koordinatörle ölçülen maliyeti
-**8,83 USD** idi — beş dalgalık tam tarama bunun katıdır, `--butce` bu
+0,4943 USD karşılığı**. Altı uzmanlık bir dalga koordinatörle **8,83 USD
+karşılığı** tüketti — beş dalgalık tam tarama bunun katıdır, `--butce` bu
 yüzden var.
+
+> **Bu dolar rakamları ne demek?** Hepsi Claude Code'un kendi yazdığı
+> `total_cost_usd` değeri, yani **API tarifesinin karşılığı** — otomatik
+> olarak bir fatura değil. Pro/Max aboneliğiyle çalışıyorsan ek ücret
+> çıkmaz, abonelik kotandan düşer; API anahtarıyla (Console) çalışıyorsan
+> gerçek ücrettir. Bu depo hangisinde olduğunu bilemez, o yüzden rakamları
+> "karşılığı" diye yazıyor ve `--butce` tavanını her iki durumda da
+> öneriyor: abonelikte kotayı, API'de faturayı korur. Kendi durumunu
+> `claude` içinde `/cost` ile görürsün.
 
 Testi sahte bir `claude` ikilisiyle koşar (`node arac/ekip-kos-test.js`,
 17 iddia): API'ye çıkmaz, para harcamaz, ve asıl iddiayı — alt süreç
@@ -443,8 +452,8 @@ Kapsam iki katmanlı, ve ikisi aynı şey değil:
 
 | Katman | Ne ölçer | Kapsam | Maliyet |
 | --- | --- | --- | --- |
-| `arac/sinir-denetle.js` | Sözleşme: ajan ne yapmayacağını söylüyor mu, yetkisiyle uyuşuyor mu | **70/70** | 0 USD, her push'ta |
-| `claude plugin eval` | Davranış: baskı altında sınırında duruyor mu | **10/70** | ~0,2 USD/koşu |
+| `arac/sinir-denetle.js` | Sözleşme: ajan ne yapmayacağını söylüyor mu, yetkisiyle uyuşuyor mu | **70/70** | sıfır; model çağırmaz |
+| `claude plugin eval` | Davranış: baskı altında sınırında duruyor mu | **10/70** | ~0,2 USD karşılığı/koşu |
 
 Statik katman ucuz olduğu için her şeyi kapsar ama yalnızca **metni**
 görür. Eval katmanı ajanın gerçekten ne yaptığını görür ama pahalıdır;
@@ -470,7 +479,7 @@ senaryo:
   gerçek null arızasını `src/odeme.js` içinde göstermeli.
 
 Ölçülen (15 Eylül 2026, haiku yargıç, vaka başına 1 koşu): ikisi de
-**1,00**, sırasıyla 70 sn / 0,24 USD ve 66 sn / 0,21 USD.
+**1,00**, sırasıyla 70 sn / 0,24 ve 66 sn / 0,21 USD karşılığı.
 
 Son tam koşu (8 Eylül 2026, sonnet yargıç, vaka başına 1 koşu): **6/6,
 genel skor 1,00**, 842 sn, 2,65 USD. Plugin'li/plugin'siz karşılaştırması
