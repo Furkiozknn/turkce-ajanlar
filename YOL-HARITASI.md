@@ -34,6 +34,25 @@ bitince "bitti" denebilecek kadar net olmalı.
 
 <!-- Tamamlanan maddeler tarihiyle buraya taşınır -->
 
+- [x] **Koordinatörlü ekip: 11 → 54 ajan** — Kullanıcı "bir proje verildiğinde
+      ana koordinatör analiz etsin, sonra ajanlara dağıtsın" mimarisini istedi.
+      Önce belgeden doğrulandı: alt-ajan, ana konuşmanın altında **üç katmana
+      kadar** kendi alt-ajanını çağırabiliyor, yani koordinatör deseni
+      mümkün; eş zamanlı sınır **20**, bu yüzden dalga başına 6–8 ajan.
+      Bağlam maliyeti tahmin edilmedi, ölçüldü: 54 `description` toplamı
+      **20.220 karakter ≈ 6.500 token**, Claude Code'un 15.000 token uyarı
+      eşiğinin **%43'ü**.
+      *(2026-09-15 — `proje-koordinatoru` + 42 uzman yazıldı, on bir gruba
+      ayrıldı: keşif, doğruluk, güvenlik, başarım, arayüz, veri, API, teslim,
+      belge, süreç. Koordinatör 53 ajanın hepsini adıyla anıyor ve hayalet
+      atıf yok — betikle doğrulandı. Yetki ayrımı: 15 yazan, 39 salt okur,
+      salt okurların hepsinde `disallowedTools`. Doğrulama: `dogrula.js
+      --kati` 54/54 (0 hata, 0 uyarı), `dogrula-test` 27/27,
+      `bicim-kontrol-test` 33/33, `disari-aktar-test` 54 ajan x 4 hedef
+      0 hata, `web-test` 43/43, `eklenti-dogrula` 0 hata. README'nin
+      "az sayıda ajan" bölümü dürüstçe yeniden yazıldı: kural değişmedi ama
+      duruş değişti, bu açıkça yazıldı. Eval kapsamı 8/54 — bilinen boşluk.)*
+
 - [x] **İkinci ajan turu: üç yeni rol** — Kullanıcı ajan sayısını artırmak
       istedi; bu dosyanın kuralı gereği sayı için değil gerekçeyle eklendi.
       wshobson/agents ve VoltAgent yeniden tarandı: test, CI, lisans ve
