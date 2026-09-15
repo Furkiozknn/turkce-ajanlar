@@ -2,11 +2,11 @@
     kur.ps1 - Turkce ajanlari bir projeye veya tum kullaniciya kurar.
 
     Kullanim:
-      # Bu projeye (varsayilan: D:\Claude Projeleri)
+      # Bulundugun klasore (varsayilan: icinde bulunulan dizin)
       powershell -ExecutionPolicy Bypass -File kur.ps1
 
       # Baska bir projeye
-      powershell -ExecutionPolicy Bypass -File kur.ps1 -Proje "D:\Repolar\buradane"
+      powershell -ExecutionPolicy Bypass -File kur.ps1 -Proje "C:\yol\projen"
 
       # Tum projelerde kullanilabilsin (kullanici seviyesi)
       powershell -ExecutionPolicy Bypass -File kur.ps1 -Kullanici
@@ -16,7 +16,9 @@
 #>
 
 param(
-    [string]$Proje = "D:\Claude Projeleri",
+    # Varsayilan: betigin calistirildigi klasor. Yazarin kendi diskindeki
+    # sabit bir yol degil -- baskasinin makinesinde o yol yok.
+    [string]$Proje = $PWD.Path,
     [switch]$Kullanici,
     [switch]$Deneme
 )
