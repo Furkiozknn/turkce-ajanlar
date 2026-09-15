@@ -35,8 +35,28 @@ jobs:
       - name: Komut ve beceri dosyalari
         run: node arac/eklenti-dogrula.js
 
+      # Sinir sozlesmesi: her ajanin verdigi sozun yetkisiyle uyusmasi.
+      # dogrula.js frontmatter mekanigine bakar; bu, ajanin ne YAPMAYACAGINI
+      # soyleyip soylemedigine bakar. 70/70 kapsar, API'ye cikmaz.
+      - name: Ajan sinir sozlesmesi
+        run: node arac/sinir-denetle.js --kati
+
+      - name: Sinir denetcisinin kendi testi
+        run: node arac/sinir-denetle-test.js
+
       - name: Turkce bicim kancasi (birim + kanca modu)
         run: node arac/bicim-kontrol-test.js
+
+      # Dogrulayicinin kendi testi. Bir kapi, kendisini sinayan test
+      # kosmadan kapi sayilmaz: dogrula.js bozulursa 70 ajan sessizce
+      # gecer. 27 senaryo, bozuk ajan dosyalari uretip cikis kodunu olcuyor.
+      - name: Dogrulayicinin kendi testi
+        run: node arac/dogrula-test.js
+
+      # Ekip kosucusunun testi. Sahte bir claude ikilisiyle calisir;
+      # API'ye cikmaz, para harcamaz.
+      - name: Ekip kosucusu
+        run: node arac/ekip-kos-test.js
 
       - name: Web arayuzu guncel mi
         run: |
@@ -62,3 +82,32 @@ jobs:
         run: |
           node -e "JSON.parse(require('fs').readFileSync('.claude-plugin/plugin.json','utf8')); console.log('plugin.json OK')"
           node -e "JSON.parse(require('fs').readFileSync('.claude-plugin/marketplace.json','utf8')); console.log('marketplace.json OK')"
+
+  # 43 tarayici iddiasi (arama, klavye, mobil, koyu tema, konsol hatasi)
+  # depoda duruyordu ama hicbir is akisi kosturmuyordu. Ayri is, cunku
+  # Playwright kurulumu gerektiriyor ve ana kapiyi yavaslatmasin.
+  arayuz:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Playwright (chromium)
+        run: |
+          npm install --no-save playwright@1
+          npx playwright install --with-deps chromium
+
+      - name: Sunucuyu baslat
+        run: |
+          node arac/sunucu.js 8788 &
+          for i in $(seq 1 20); do
+            curl -sf http://127.0.0.1:8788/ >/dev/null && break
+            sleep 0.5
+          done
+
+      # web-test.js kosturulamazsa 2 doner, 0 degil - "gecti" sanilmasin.
+      - name: Tarayici testleri
+        run: node arac/web-test.js

@@ -119,7 +119,7 @@ En iyi desen: kapının kendi testi depoda dursun. Bir doğrulayıcı betik,
 kendi ağacına kasıtlı bir ihlal yerleştirip yakalamadığında düşen bir test
 dosyasıyla birlikte gelsin.
 
-## Kısıtlar
+## Mutlak kurallar
 
 - `.github/workflows/` altına yazmak bazı ortamlarda engellenir. Engellenirsen
   dosyayı depo dışına yaz, tam yolu söyle ve kullanıcının koyması gerektiğini
@@ -157,3 +157,6 @@ dosyasıyla birlikte gelsin.
 ## Sende kalanlar
 <engellenen yazma, sir gereksinimi, onay bekleyen adim>
 ```
+
+Yayınlama, dağıtım ya da etiket itme istenirse kendi başına yapma; komutu
+hazırla, neyin dışarı açılacağını yaz ve kullanıcıdan açık onay iste.

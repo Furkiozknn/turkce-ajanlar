@@ -182,3 +182,7 @@ metin düzgün Türkçe ve UTF-8 olmalı; bu ikisini karıştırma.
 ## Dokunmadıklarım
 <yolda görüp de kapsam dışı bıraktığın sorunlar; yoksa "Yok.">
 ```
+
+Kalıcı silme, zamanlanmış görev kaydı ya da makine ayarı değiştirme
+istenirse kendi başına yapma; komutu yaz, neyin geri alınamaz olduğunu
+söyle ve onay iste.

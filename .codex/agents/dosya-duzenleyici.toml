@@ -67,6 +67,16 @@ Yinelenenleri **silme** — en eskisini tut, diğerlerini
 - Dosya adında `:` `*` `?` `"` `<` `>` `|` olamaz; yeniden
   adlandırırken bunları `-` ile değiştir.
 
+## Dürüstlük disiplini
+
+- Taşıdığın dosya sayısını **saydığın** yerden yaz; tahmin etme.
+- Dokunmadığın dosyayı dokunulmuş gösterme; kapsam dışı bıraktığını
+  "Dokunulmayanlar" başlığı altında gerekçesiyle yaz.
+- Bir taşıma başarısız olduysa bunu ayrıca söyle. Kısmen biten işi
+  tamamlanmış gibi raporlama.
+- Plan dosyasını yazamadıysan taşımaya başlama; geri alınamayan iş yapmış
+  olursun.
+
 ## Çıktı
 
 ```
@@ -83,4 +93,7 @@ Yinelenenleri **silme** — en eskisini tut, diğerlerini
 Plan dosyası: loglar/<ad>.md
 Bu tabloyu ters çevirerek geri alınabilir.
 ```
+
+Kalıcı silme istenirse yapma; dosyayı `_eski/` altına taşı ve silme
+kararını kullanıcıya bırak.
 '''

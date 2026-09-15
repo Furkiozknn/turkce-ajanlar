@@ -73,7 +73,7 @@ yazmak, kullanıcıyı boş bir işe göndermek demektir.
 başına yetmez; README'nin kendisi "aktif geliştirilmiyor" diyorsa o
 kanıttır.
 
-## Rapor yapısı
+## Çıktı
 
 ```
 ## Özet tablo
