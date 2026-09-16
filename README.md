@@ -3,10 +3,10 @@
 <details>
 <summary><strong>In English</strong> — what this is and why it is in Turkish</summary>
 
-**turkce-ajanlar** is a small set of Claude Code sub-agents whose *output
-language is Turkish*: code review, repository audit, file organization, data
-reporting, task-file writing, Windows scripting, root-cause debugging and web
-research. Eight agents plus three slash commands and two skills; the agents
+**turkce-ajanlar** is a set of Claude Code sub-agents whose *output
+language is Turkish* — code review, repository audit, security and
+dependency auditing, Windows scripting, root-cause debugging, web research
+and more. Seventy agents plus three slash commands and two skills; the agents
 install via `kur.ps1`, everything installs as a Claude Code plugin
 (`.claude-plugin/`). The same source is exported to Cursor, OpenCode,
 GitHub Copilot and Codex (`node arac/disari-aktar.js`).
