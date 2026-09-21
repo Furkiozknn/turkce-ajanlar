@@ -53,6 +53,16 @@ jobs:
       - name: Dogrulayicinin kendi testi
         run: node arac/dogrula-test.js
 
+      # Araclar BASKA bir projenin altina konunca da calisiyor mu?
+      # arac/ altindaki 17 CLI CommonJS; bu depoda package.json yoktu ve
+      # Node modul turunu ararken agacta yukari yuruyor. Depo bir ESM
+      # paketinin altina yerlestirilince araclar "require is not defined in
+      # ES module scope" ile duser. 21 Eylul 2026'da ajans-os'un U15 kapisi
+      # dogrula.js'i CI'da kendi calisma alaninin altina checkout edince tam
+      # bu oldu; yerelde yan yana durduklari icin hic gorulmemisti.
+      - name: Modul turu (ESM paketi altinda da CommonJS)
+        run: node arac/modul-turu-test.js
+
       # Ekip kosucusunun testi. Sahte bir claude ikilisiyle calisir;
       # API'ye cikmaz, para harcamaz.
       - name: Ekip kosucusu

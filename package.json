@@ -1,0 +1,9 @@
+{
+  "name": "turkce-ajanlar",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Türkçe Claude Code alt-ajanları; arac/ altındaki doğrulayıcılar bağımsız CLI olarak çalışır.",
+  "//": "type=commonjs BILINCLI ve GEREKLI: arac/ altindaki 17 aracin hepsi require() kullaniyor ve bu depoda hic package.json yoktu. Node modul turunu ararken dizin agacinda YUKARI yuruyor; depo bir ESM paketinin (\"type\": \"module\") altina yerlestirilince araclar ESM sanilip 'require is not defined in ES module scope' ile duser. 21 Eylul 2026'da tam bu oldu: ajans-os'un U15 kapisi dogrula.js'i CI'da calisma alaninin altina checkout edince patladi. Yerelde yan yana durduklari icin hic gorulmemisti. Bu dosya yukari yuruyusu burada durdurur -- araclar artik nereye yerlestirilirse yerlestirilsin CommonJS kalir.",
+  "type": "commonjs",
+  "license": "MIT"
+}
