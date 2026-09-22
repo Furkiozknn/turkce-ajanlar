@@ -613,3 +613,13 @@ ve PR öncesi çalıştırman gereken doğrulamalar orada.
 ## Lisans
 
 MIT. Al, değiştir, kullan.
+
+---
+
+## Bu ekosistemden başka projeler
+
+- **[nova-drift](https://github.com/Furkiozknn/nova-drift)** — derleme adımı olmayan sonsuz tarayıcı uzay koşusu
+- **[masal](https://github.com/Furkiozknn/masal)** — çocuğun adına yazılan uyku öncesi masalı
+- **[buradane](https://github.com/Furkiozknn/buradane)** — ihtiyaç odaklı 167.829 OpenStreetMap noktası
+
+<sub>Hepsi tek bir aranabilir sayfada: **[furkiozknn.github.io](https://furkiozknn.github.io/)** — her kart, o deponun kendi <code>project-meta.json</code> dosyasından üretiliyor.</sub>
