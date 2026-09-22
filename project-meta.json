@@ -1,0 +1,91 @@
+{
+  "schema_version": "1.0.0",
+  "id": "turkce-ajanlar",
+  "owner": "Furkiozknn",
+  "repository": "https://github.com/Furkiozknn/turkce-ajanlar",
+  "homepage": null,
+  "releases": "https://github.com/Furkiozknn/turkce-ajanlar/releases",
+  "status": "active",
+  "category": "developer-tool",
+  "platform": [
+    "claude-code",
+    "cursor",
+    "opencode",
+    "github-copilot",
+    "codex"
+  ],
+  "primary_language": "HTML",
+  "technologies": [
+    "Claude Code plugin",
+    "Node.js",
+    "Markdown agent definitions"
+  ],
+  "version": null,
+  "license": "MIT",
+  "topics": [
+    "agent-skills",
+    "ai-agents",
+    "claude",
+    "claude-code",
+    "codex",
+    "cursor",
+    "developer-tools",
+    "github-copilot",
+    "opencode",
+    "prompt-engineering",
+    "subagents",
+    "turkce",
+    "turkish",
+    "windows"
+  ],
+  "summary": "70 Claude Code sub-agents that think in Turkish rather than translate into it - they know PowerShell 5.1 has no &&, that cp1254 kills a Python tool before its first line prints, and that a heredoc eats backslashes. Plus 3 commands, 2 skills and an eval suite. One source, exported to Cursor, OpenCode, Copilot and Codex.",
+  "key_features": [
+    "70 sub-agents that think in Turkish rather than translate into it",
+    "Encodes the traps that actually bite on Turkish Windows: no && in PowerShell 5.1, cp1254 killing a tool before its first line, heredocs eating backslashes",
+    "3 commands, 2 skills and an eval suite alongside the agents",
+    "One source of truth, exported to Cursor, OpenCode, Copilot and Codex; CI fails if the web UI drifts from the agent files"
+  ],
+  "media": {
+    "hero": "assets/banner.svg",
+    "screenshots": [
+      "assets/ekran-goruntusu.png"
+    ],
+    "gifs": [],
+    "videos": []
+  },
+  "tests": {
+    "count": 92,
+    "source": "27 validator + 32 export + 33 format checks",
+    "measured": "2026-09-15"
+  },
+  "ci": {
+    "workflows": [
+      "dogrula.yml",
+      "yayinla.yml"
+    ],
+    "badge": "https://github.com/Furkiozknn/turkce-ajanlar/actions/workflows/dogrula.yml/badge.svg"
+  },
+  "docs": {
+    "readme": "README.md",
+    "changelog": null,
+    "roadmap": "YOL-HARITASI.md",
+    "security": null,
+    "contributing": "KATKIDA-BULUNMA.md",
+    "license_file": "LICENSE"
+  },
+  "social": {
+    "headline": "70 Claude Code sub-agents that think in Turkish, not translate into it.",
+    "hashtags": [
+      "claudecode",
+      "aiagents",
+      "turkce",
+      "devtools"
+    ],
+    "primary_link": "https://github.com/Furkiozknn/turkce-ajanlar"
+  },
+  "provenance": {
+    "generated_at": "2026-09-22",
+    "generator": "ghcc/gen_meta.py",
+    "rule": "mechanical fields read from the repository and the GitHub API; editorial fields hand-written and reviewed; no field is generated from a guess"
+  }
+}
