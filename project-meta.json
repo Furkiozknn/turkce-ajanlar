@@ -57,8 +57,8 @@
     "videos": []
   },
   "tests": {
-    "count": 111,
-    "source": "27 validator + 32 export + 33 format + 19 routing checks",
+    "count": 160,
+    "source": "27 validator + 33 format + 43 browser + 20 team-runner + 19 trigger-collision + 14 boundary + 4 module-type, each from its own printed line",
     "measured": "2026-09-22"
   },
   "ci": {
