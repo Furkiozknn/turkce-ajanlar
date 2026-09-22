@@ -44,6 +44,15 @@ jobs:
       - name: Sinir denetcisinin kendi testi
         run: node arac/sinir-denetle-test.js
 
+      # Yonlendirme sozlesmesi: ayni cumleyi iki ajan sahipleniyorsa
+      # kullanici dogru cumleyi kurdugunda yanlis ajan kosar ve hicbir
+      # dosya tek basina hatali gorunmez. Deterministik, API'ye cikmaz.
+      - name: Tetikleyici ifade cakismasi
+        run: node arac/tetik-cakisma.js
+
+      - name: Cakisma denetcisinin kendi testi
+        run: node arac/tetik-cakisma-test.js
+
       - name: Turkce bicim kancasi (birim + kanca modu)
         run: node arac/bicim-kontrol-test.js
 

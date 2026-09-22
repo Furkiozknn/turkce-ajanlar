@@ -1,8 +1,8 @@
 ![turkce-ajanlar — Claude Code için Türkçe alt-ajan seti](assets/banner.svg)
 
-![70 ajanın tamamı doğrulanıyor ve aynı kaynak Cursor, OpenCode, Copilot ve Codex'e aktarılıyor](assets/demo.gif)
+![Kadronun tamamı doğrulanıyor ve aynı kaynak Cursor, OpenCode, Copilot ve Codex'e aktarılıyor](assets/demo.gif)
 
-<sub>Gerçek çıktı: <code>node arac/dogrula.js</code> 70 dosyanın tamamını biçim ve alan kurallarına karşı denetliyor, <code>node arac/disari-aktar.js</code> aynı kaynaktan dört hedefi üretiyor ve her birinin senkron olduğunu söylüyor.</sub>
+<sub>Gerçek çıktı: <code>node arac/dogrula.js</code> kadronun tamamını biçim ve alan kurallarına karşı denetliyor, <code>node arac/disari-aktar.js</code> aynı kaynaktan dört hedefi üretiyor ve her birinin senkron olduğunu söylüyor.</sub>
 
 <details>
 <summary><strong>In English</strong> — what this is and why it is in Turkish</summary>
@@ -30,7 +30,7 @@ Everything below is in Turkish on purpose.
 # turkce-ajanlar
 
 [![Claude Code eklentisi](https://img.shields.io/badge/Claude%20Code-eklenti-b45309?style=flat-square)](#eklenti-olarak-önerilen)
-[![70 ajan](https://img.shields.io/badge/ajan-70-4b5563?style=flat-square)](#ajanlar)
+[![71 ajan](https://img.shields.io/badge/ajan-71-4b5563?style=flat-square)](#ajanlar)
 [![3 komut](https://img.shields.io/badge/komut-3-4b5563?style=flat-square)](#slash-komutları)
 [![2 beceri](https://img.shields.io/badge/beceri-2-4b5563?style=flat-square)](#beceriler)
 [![Dil: Türkçe](https://img.shields.io/badge/dil-T%C3%BCrk%C3%A7e-b91c1c?style=flat-square)](#neden-bu-var)
@@ -456,8 +456,9 @@ Kapsam iki katmanlı, ve ikisi aynı şey değil:
 
 | Katman | Ne ölçer | Kapsam | Maliyet |
 | --- | --- | --- | --- |
-| `arac/sinir-denetle.js` | Sözleşme: ajan ne yapmayacağını söylüyor mu, yetkisiyle uyuşuyor mu | **70/70** | sıfır; model çağırmaz |
-| `claude plugin eval` | Davranış: baskı altında sınırında duruyor mu | **10/70** | ~0,2 USD karşılığı/koşu |
+| `arac/sinir-denetle.js` | Sözleşme: ajan ne yapmayacağını söylüyor mu, yetkisiyle uyuşuyor mu | **71/71** | sıfır; model çağırmaz |
+| `arac/tetik-cakisma.js` | Yönlendirme: iki ajan aynı cümleyi sahipleniyor mu | **71/71** | sıfır; model çağırmaz |
+| `claude plugin eval` | Davranış: baskı altında sınırında duruyor mu | **10/71** | ~0,2 USD karşılığı/koşu |
 
 Statik katman ucuz olduğu için her şeyi kapsar ama yalnızca **metni**
 görür. Eval katmanı ajanın gerçekten ne yaptığını görür ama pahalıdır;
@@ -586,7 +587,7 @@ bunu açıkça söylüyor mu. Bu son kural uydurulmadı; elli beş salt okur
 ajanın ellisi zaten böyle yazıyordu, kural o ölçülmüş uygulamadan çıkarıldı.
 
 ```bash
-node arac/sinir-denetle.js          # 70/70
+node arac/sinir-denetle.js          # 71/71
 node arac/sinir-denetle.js --kati   # uyarılar da hata
 ```
 
@@ -602,6 +603,38 @@ Doğrulayıcının kendi testi: `node arac/dogrula-test.js` (geçici klasörde
 gerçekten yakaladığını gösterir). Arayüzün kendi testi de var:
 `node arac/web-test.js` (gerçek tarayıcıda 43 kontrol; ayrı bir pencerede
 `node arac/sunucu.js 8788` gerekir). İkisi de CI'da koşar.
+
+### Yönlendirme: iki ajan aynı cümleyi sahipleniyor mu
+
+Hangi ajanın koşacağını `description` belirliyor. `dogrula.js` her ajanda
+**bir** tetikleyici ifade bulunmasını şart koşuyordu — ama aynı ifadeyi iki
+ajanın sahiplenmesini hiçbir kapı engellemiyordu. Kadro büyüdükçe olasılığı
+artan, büyürken fark edilmeyen bir bozulma: kullanıcı doğru cümleyi kurar,
+yanlış ajan koşar, ve iki dosya da tek başına kusursuz olduğu için hiçbir şey
+kırmızı yanmaz.
+
+```bash
+node arac/tetik-cakisma.js          # 71/71, 273 tetikleyici ifade
+node arac/tetik-cakisma.js --kati   # içerme uyarıları da hata
+node arac/tetik-cakisma.js --liste  # her ifadeyi sahibiyle yazdırır
+```
+
+Karşılaştırma Türkçe kurallarıyla yapılıyor: `"I".toLowerCase()` İngilizce'de
+`i` verir, Türkçe'de `ı` olmalı — bu tek fark, `"Incele"` ile `"incele"`yi iki
+ayrı ifade sayıp çakışmayı gizlerdi.
+
+Kapı ilk koşuşunda iki gerçek çakışma buldu ve ikisi de düzeltildi:
+`"bu değişiklik kırıcı mı"` hem `api-sozlesme-denetci` hem
+`degisiklik-gunlugu-yazari` tarafından sahipleniliyordu (artık biri uç nokta,
+diğeri sürüm soruyor); `"sayfa geç açılıyor"` hem `sorgu-optimizasyoncu` hem
+`web-performans` tarafından (kullanıcı bu belirtiyle önce tarayıcı tarafına
+gider, o yüzden cümle orada kaldı; veritabanı tarafı kendi belirtisine geçti).
+
+İçerme ayrı tutuluyor ve hata sayılmıyor: `"gözden geçir"` ifadesinin
+`"şu bileşeni gözden geçir"` içinde geçmesi tasarımdır — genel olan
+`kod-gozden-gecirici`, dar olan `arayuz-gozden-gecirici`. Araç bunu gösterir,
+kararı vermez. Kapının kendi testi: `node arac/tetik-cakisma-test.js`
+(19 kontrol).
 
 ## Katkı
 

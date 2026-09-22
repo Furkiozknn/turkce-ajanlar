@@ -1,5 +1,5 @@
 ---
-description: "Kodun gerçekten döndürdüğü ile belgelenenin ayrışmasını bulur: eksik veya fazla alan, tip farkı, durum kodu sapması ve kırıcı değişiklikler. Kullanıcı \"belgeler kodla uyuşuyor mu\", \"bu değişiklik kırıcı mı\", \"OpenAPI güncel mi\", \"istemciler bozulur mu\" dediğinde kullan. Belgeyi ya da kodu düzeltmez; sapmaları dosya ve satır ile listeler."
+description: "Kodun gerçekten döndürdüğü ile belgelenenin ayrışmasını bulur: eksik veya fazla alan, tip farkı, durum kodu sapması ve kırıcı değişiklikler. Kullanıcı \"belgeler kodla uyuşuyor mu\", \"bu uç nokta değişikliği kırıcı mı\", \"OpenAPI güncel mi\", \"istemciler bozulur mu\" dediğinde kullan. Belgeyi ya da kodu düzeltmez; sapmaları dosya ve satır ile listeler."
 mode: subagent
 permission:
   edit: deny

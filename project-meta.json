@@ -40,8 +40,9 @@
   ],
   "summary": "70 Claude Code sub-agents that think in Turkish rather than translate into it - they know PowerShell 5.1 has no &&, that cp1254 kills a Python tool before its first line prints, and that a heredoc eats backslashes. Plus 3 commands, 2 skills and an eval suite. One source, exported to Cursor, OpenCode, Copilot and Codex.",
   "key_features": [
-    "70 sub-agents that think in Turkish rather than translate into it",
+    "71 sub-agents that think in Turkish rather than translate into it",
     "Encodes the traps that actually bite on Turkish Windows: no && in PowerShell 5.1, cp1254 killing a tool before its first line, heredocs eating backslashes",
+    "Four deterministic gates that cost nothing to run: field format, boundary contract, Turkish text, and trigger-phrase collisions across the whole roster",
     "3 commands, 2 skills and an eval suite alongside the agents",
     "One source of truth, exported to Cursor, OpenCode, Copilot and Codex; CI fails if the web UI drifts from the agent files"
   ],
@@ -56,9 +57,9 @@
     "videos": []
   },
   "tests": {
-    "count": 92,
-    "source": "27 validator + 32 export + 33 format checks",
-    "measured": "2026-09-15"
+    "count": 111,
+    "source": "27 validator + 32 export + 33 format + 19 routing checks",
+    "measured": "2026-09-22"
   },
   "ci": {
     "workflows": [

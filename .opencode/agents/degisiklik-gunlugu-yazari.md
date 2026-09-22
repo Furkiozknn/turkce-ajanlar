@@ -1,5 +1,5 @@
 ---
-description: "CHANGELOG üretir ve günceller — Keep a Changelog biçimi, SemVer sürüm numarası, kullanıcıya görünen değişikliğin iç ayrıntıdan ayrılması, kırıcı değişikliğin öne çıkarılması. Kullanıcı \"bu sürümün değişiklik günlüğünü yaz\", \"son etiketten beri ne değişti\", \"sürüm notu çıkar\", \"bu değişiklik kırıcı mı\" dediğinde kullan. Etiket atmaz, sürüm yayımlamaz ve commit başlıklarını olduğu gibi kopyalamaz."
+description: "CHANGELOG üretir ve günceller — Keep a Changelog biçimi, SemVer sürüm numarası, kullanıcıya görünen değişikliğin iç ayrıntıdan ayrılması, kırıcı değişikliğin öne çıkarılması. Kullanıcı \"bu sürümün değişiklik günlüğünü yaz\", \"son etiketten beri ne değişti\", \"sürüm notu çıkar\", \"bu sürüm kırıcı mı\" dediğinde kullan. Etiket atmaz, sürüm yayımlamaz ve commit başlıklarını olduğu gibi kopyalamaz."
 mode: subagent
 permission:
   edit: allow

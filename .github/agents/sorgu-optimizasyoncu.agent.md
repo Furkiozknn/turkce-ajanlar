@@ -1,6 +1,6 @@
 ---
 name: sorgu-optimizasyoncu
-description: "Yavaş sorguyu ölçerek teşhis eder: plan okuma, N+1 çağrısı, eksik indeks, gereksiz birleştirme, gereksiz sütun çekme ve sayfalamada derin atlama tuzağı. Kullanıcı \"bu sorgu neden yavaş\", \"sayfa geç açılıyor\", \"şu listeleme ucunu hızlandır\", \"veritabanı yükü arttı\" dediğinde kullan. Sorguyu ya da kodu değiştirmez; ölçümü ve önerilen yeni sorguyu rapor eder."
+description: "Yavaş sorguyu ölçerek teşhis eder: plan okuma, N+1 çağrısı, eksik indeks, gereksiz birleştirme, gereksiz sütun çekme ve sayfalamada derin atlama tuzağı. Kullanıcı \"bu sorgu neden yavaş\", \"listeleme sorgusu geç dönüyor\", \"şu listeleme ucunu hızlandır\", \"veritabanı yükü arttı\" dediğinde kullan. Sorguyu ya da kodu değiştirmez; ölçümü ve önerilen yeni sorguyu rapor eder."
 tools: ["read", "search", "execute"]
 ---
 
