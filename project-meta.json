@@ -3,7 +3,7 @@
   "id": "turkce-ajanlar",
   "owner": "Furkiozknn",
   "repository": "https://github.com/Furkiozknn/turkce-ajanlar",
-  "homepage": null,
+  "homepage": "https://furkiozknn.github.io/turkce-ajanlar/",
   "releases": "https://github.com/Furkiozknn/turkce-ajanlar/releases",
   "status": "active",
   "category": "developer-tool",
@@ -82,7 +82,7 @@
       "turkce",
       "devtools"
     ],
-    "primary_link": "https://github.com/Furkiozknn/turkce-ajanlar"
+    "primary_link": "https://furkiozknn.github.io/turkce-ajanlar/"
   },
   "provenance": {
     "generated_at": "2026-09-22",
