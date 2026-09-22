@@ -1,5 +1,9 @@
 ![turkce-ajanlar — Claude Code için Türkçe alt-ajan seti](assets/banner.svg)
 
+![70 ajanın tamamı doğrulanıyor ve aynı kaynak Cursor, OpenCode, Copilot ve Codex'e aktarılıyor](assets/demo.gif)
+
+<sub>Gerçek çıktı: <code>node arac/dogrula.js</code> 70 dosyanın tamamını biçim ve alan kurallarına karşı denetliyor, <code>node arac/disari-aktar.js</code> aynı kaynaktan dört hedefi üretiyor ve her birinin senkron olduğunu söylüyor.</sub>
+
 <details>
 <summary><strong>In English</strong> — what this is and why it is in Turkish</summary>
 

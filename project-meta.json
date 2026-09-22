@@ -50,7 +50,9 @@
     "screenshots": [
       "assets/ekran-goruntusu.png"
     ],
-    "gifs": [],
+    "gifs": [
+      "assets/demo.gif"
+    ],
     "videos": []
   },
   "tests": {
