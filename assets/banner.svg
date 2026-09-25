@@ -43,7 +43,7 @@
     <circle cx="228" cy="243" r="5.5" fill="#b5544a"/>
     <circle cx="254" cy="243" r="5.5" fill="#8a8578"/>
 
-  <text class="metin" x="1900" y="248" font-size="14" fill="#a09a8c">70 ajan</text>
+  <text class="metin" x="288" y="248" font-size="14" fill="#a09a8c">71 ajan</text>
 
   <!-- sag taraf: ayirt edici ozellik -->
   <text class="metin" x="1128" y="248" font-size="14" fill="#e08c62" text-anchor="end">ciktilar Turkce · bulgu sismez</text>
