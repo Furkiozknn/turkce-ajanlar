@@ -22,11 +22,22 @@ const TIP = {
 
 http
   .createServer((istek, yanit) => {
-    let yol = decodeURIComponent(istek.url.split("?")[0]);
+    // Bozuk yuzde kodlamasi ("/%E0") decodeURIComponent'i firlatir; burada
+    // yakalanmazsa tek bir istek butun sunucuyu dusurur (sunucu-test.js).
+    let yol;
+    try {
+      yol = decodeURIComponent(istek.url.split("?")[0]);
+    } catch {
+      yanit.writeHead(400, { "Content-Type": "text/plain; charset=utf-8" });
+      yanit.end("gecersiz adres");
+      return;
+    }
     if (yol === "/") yol = "/index.html";
 
     const tam = path.join(KOK, path.normalize(yol).replace(/^([/\\])+/, ""));
-    if (!tam.startsWith(KOK)) {
+    // Ayiriciyla karsilastir: "web" onekiyle baslayan kardes klasor
+    // ("web-eski") da startsWith(KOK) testini gecerdi.
+    if (tam !== KOK && !tam.startsWith(KOK + path.sep)) {
       yanit.writeHead(403).end("yasak");
       return;
     }

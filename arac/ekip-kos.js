@@ -72,6 +72,13 @@ function listeAyristir(deger) {
 }
 
 function ajanYukle(ad) {
+  // Ad hem okunan (agents/<ad>.md) hem yazilan (<cikti>/<ad>.md) yola
+  // giriyor; dogrula.js'in zorunlu tuttugu kebab-case disinda bir ad
+  // ("../commands/ajanlar") agents/ disindan dosya yukleyip raporu cikti
+  // klasorunun disina yazardi.
+  if (!/^[a-z0-9]+(-[a-z0-9]+)*$/.test(ad)) {
+    throw new Error("gecersiz ajan adi (kebab-case bekleniyor): " + ad);
+  }
   const dosya = path.join(AJANLAR, ad + ".md");
   if (!fs.existsSync(dosya)) throw new Error("ajan bulunamadi: " + ad);
   const { fm, govde } = ayristir(dosya);

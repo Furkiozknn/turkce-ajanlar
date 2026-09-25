@@ -251,5 +251,31 @@ console.log("ekip-kos-test\n");
   fs.rmSync(t, { recursive: true, force: true });
 }
 
+/*
+ * [8] Ajan adi agents/ disina cikamaz.
+ * Ad hem agents/<ad>.md okumasinda hem <cikti>/<ad>.md yazmasinda yola
+ * ekleniyor. "../commands/ajanlar" gibi bir ad, agents/ disindaki frontmatter'li her .md
+ * dosyasini sistem promptu olarak yukluyor ve raporu cikti klasorunun
+ * disina yaziyordu. Kebab-case disindaki ad hic yuklenmemeli.
+ */
+{
+  console.log("[8] ajan adi agents/ disina cikamaz");
+  const t = gecici();
+  for (const ad of ["../commands/ajanlar", "..\\commands\\ajanlar", "repo-denetci/../../commands/gorev"]) {
+    const r = kos([
+      "--proje", KOK,
+      "--dalga", ad,
+      "--cikti", path.join(t, "rapor"),
+      "--kuru",
+    ]);
+    bekle(
+      "reddedildi (cikis 2): " + ad,
+      r.status === 2 && /gecersiz ajan adi/.test(r.stderr),
+      "status=" + r.status + " stderr=" + r.stderr.trim().slice(0, 200)
+    );
+  }
+  fs.rmSync(t, { recursive: true, force: true });
+}
+
 console.log("\nSonuc: " + gecen + " gecti, " + dusen + " dustu.");
 process.exit(dusen ? 1 : 0);
