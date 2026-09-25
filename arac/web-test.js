@@ -106,6 +106,18 @@ function ol(ad, kosul, ek) {
   await ara("qwertzxc");
   ol("eslesme yoksa komut/beceri bos durumu cikiyor", !(await p.locator("#ekler-bos").isHidden()));
   await ara("");
+  // Canli sitede (Pages) gelen ziyaretcinin kurulumu tamamlayabilmesi icin:
+  // yalniz "plugin install" yazmak yetmez, pazar yeri once eklenmeli; ve
+  // sayfadan kaynaga donen bir baglanti olmali (eskiden hic yoktu).
+  const eklerNot = await p.locator(".ekler-not").innerText();
+  ol("plugin kurulumu pazar yeri ekleme adimiyla basliyor",
+    /claude plugin marketplace add Furkiozknn\/turkce-ajanlar/.test(eklerNot) &&
+      eklerNot.indexOf("marketplace add") < eklerNot.indexOf("plugin install"),
+    eklerNot.replace(/\s+/g, " ").slice(0, 160));
+  const depo = p.locator("footer a#depo-baglanti");
+  ol("altbilgide kaynak depoya baglanti var",
+    (await depo.count()) === 1 &&
+      (await depo.getAttribute("href")) === "https://github.com/Furkiozknn/turkce-ajanlar");
 
   console.log("\n— Klavye —");
   await p.fill("#arama", "");

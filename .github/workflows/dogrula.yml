@@ -20,14 +20,15 @@ permissions:
 jobs:
   dogrula:
     runs-on: ubuntu-latest
+    timeout-minutes: 10  # olculen en uzun kosu 21 sn
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0   # web-uret tarih damgasini agents/ son commit'inden alir
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         with:
-          node-version: "20"
+          node-version: "24"
 
       - name: Ajan dosyalari
         run: node arac/dogrula.js
@@ -37,7 +38,7 @@ jobs:
 
       # Sinir sozlesmesi: her ajanin verdigi sozun yetkisiyle uyusmasi.
       # dogrula.js frontmatter mekanigine bakar; bu, ajanin ne YAPMAYACAGINI
-      # soyleyip soylemedigine bakar. 70/70 kapsar, API'ye cikmaz.
+      # soyleyip soylemedigine bakar. Tum kadroyu kapsar, API'ye cikmaz.
       - name: Ajan sinir sozlesmesi
         run: node arac/sinir-denetle.js --kati
 
@@ -57,7 +58,7 @@ jobs:
         run: node arac/bicim-kontrol-test.js
 
       # Dogrulayicinin kendi testi. Bir kapi, kendisini sinayan test
-      # kosmadan kapi sayilmaz: dogrula.js bozulursa 70 ajan sessizce
+      # kosmadan kapi sayilmaz: dogrula.js bozulursa tum ajanlar sessizce
       # gecer. 27 senaryo, bozuk ajan dosyalari uretip cikis kodunu olcuyor.
       - name: Dogrulayicinin kendi testi
         run: node arac/dogrula-test.js
@@ -76,6 +77,17 @@ jobs:
       # API'ye cikmaz, para harcamaz.
       - name: Ekip kosucusu
         run: node arac/ekip-kos-test.js
+
+      # Yerel sunucu bozuk bir istekle (ornegin "/%E0") dusmemeli ve web/
+      # disindan dosya vermemeli. web-test.js ve ekran goruntusu adimlari
+      # bu sunucuya dayaniyor.
+      - name: Yerel sunucu
+        run: node arac/sunucu-test.js
+
+      # banner.svg / social.svg: "N ajan" etiketi tuvalin icinde ve guncel
+      # sayida mi? Etiket 70 ajanda x=1900'e (1200 genis banner) dusmustu.
+      - name: Banner ve sosyal kart
+        run: node arac/banner-uret-test.js
 
       - name: Web arayuzu guncel mi
         run: |
@@ -102,17 +114,18 @@ jobs:
           node -e "JSON.parse(require('fs').readFileSync('.claude-plugin/plugin.json','utf8')); console.log('plugin.json OK')"
           node -e "JSON.parse(require('fs').readFileSync('.claude-plugin/marketplace.json','utf8')); console.log('marketplace.json OK')"
 
-  # 43 tarayici iddiasi (arama, klavye, mobil, koyu tema, konsol hatasi)
+  # 45 tarayici iddiasi (arama, klavye, mobil, koyu tema, konsol hatasi)
   # depoda duruyordu ama hicbir is akisi kosturmuyordu. Ayri is, cunku
   # Playwright kurulumu gerektiriyor ve ana kapiyi yavaslatmasin.
   arayuz:
     runs-on: ubuntu-latest
+    timeout-minutes: 10  # olculen en uzun kosu 43 sn
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         with:
-          node-version: "20"
+          node-version: "24"
 
       - name: Playwright (chromium)
         run: |

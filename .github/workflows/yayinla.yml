@@ -1,14 +1,22 @@
-# web/ klasorunu GitHub Pages'e yayinlar.
+# web/ klasorunu GitHub Pages'e yayinlar:
+#   https://furkiozknn.github.io/turkce-ajanlar/
 #
-# Bilerek SADECE elle tetiklenir (workflow_dispatch): yayina alma disari acilan
-# bir islemdir, kullanici onayi olmadan calismaz. Onay sonrasi:
-#   1. GitHub -> turkce-ajanlar -> Settings -> Pages -> Source: "GitHub Actions"
-#   2. Actions sekmesinden bu is akisini bir kez calistir
-#   -> https://furkiozknn.github.io/turkce-ajanlar/
-# Sonraki her push'ta otomatik yayin istenirse `on:` altina push tetikleyicisi eklenir.
+# Tetikleyiciler:
+#   - master'a push, yalniz web/index.html (veya bu is akisi) degistiginde.
+#     Eskiden yalniz elle tetikleniyordu; 22 Eylul 2026'da 15deb5c'den bir
+#     kez yayinlandi, ardindan 71. ajan (zaman-denetci) web/index.html'e
+#     girdi ama canli site 70 ajanda kaldi. Kaynak degistiginde site de
+#     degismeli.
+#   - workflow_dispatch: elle yeniden yayin.
+# Pages kaynaginin "GitHub Actions" olmasi gerekir (depo zaten boyle ayarli).
 name: yayinla
 
 on:
+  push:
+    branches: [master]
+    paths:
+      - web/index.html
+      - .github/workflows/yayinla.yml
   workflow_dispatch:
 
 permissions:
@@ -23,17 +31,18 @@ concurrency:
 jobs:
   yayinla:
     runs-on: ubuntu-latest
+    timeout-minutes: 10  # olculen en uzun kosu 16 sn
     environment:
       name: github-pages
       url: ${{ steps.deploy.outputs.page_url }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0   # web-uret tarih damgasini agents/ son commit'inden alir
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         with:
-          node-version: "20"
+          node-version: "24"
 
       - name: Arayuz kaynakla uyumlu mu
         run: |
@@ -43,11 +52,11 @@ jobs:
             exit 1
           fi
 
-      - uses: actions/configure-pages@v5
+      - uses: actions/configure-pages@v6
 
-      - uses: actions/upload-pages-artifact@v3
+      - uses: actions/upload-pages-artifact@v5
         with:
           path: web
 
       - id: deploy
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5

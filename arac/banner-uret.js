@@ -39,17 +39,16 @@ function fontBlogu() {
   return { blok: null, kaynak: null };
 }
 
-const { blok, kaynak } = fontBlogu();
-const AILE = blok ? "'JetBrains Mono', ui-monospace, monospace" : "ui-monospace, monospace";
-
-if (blok) console.log("Font ev stilinden alindi: " + kaynak);
-else console.log("UYARI: gomulu font bulunamadi, sistem monospace kullanilacak.");
+function aile(blok) {
+  return blok ? "'JetBrains Mono', ui-monospace, monospace" : "ui-monospace, monospace";
+}
 
 // Ajan sayisini gercek dosyalardan oku - elle yazip bayatlamasin.
-const ajanKlasor = path.join(KOK, "agents");
-const ajanSayisi = fs.existsSync(ajanKlasor)
-  ? fs.readdirSync(ajanKlasor).filter((f) => f.endsWith(".md")).length
-  : 0;
+function ajanSay(klasor) {
+  return fs.existsSync(klasor)
+    ? fs.readdirSync(klasor).filter((f) => f.endsWith(".md")).length
+    : 0;
+}
 
 // Web arayuzuyle ayni palet.
 const R = {
@@ -64,11 +63,23 @@ const R = {
 // Ajan renkleri - web arayuzundeki noktalarla ayni
 const NOKTALAR = ["#8b6bb1", "#4a7fb5", "#5a9367", "#4a9ba5", "#c67b3f", "#c9a227", "#b5544a", "#8a8578"];
 
-const noktaSvg = NOKTALAR.slice(0, Math.max(ajanSayisi, 1))
-  .map((c, i) => `<circle cx="${72 + i * 26}" cy="243" r="5.5" fill="${c}"/>`)
-  .join("\n    ");
+/*
+ * Nokta sayisi palet uzunluguyla (8) sinirli; "N ajan" etiketi CIZILEN
+ * son noktanin yanina konmali. Eskiden ajan sayisiyla hesaplaniyordu:
+ * 70 ajanda x=1900 -> 1200 genislikteki banner'in disina dusup hic
+ * gorunmuyordu (sosyal kartta x=2932). banner-uret-test.js bunu olcer.
+ */
+function noktaAdedi(ajanSayisi) {
+  return Math.min(Math.max(ajanSayisi, 1), NOKTALAR.length);
+}
 
-const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 320" width="1200" height="320" role="img" aria-label="turkce-ajanlar — Claude Code icin Turkce alt-ajan seti">
+function bannerSvg(ajanSayisi, blok) {
+  const AILE = aile(blok);
+  const n = noktaAdedi(ajanSayisi);
+  const noktaSvg = NOKTALAR.slice(0, n)
+    .map((c, i) => `<circle cx="${72 + i * 26}" cy="243" r="5.5" fill="${c}"/>`)
+    .join("\n    ");
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 320" width="1200" height="320" role="img" aria-label="turkce-ajanlar — Claude Code icin Turkce alt-ajan seti">
   <defs>
     <style>
       ${blok || "/* gomulu font yok */"}
@@ -106,23 +117,25 @@ const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 320" widt
   <!-- ajan noktalari -->
   ${noktaSvg}
 
-  <text class="metin" x="${72 + Math.max(ajanSayisi, 1) * 26 + 8}" y="248" font-size="14" fill="${R.sonuk}">${ajanSayisi} ajan</text>
+  <text class="metin" x="${72 + n * 26 + 8}" y="248" font-size="14" fill="${R.sonuk}">${ajanSayisi} ajan</text>
 
   <!-- sag taraf: ayirt edici ozellik -->
   <text class="metin" x="1128" y="248" font-size="14" fill="${R.vurgu}" text-anchor="end">ciktilar Turkce · bulgu sismez</text>
 </svg>
 `;
-
-fs.mkdirSync(CIKTI_KLASOR, { recursive: true });
-fs.writeFileSync(CIKTI, svg, "utf8");
+}
 
 // --- Sosyal kart: 1280x640 (GitHub "social preview" orani) -------------------
 // GitHub SVG kabul etmiyor; bu SVG arac/sosyal-kart.js ile PNG'ye cevrilir.
 const SOSYAL = path.join(CIKTI_KLASOR, "social.svg");
-const sosyalNoktalar = NOKTALAR.slice(0, Math.max(ajanSayisi, 1))
-  .map((c, i) => `<circle cx="${120 + i * 40}" cy="486" r="9" fill="${c}"/>`)
-  .join("\n    ");
-const sosyal = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 640" width="1280" height="640" role="img" aria-label="turkce-ajanlar">
+
+function sosyalSvg(ajanSayisi, blok) {
+  const AILE = aile(blok);
+  const n = noktaAdedi(ajanSayisi);
+  const sosyalNoktalar = NOKTALAR.slice(0, n)
+    .map((c, i) => `<circle cx="${120 + i * 40}" cy="486" r="9" fill="${c}"/>`)
+    .join("\n    ");
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 640" width="1280" height="640" role="img" aria-label="turkce-ajanlar">
   <defs>
     <style>
       ${blok || "/* gomulu font yok */"}
@@ -145,13 +158,29 @@ const sosyal = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 640" w
   <text class="metin" x="120" y="386" font-size="22" fill="${R.sonuk}">Az sayida, gercekten kullanilan, calistigi makinenin tuzaklarini bilen ajanlar.</text>
   <rect x="120" y="432" width="1040" height="1.5" fill="${R.kenar}"/>
   ${sosyalNoktalar}
-  <text class="metin" x="${120 + Math.max(ajanSayisi, 1) * 40 + 12}" y="494" font-size="22" fill="${R.sonuk}">${ajanSayisi} ajan</text>
+  <text class="metin" x="${120 + n * 40 + 12}" y="494" font-size="22" fill="${R.sonuk}">${ajanSayisi} ajan</text>
   <text class="metin" x="1160" y="494" font-size="22" fill="${R.vurgu}" text-anchor="end">ciktilar Turkce · bulgu sismez · MIT</text>
 </svg>
 `;
-fs.writeFileSync(SOSYAL, sosyal, "utf8");
-console.log("Uretildi: " + SOSYAL + "  (" + (Buffer.byteLength(sosyal, "utf8") / 1024).toFixed(1) + " KB)");
+}
 
-console.log("Uretildi: " + CIKTI);
-console.log("  ajan sayisi : " + ajanSayisi);
-console.log("  boyut       : " + (Buffer.byteLength(svg, "utf8") / 1024).toFixed(1) + " KB");
+module.exports = { bannerSvg, sosyalSvg, noktaAdedi, NOKTALAR };
+
+if (require.main === module) {
+  const { blok, kaynak } = fontBlogu();
+  if (blok) console.log("Font ev stilinden alindi: " + kaynak);
+  else console.log("UYARI: gomulu font bulunamadi, sistem monospace kullanilacak.");
+
+  const ajanSayisi = ajanSay(path.join(KOK, "agents"));
+  const svg = bannerSvg(ajanSayisi, blok);
+  const sosyal = sosyalSvg(ajanSayisi, blok);
+
+  fs.mkdirSync(CIKTI_KLASOR, { recursive: true });
+  fs.writeFileSync(CIKTI, svg, "utf8");
+  fs.writeFileSync(SOSYAL, sosyal, "utf8");
+  console.log("Uretildi: " + SOSYAL + "  (" + (Buffer.byteLength(sosyal, "utf8") / 1024).toFixed(1) + " KB)");
+
+  console.log("Uretildi: " + CIKTI);
+  console.log("  ajan sayisi : " + ajanSayisi);
+  console.log("  boyut       : " + (Buffer.byteLength(svg, "utf8") / 1024).toFixed(1) + " KB");
+}
