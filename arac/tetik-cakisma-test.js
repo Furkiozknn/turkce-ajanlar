@@ -5,7 +5,7 @@
  *   node arac/tetik-cakisma-test.js
  *
  * Bir kapi, kendisini sinayan test kosmadan kapi sayilmaz. Bu arac bozulursa
- * 70 ajan sessizce gecer ve yonlendirme belirsizligi geri gelir; ustelik
+ * tum ajanlar sessizce gecer ve yonlendirme belirsizligi geri gelir; ustelik
  * kimse fark etmez, cunku "0 cakisma" ciktisi bozuk bir araciyla da ayni
  * gorunur.
  *

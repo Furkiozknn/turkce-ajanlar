@@ -37,7 +37,7 @@ jobs:
 
       # Sinir sozlesmesi: her ajanin verdigi sozun yetkisiyle uyusmasi.
       # dogrula.js frontmatter mekanigine bakar; bu, ajanin ne YAPMAYACAGINI
-      # soyleyip soylemedigine bakar. 70/70 kapsar, API'ye cikmaz.
+      # soyleyip soylemedigine bakar. Tum kadroyu kapsar, API'ye cikmaz.
       - name: Ajan sinir sozlesmesi
         run: node arac/sinir-denetle.js --kati
 
@@ -57,7 +57,7 @@ jobs:
         run: node arac/bicim-kontrol-test.js
 
       # Dogrulayicinin kendi testi. Bir kapi, kendisini sinayan test
-      # kosmadan kapi sayilmaz: dogrula.js bozulursa 70 ajan sessizce
+      # kosmadan kapi sayilmaz: dogrula.js bozulursa tum ajanlar sessizce
       # gecer. 27 senaryo, bozuk ajan dosyalari uretip cikis kodunu olcuyor.
       - name: Dogrulayicinin kendi testi
         run: node arac/dogrula-test.js

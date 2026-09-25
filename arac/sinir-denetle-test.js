@@ -8,7 +8,7 @@
  * Bir kapi, ihlali gorunce kirmizi yandigi GOSTERILMEDEN kapi sayilmaz;
  * bu dosyanin varlik sebebi o.
  *
- * Ayrica son senaryo gercek kadroyu kosturur: 70 ajanin tamami temiz
+ * Ayrica son senaryo gercek kadroyu kosturur: ajanlarin tamami temiz
  * gecmeli. Boylece denetci gevsetilirse ya da bir ajan bozulursa test
  * duser.
  *
