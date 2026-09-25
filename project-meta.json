@@ -20,7 +20,7 @@
     "Node.js",
     "Markdown agent definitions"
   ],
-  "version": "0.3.0",
+  "version": "0.4.0",
   "license": "MIT",
   "topics": [
     "agent-skills",
@@ -38,7 +38,7 @@
     "turkish",
     "windows"
   ],
-  "summary": "70 Claude Code sub-agents that think in Turkish rather than translate into it - they know PowerShell 5.1 has no &&, that cp1254 kills a Python tool before its first line prints, and that a heredoc eats backslashes. Plus 3 commands, 2 skills and an eval suite. One source, exported to Cursor, OpenCode, Copilot and Codex.",
+  "summary": "71 Claude Code sub-agents that think in Turkish rather than translate into it - they know PowerShell 5.1 has no &&, that cp1254 kills a Python tool before its first line prints, and that a heredoc eats backslashes. Plus 3 commands, 2 skills and an eval suite. One source, exported to Cursor, OpenCode, Copilot and Codex.",
   "key_features": [
     "71 sub-agents that think in Turkish rather than translate into it",
     "Encodes the traps that actually bite on Turkish Windows: no && in PowerShell 5.1, cp1254 killing a tool before its first line, heredocs eating backslashes",
@@ -57,9 +57,9 @@
     "videos": []
   },
   "tests": {
-    "count": 160,
-    "source": "27 validator + 33 format + 43 browser + 20 team-runner + 19 trigger-collision + 14 boundary + 4 module-type, each from its own printed line",
-    "measured": "2026-09-22"
+    "count": 197,
+    "source": "27 validator + 33 format + 45 browser + 23 team-runner + 19 trigger-collision + 14 boundary + 4 module-type + 10 local-server + 22 banner, each from its own printed line",
+    "measured": "2026-09-25"
   },
   "ci": {
     "workflows": [
@@ -70,7 +70,7 @@
   },
   "docs": {
     "readme": "README.md",
-    "changelog": null,
+    "changelog": "CHANGELOG.md",
     "version_history": null,
     "roadmap": "YOL-HARITASI.md",
     "security": null,
@@ -78,7 +78,7 @@
     "license_file": "LICENSE"
   },
   "social": {
-    "headline": "70 Claude Code sub-agents that think in Turkish, not translate into it.",
+    "headline": "71 Claude Code sub-agents that think in Turkish, not translate into it.",
     "hashtags": [
       "claudecode",
       "aiagents",

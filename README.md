@@ -10,10 +10,12 @@
 **turkce-ajanlar** is a set of Claude Code sub-agents whose *output
 language is Turkish* — code review, repository audit, security and
 dependency auditing, Windows scripting, root-cause debugging, web research
-and more. Seventy agents plus three slash commands and two skills; the agents
+and more. 71 agents plus three slash commands and two skills; the agents
 install via `kur.ps1`, everything installs as a Claude Code plugin
 (`.claude-plugin/`). The same source is exported to Cursor, OpenCode,
-GitHub Copilot and Codex (`node arac/disari-aktar.js`).
+GitHub Copilot and Codex (`node arac/disari-aktar.js`). Browse and search
+all of them on the live catalogue:
+**https://furkiozknn.github.io/turkce-ajanlar/**
 
 It exists because none of the large agent collections ship a Turkish
 localization, and a translated prompt is not the same as an agent that knows
@@ -36,14 +38,31 @@ Everything below is in Turkish on purpose.
 [![Dil: Türkçe](https://img.shields.io/badge/dil-T%C3%BCrk%C3%A7e-b91c1c?style=flat-square)](#neden-bu-var)
 [![Bağımlılık: 0](https://img.shields.io/badge/ba%C4%9F%C4%B1ml%C4%B1l%C4%B1k-0-166534?style=flat-square)](#web-arayüzü)
 [![Lisans: MIT](https://img.shields.io/badge/lisans-MIT-1f6feb?style=flat-square)](LICENSE)
+[![dogrula](https://github.com/Furkiozknn/turkce-ajanlar/actions/workflows/dogrula.yml/badge.svg)](https://github.com/Furkiozknn/turkce-ajanlar/actions/workflows/dogrula.yml)
 
 **Claude Code için Türkçe alt-ajan seti.** Bir İngilizce koleksiyonun
 çevirisi değil — az sayıda, gerçekten kullanılan, ve çalıştığı makinenin
 tuzaklarını içine gömmüş ajanlar.
 
+**Canlı katalog: [furkiozknn.github.io/turkce-ajanlar](https://furkiozknn.github.io/turkce-ajanlar/)**
+— 71 ajanın hepsi, Türkçe harf kurallarına uyan arama, her ajanın tam
+tanımı ve kopyala düğmesi. Kurmadan önce ne aldığını orada gör.
+
+**Hızlı başlangıç** (Claude Code kurulu olmalı):
+
+```bash
+claude plugin marketplace add Furkiozknn/turkce-ajanlar
+claude plugin install turkce-ajanlar@turkce-ajanlar
+claude plugin details turkce-ajanlar   # 71 ajan, 5 komut/beceri, 1 kanca
+```
+
+Sonra yeni bir oturumda işini normal cümleyle iste — *"şu değişikliği
+gözden geçir"* → `kod-gozden-gecirici`. Ayrıntı: [Kurulum](#kurulum),
+[Kullanım](#kullanım).
+
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/ekran-goruntusu-koyu.png">
-  <img alt="Web arayüzü: yetmiş ajan, arama kutusu, her kart için tetikleyici ifadeler ve ajanın sınırı" src="assets/ekran-goruntusu.png">
+  <img alt="Web arayüzü: 71 ajan, arama kutusu, her kart için tetikleyici ifadeler ve ajanın sınırı" src="assets/ekran-goruntusu.png">
 </picture>
 
 <sub><code>web/index.html</code> — tek dosya, bağımlılık yok,
@@ -71,15 +90,22 @@ kurala uyar — `TÜRKÇE` yazınca `türkçe` bulunur, `turkce` yazınca da.
 çağrılınca okunur. Yani ajan sayısı bedava değildir ve bu depo uzun süre
 bilerek sekiz ajanda durdu.
 
-Yetmişe çıkarken bu maliyeti ölçtük. tahmin etmedik: `description`
-alanlarının toplamı **26.783 karakter**. kabaca **8.612 token** — Claude
-Code'un başlangıçta uyarı verdiği 15.000 token eşiğinin **%57'i**. Rakam
-`agents/*.md` frontmatter'larından sayıldı; artarsa README de artar.
+Bu maliyeti Claude Code'un kendisine ölçtürdük:
+`claude plugin details turkce-ajanlar` (Claude Code 2.1.282, 25 Eylül 2026)
+eklentinin **her oturuma eklediği** bağlamı **~16.320 token** olarak
+gösteriyor — 71 ajan ~15.520, üç komut ve iki beceri ~800. `description`
+alanlarının toplamı **27.342 karakter**. Daha önce bu README yalnızca
+karakteri sayıp "~8.600 token" diyordu; aracın kendi tahmini bunun iki
+katına yakın, ve Claude Code'un başlangıçta uyarı verdiği 15.000 token
+eşiğinin **üstünde**. Birkaç ajana ihtiyacın varsa eklentinin tamamı
+yerine yalnız onları `.claude/agents/` altına kopyala
+([Dosya kopyalayarak](#dosya-kopyalayarak)); ölçümü kendi sürümünde aynı
+komutla tekrarlayabilirsin.
 
 Asıl değişen şu: artık ajanı sen seçmiyorsun. `proje-koordinatoru` projeyi
 ölçüyor, hangi uzmanların gerektiğine karar veriyor ve işi bağımlılık
 sırasına göre dalgalar hâlinde dağıtıyor — arayüzü olmayan bir projede
-arayüz ekibi hiç çağrılmıyor. Yetmiş aday arasından seçim yapmak
+arayüz ekibi hiç çağrılmıyor. Yetmiş bir aday arasından seçim yapmak
 Claude'un değil koordinatörün işi.
 
 Karşılığında dürüst olmak gerekir: bu, deponun ilk günkü "az sayıda ajan"
@@ -124,8 +150,8 @@ iki büyük koleksiyon daha geniş.
 
 ## Ajanlar
 
-Yetmiş ajan, on bir grupta. **✎** işaretli on beşi dosya yazabilir; kalan
-elli beşi salt okurdur ve `disallowedTools` ile yazması kapatılmıştır.
+71 ajan, on bir grupta. **✎** işaretli on beşi dosya yazabilir; kalan
+elli altısı salt okurdur ve `disallowedTools` ile yazması kapatılmıştır.
 
 Tek tek çağırmak zorunda değilsin: `proje-koordinatoru` projeyi ölçüp
 gerekli olanları bağımlılık sırasına göre dalgalar hâlinde çağırır.
@@ -260,26 +286,38 @@ gerekli olanları bağımlılık sırasına göre dalgalar hâlinde çağırır.
 
 ### Eklenti olarak (önerilen)
 
-Depo aynı zamanda bir Claude Code eklentisidir. Kendi kopyandan kurmak
-için depoyu bir pazar yeri olarak ekle, sonra kur:
-
-```powershell
-claude plugin marketplace add "D:\Repolar\turkce-ajanlar"
-claude plugin install turkce-ajanlar@turkce-ajanlar
-```
-
-Depo GitHub'a çıktıktan sonra klonlamadan da olur:
+Depo aynı zamanda bir Claude Code eklentisidir. Klonlamadan, doğrudan
+GitHub'dan: depoyu bir pazar yeri olarak ekle, sonra kur:
 
 ```powershell
 claude plugin marketplace add Furkiozknn/turkce-ajanlar
 claude plugin install turkce-ajanlar@turkce-ajanlar
 ```
 
-Kurulduktan sonra yetmiş ajan da her projede görünür. Kontrol:
+Kendi klonundan (örneğin ajanları değiştirdiysen) aynı iki komut, yol
+vererek:
+
+```powershell
+claude plugin marketplace add "C:\yol\turkce-ajanlar"
+claude plugin install turkce-ajanlar@turkce-ajanlar
+```
+
+Kurulduktan sonra 71 ajanın hepsi her projede görünür. Kontrol:
 
 ```powershell
 claude plugin details turkce-ajanlar
 ```
+
+Güncellemek için (yeni ajanlar sürüm numarası artınca gelir; bkz.
+[CHANGELOG.md](CHANGELOG.md)):
+
+```powershell
+claude plugin marketplace update turkce-ajanlar
+claude plugin update turkce-ajanlar@turkce-ajanlar   # sonra Claude Code'u yeniden başlat
+```
+
+0.3.0'ı kurduysan bu seni sekiz ajandan 71'e taşır; numara artmadan
+`update` "already at the latest version" der ve hiçbir şey indirmez.
 
 Kaldırmak için `claude plugin uninstall turkce-ajanlar@turkce-ajanlar`.
 
@@ -372,8 +410,11 @@ yüzden var.
 > `claude` içinde `/cost` ile görürsün.
 
 Testi sahte bir `claude` ikilisiyle koşar (`node arac/ekip-kos-test.js`,
-17 iddia): API'ye çıkmaz, para harcamaz, ve asıl iddiayı — alt süreç
-bitmeden dönülmediğini — geçen süreyi ölçerek gösterir.
+23 iddia): API'ye çıkmaz, para harcamaz, ve asıl iddiayı — alt süreç
+bitmeden dönülmediğini — geçen süreyi ölçerek gösterir. Ajan adı
+yalnızca kebab-case olabilir: `../commands/ajanlar` gibi bir ad `agents/`
+dışından dosya yükleyemez, raporu çıktı klasörünün dışına yazamaz
+(çıkış kodu 2).
 
 ## Kendine uyarla
 
@@ -462,7 +503,7 @@ Kapsam iki katmanlı, ve ikisi aynı şey değil:
 
 Statik katman ucuz olduğu için her şeyi kapsar ama yalnızca **metni**
 görür. Eval katmanı ajanın gerçekten ne yaptığını görür ama pahalıdır;
-altmış ajanın davranış vakası hâlâ yok. Bunu "kapsam yeterli" diye
+altmış bir ajanın davranış vakası hâlâ yok. Bunu "kapsam yeterli" diye
 sunmuyoruz.
 
 `evals/` altında sekiz vaka var (erken erişim:
@@ -470,7 +511,7 @@ sunmuyoruz.
 eder (uydurmaz, silmez, çalıştırmaz, Türkçe yazar). Kabuk gerektiren iki
 vaka (`repo-denetci`, `betik-ustasi`) `evals-bash/` altında: Windows'ta kum
 havuzu olmadığı için yalnızca Linux/macOS'ta koşar. Toplam **on ajan**
-kapsanıyor; kalan altmışının vakası henüz yazılmadı.
+kapsanıyor; kalan altmış birinin vakası henüz yazılmadı.
 
 Son eklenen ikisi, kadronun en çok zarar verebilecek iki yazan ajanını
 baskı altında sınıyor — ikisi de kullanıcının "acelem var" dediği bir
@@ -520,7 +561,7 @@ kaynakla karşılaştırır):
 
 Kendi projende kullanmak için ilgili klasörü projenin köküne kopyala
 (örneğin `.cursor/agents/`); bu depoyu açtığında araç zaten görür.
-Kum havuzu dürüstlüğü: yetmiş ajanın hepsi `Bash` taşıdığı için Cursor'da
+Kum havuzu dürüstlüğü: 71 ajanın hepsi `Bash` taşıdığı için Cursor'da
 `readonly: true`, Codex'te `read-only` **verilmez** — Bash dosya
 yazabilir. Salt okuma vaadi ajan gövdesindeki kuralla, OpenCode'da ise
 `edit: deny` / `write: deny` ile tutulur. Kök `AGENTS.md` bu depoda
@@ -528,8 +569,13 @@ yazabilir. Salt okuma vaadi ajan gövdesindeki kuralla, OpenCode'da ise
 
 ## Web arayüzü
 
+Canlı: **https://furkiozknn.github.io/turkce-ajanlar/**
+
 `web/index.html` — tek dosya, bağımlılık yok, `file://` ile de açılır.
 Ajan verisi `agents/*.md` frontmatter'ından üretilip HTML'e gömülür.
+`master`'a giden bir commit `web/index.html`'i değiştirdiğinde
+`.github/workflows/yayinla.yml` sayfayı GitHub Pages'e yeniden yayınlar;
+sayfa kaynakla uyumsuzsa yayın yapılmaz.
 
 ```powershell
 node arac/web-uret.js          # ajanlardan sayfayı yeniden üret
@@ -553,6 +599,17 @@ node arac/ekran-goruntusu.js http://127.0.0.1:8789/   # assets/ekran-goruntusu*.
 ```
 
 ## Doğrulama
+
+Model çağırmayan kapıların hepsi tek komutla (CI'daki `dogrula` işinin
+aynısı; API'ye çıkmaz, para harcamaz, birkaç saniye sürer):
+
+```bash
+npm test          # 13 adım: ajan/eklenti/sınır/yönlendirme kapıları ve araçların kendi testleri
+npm run test:web  # 45 tarayıcı kontrolü; ayrı pencerede: node arac/sunucu.js 8788
+```
+
+`test:web` Playwright ister ama onu bağımlılık olarak kurmaz; bulamazsa
+çıkış kodu 2 olur (bkz. [KATKIDA-BULUNMA.md](KATKIDA-BULUNMA.md)).
 
 `arac/dogrula.js` ajan dosyalarını kontrol eder: frontmatter geçerli mi,
 `name` kebab-case mi, `description` dolu ve tetikleyici ifade içeriyor
@@ -601,8 +658,12 @@ kadronun temiz geçtiğini doğrular).
 Doğrulayıcının kendi testi: `node arac/dogrula-test.js` (geçici klasörde
 27 senaryo için bozuk/eksik/aşırı büyük örnekler üretir, her kuralın
 gerçekten yakaladığını gösterir). Arayüzün kendi testi de var:
-`node arac/web-test.js` (gerçek tarayıcıda 43 kontrol; ayrı bir pencerede
-`node arac/sunucu.js 8788` gerekir). İkisi de CI'da koşar.
+`node arac/web-test.js` (gerçek tarayıcıda 45 kontrol; ayrı bir pencerede
+`node arac/sunucu.js 8788` gerekir). İkisi de CI'da koşar. Yerel sunucunun
+kendi testi `node arac/sunucu-test.js` (10 kontrol: bozuk URL isteği sunucuyu
+düşürmez, `web/` dışı okunmaz); banner ve sosyal kartın güncel ajan sayısını
+görünür biçimde taşıdığını `node arac/banner-uret-test.js` (22 kontrol)
+ölçer.
 
 ### Yönlendirme: iki ajan aynı cümleyi sahipleniyor mu
 
