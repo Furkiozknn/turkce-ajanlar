@@ -15,6 +15,7 @@
  */
 "use strict";
 
+const fs = require("fs");
 const http = require("http");
 const net = require("net");
 const path = require("path");
@@ -74,6 +75,23 @@ async function ana() {
   for (const yol of ["/../package.json", "/..%2fpackage.json", "/..%5cpackage.json", "/%2e%2e/%2e%2e/package.json"]) {
     const r = await iste(port, yol);
     bekle("kok disi okunmuyor: " + yol, r.durum !== 200 && !r.govde.includes('"name"'), "durum=" + r.durum);
+  }
+
+  // web/ icinden disari isaret eden sembolik bag da okunmamali. Ad
+  // .gitignore'daki "web/_onizleme-*" kalibina uyar; test sonunda silinir.
+  // Windows'ta yetkisiz kullanici sembolik bag kuramaz; o zaman atlanir.
+  const bag = path.join(__dirname, "..", "web", "_onizleme-sunucu-test-bag");
+  let bagKuruldu = false;
+  try { fs.symlinkSync(path.join(__dirname, "..", "package.json"), bag); bagKuruldu = true; } catch {}
+  if (bagKuruldu) {
+    try {
+      const r = await iste(port, "/_onizleme-sunucu-test-bag");
+      bekle("web/ disina isaret eden sembolik bag okunmuyor", r.durum === 404 && !r.govde.includes('"name"'), "durum=" + r.durum);
+    } finally {
+      try { fs.unlinkSync(bag); } catch {}
+    }
+  } else {
+    console.log("  --   sembolik bag kurulamadi, bu kontrol atlandi");
   }
 
   const bozuk = await iste(port, "/%E0%A4%A");

@@ -20,6 +20,22 @@ const TIP = {
   ".json": "application/json; charset=utf-8",
 };
 
+// web/ altindaki duz dosyalar: "alt/yol.ext" -> mutlak yol. Her istekte
+// yeniden okunur (klasor kucuk), sunucu yeniden baslatilmadan yeni dosya
+// gorunur.
+function webDosyalari() {
+  const harita = new Map();
+  (function gez(klasor, onek) {
+    let girdiler;
+    try { girdiler = fs.readdirSync(klasor, { withFileTypes: true }); } catch { return; }
+    for (const g of girdiler) {
+      if (g.isDirectory()) gez(path.join(klasor, g.name), onek + g.name + "/");
+      else if (g.isFile()) harita.set(onek + g.name, path.join(klasor, g.name));
+    }
+  })(KOK, "");
+  return harita;
+}
+
 http
   .createServer((istek, yanit) => {
     // Bozuk yuzde kodlamasi ("/%E0") decodeURIComponent'i firlatir; burada
@@ -34,17 +50,23 @@ http
     }
     if (yol === "/") yol = "/index.html";
 
-    const tam = path.join(KOK, path.normalize(yol).replace(/^([/\\])+/, ""));
-    // Ayiriciyla karsilastir: "web" onekiyle baslayan kardes klasor
-    // ("web-eski") da startsWith(KOK) testini gecerdi.
-    if (tam !== KOK && !tam.startsWith(KOK + path.sep)) {
-      yanit.writeHead(403).end("yasak");
+    // Istenen yol dosya sistemine hic verilmez. web/ altindaki gercek
+    // dosyalarin listesi cikarilir; istek bu listede bir anahtarla
+    // eslesirse okunan yol LISTEDEN gelir. Boylece "../", kodlanmis
+    // ayiricilar, "web-eski" gibi kardes klasorler ve web/ icinden disari
+    // isaret eden sembolik baglar (Dirent.isFile() onlar icin false)
+    // ayni kuralla kapanir.
+    const anahtar = path.posix.normalize(yol.replace(/\\/g, "/")).replace(/^\/+/, "");
+    const tam = webDosyalari().get(anahtar);
+    if (!tam) {
+      yanit.writeHead(404, { "Content-Type": "text/plain; charset=utf-8" });
+      yanit.end("bulunamadi");
       return;
     }
     fs.readFile(tam, (hata, veri) => {
       if (hata) {
         yanit.writeHead(404, { "Content-Type": "text/plain; charset=utf-8" });
-        yanit.end("bulunamadi: " + yol);
+        yanit.end("bulunamadi");
         return;
       }
       yanit.writeHead(200, {

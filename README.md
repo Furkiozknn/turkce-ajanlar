@@ -660,8 +660,9 @@ Doğrulayıcının kendi testi: `node arac/dogrula-test.js` (geçici klasörde
 gerçekten yakaladığını gösterir). Arayüzün kendi testi de var:
 `node arac/web-test.js` (gerçek tarayıcıda 45 kontrol; ayrı bir pencerede
 `node arac/sunucu.js 8788` gerekir). İkisi de CI'da koşar. Yerel sunucunun
-kendi testi `node arac/sunucu-test.js` (10 kontrol: bozuk URL isteği sunucuyu
-düşürmez, `web/` dışı okunmaz); banner ve sosyal kartın güncel ajan sayısını
+kendi testi `node arac/sunucu-test.js` (11 kontrol: bozuk URL isteği sunucuyu
+düşürmez; `../`, kodlanmış ayırıcı ya da dışarı işaret eden sembolik bağla
+`web/` dışı okunmaz); banner ve sosyal kartın güncel ajan sayısını
 görünür biçimde taşıdığını `node arac/banner-uret-test.js` (22 kontrol)
 ölçer.
 

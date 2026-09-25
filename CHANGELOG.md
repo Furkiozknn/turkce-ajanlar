@@ -34,7 +34,9 @@ ajanda kalıyordu. Bu sürüm o birikimi yayımlar.
 
 ### Düzeltildi
 - `arac/sunucu.js`: bozuk yüzde kodlamalı tek bir istek (`/%E0`) sunucuyu
-  düşürüyordu; artık 400 döner. Kök kontrolü ayırıcıyla yapılıyor
+  düşürüyordu; artık 400 döner. İstenen yol dosya sistemine hiç
+  verilmiyor: yalnızca `web/` altında listelenen düz dosyalar servis
+  ediliyor, `web/` dışına işaret eden sembolik bağ artık okunmuyor
   (`arac/sunucu-test.js`).
 - `arac/ekip-kos.js`: ajan adı kebab-case olmak zorunda; `../commands/ajanlar`
   gibi bir ad `agents/` dışından dosya yükleyip raporu çıktı klasörünün
