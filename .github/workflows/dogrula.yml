@@ -20,6 +20,7 @@ permissions:
 jobs:
   dogrula:
     runs-on: ubuntu-latest
+    timeout-minutes: 10  # olculen en uzun kosu 21 sn
     steps:
       - uses: actions/checkout@v7
         with:
@@ -118,6 +119,7 @@ jobs:
   # Playwright kurulumu gerektiriyor ve ana kapiyi yavaslatmasin.
   arayuz:
     runs-on: ubuntu-latest
+    timeout-minutes: 10  # olculen en uzun kosu 43 sn
     steps:
       - uses: actions/checkout@v7
 
