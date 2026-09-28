@@ -14,8 +14,8 @@
  * Salt okur olarak tanimlanmis bir ajanin govdesinde "duzeltmeyi ben
  * yaparim" yazmasi dogrulayicidan sorunsuz gecer.
  *
- * Eval vakalari bu sozu kilitler ama pahalidir ve 70 ajanin yalnizca
- * 12'sinde var. Bu arac ucuz, deterministik ve 70/70 kapsar: her push'ta
+ * Eval vakalari bu sozu kilitler ama pahalidir ve ajanlarin yalnizca bir
+ * kisminda var. Bu arac ucuz, deterministik ve tum kadroyu kapsar: her push'ta
  * kosar, API'ye cikmaz, para harcamaz. Ikisi birbirinin yerine gecmez —
  * eval davranisi olcer, bu arac sozlesmeyi olcer.
  *

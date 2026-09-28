@@ -1,6 +1,6 @@
 # Katkıda bulunma
 
-Bu depo Claude Code için **yetmiş** Türkçe alt-ajan taşıyor. Katkı kabul
+Bu depo Claude Code için **71** Türkçe alt-ajan taşıyor. Katkı kabul
 ediyor — ama hedefi koleksiyonu büyütmek değil. Rakip koleksiyonlarda
 39 bin yıldız ve 172 ajan var; buradaki fark sayı değil, her ajanın
 gerçekten kullanılıyor ve doğrulanmış olması.
@@ -44,7 +44,7 @@ diyebiliyor olmalısın:
 
 - **Bunu gerçekten yaptım mı?** Ajanı en az bir gerçek işte
   çalıştırdın mı, yoksa "olsa iyi olurdu" diye mi yazdın? Bu depodaki
-  yetmiş ajanın hepsi bir gerekçeyle yazıldı; sayı için ajan eklenmiyor.
+  71 ajanın hepsi bir gerekçeyle yazıldı; sayı için ajan eklenmiyor.
 - **Mevcut bir ajanın işi değil mi?** `betik-ustasi` zaten PowerShell
   yazıyor; "powershell-uzmani" ikinci bir ajan değil, birincinin
   eksiğidir. Eksikse birincisini düzelt.
@@ -121,7 +121,7 @@ tırnaklı kalıplar belirgin biçimde daha iyi eşleşiyor. Yaz.
 
 ## 4. Gövde: ajanın asıl talimatı
 
-Frontmatter'dan sonrası ajanın sistem promptu. Depodaki yetmişi ortak
+Frontmatter'dan sonrası ajanın sistem promptu. Depodaki 71 ajan ortak
 bir iskelet kullanıyor — mecburi değil ama sebepsiz sapma:
 
 ```markdown
@@ -228,7 +228,9 @@ hepsini yenile:
 
 ```powershell
 node arac/web-uret.js       # web/index.html
-node arac/banner-uret.js    # assets/banner.svg
+node arac/disari-aktar.js   # .cursor/ .opencode/ .github/agents/ .codex/ kopyalari
+node arac/banner-uret.js    # assets/banner.svg + assets/social.svg
+node arac/sosyal-kart.js    # assets/social.png (Playwright ister)
 powershell -ExecutionPolicy Bypass -File kur.ps1   # yerel .claude/agents/
 
 # README'deki arayuz gorseli (ayri bir pencerede sunucu acikken)
@@ -245,9 +247,19 @@ $env:NODE_PATH   = "<playwright'in bulundugu>\node_modules"
 $env:CHROME_YOL  = "$env:LOCALAPPDATA\ms-playwright\chromium-<surum>\chrome-win64\chrome.exe"
 ```
 
-Ajan sayısı değiştiyse README'nin başındaki **"ajan: 70" rozetini** ve
-"Neden bu var" bölümündeki karakter ölçümünü de güncelle — ikisi elle
-yazılıyor, üretilmiyor.
+Ajan sayısı değiştiyse README'deki elle yazılmış sayıları da güncelle —
+baştaki **"ajan: N" rozeti**, "Ajanlar" bölümündeki yazan/salt okur
+sayıları, "Neden bu var" bölümündeki bağlam ölçümü
+(`claude plugin details turkce-ajanlar` ile yeniden ölç) ve
+`project-meta.json` içindeki `summary`/`key_features`. Bunlar üretilmiyor;
+`web/index.html`, banner ve dışa aktarılan kopyalar üretiliyor ve bayat
+kalırsa CI kırmızı yanar.
+
+`agents/`, `commands/`, `skills/` ya da `hooks/` değiştiyse
+`.claude-plugin/plugin.json` ve `marketplace.json` içindeki `version`
+alanını artır ve [CHANGELOG.md](CHANGELOG.md)'ye yaz. Claude Code kurulu
+eklentiyi yalnızca bu numara değişince günceller; numara 0.3.0'da
+kaldığı için 8 → 71 ajan büyümesi 0.3.0 kullanıcılarına hiç ulaşmadı.
 
 Bu bir kez unutuldu ve depoda üç yeni ajan varken web arayüzü beş ajan
 göstermeye devam etti. `kur.ps1` sadece senin makineni etkiler, PR'a
@@ -265,6 +277,14 @@ node arac/sunucu.js 8787    # http://127.0.0.1:8787 — sadece yerel
 
 **Bu adım zorunlu.** Doğrulayıcı geçmeyen PR bakılmadan geri gider.
 
+CI'daki `dogrula` işinin model çağırmayan adımlarının hepsi tek komutta:
+
+```powershell
+npm test
+```
+
+Tek tek:
+
 ```powershell
 node arac/dogrula.js                        # agents/ altındaki her şey
 node arac/dogrula.js agents/yeni-ajan.md    # tek dosya
@@ -273,7 +293,7 @@ node arac/dogrula.js --kati                 # uyarılar da hata sayılır
 
 Hata varsa çıkış kodu **1**, temizse **0** olur; bir kancaya ya da CI
 adımına doğrudan bağlanabilir. Hedef: `--kati` ile de geçmek. Depodaki
-yetmiş ajan şu an 0 hata, 0 uyarı ile geçiyor; bu çıtayı düşürme.
+71 ajan şu an 0 hata, 0 uyarı ile geçiyor; bu çıtayı düşürme.
 
 Ne bakıyor:
 

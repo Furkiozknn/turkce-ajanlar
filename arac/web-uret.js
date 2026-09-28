@@ -16,6 +16,7 @@ const KOK = path.resolve(__dirname, "..");
 const KAYNAK = path.join(KOK, "agents");
 const CIKTI_KLASOR = path.join(KOK, "web");
 const CIKTI = path.join(CIKTI_KLASOR, "index.html");
+const DEPO = "https://github.com/Furkiozknn/turkce-ajanlar";
 
 // --- frontmatter ayristirma ------------------------------------------------
 function ayristir(ham, dosyaAdi) {
@@ -171,6 +172,7 @@ const html = `<!doctype html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Claude Code için Türkçe alt-ajan seti: ${ajanlar.length} ajan, ${komutSayisi} komut, ${beceriSayisi} beceri. Kaynak: ${DEPO}">
 <title>Türkçe Ajanlar — Claude Code alt-ajan seti</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23b8532f'/%3E%3Ctext x='16' y='23' font-size='20' font-family='sans-serif' font-weight='700' fill='%23fff' text-anchor='middle'%3ETA%3C/text%3E%3C/svg%3E">
 <style>
@@ -474,7 +476,9 @@ footer a { color: var(--vurgu); }
 
 <section class="ekler" id="ekler" aria-labelledby="ekler-baslik">
   <h2 id="ekler-baslik">Komutlar ve beceriler</h2>
-  <p class="ekler-not">Plugin olarak kurulunca gelir:
+  <p class="ekler-not">Plugin olarak kurulunca gelir — önce depoyu pazar yeri
+     olarak ekle, sonra kur:
+     <code>claude plugin marketplace add Furkiozknn/turkce-ajanlar</code>
      <code>claude plugin install turkce-ajanlar@turkce-ajanlar</code>.
      Komutu sen çağırırsın; beceri konu açılınca kendiliğinden yüklenir,
      istersen aynı adla elle de çağrılır.</p>
@@ -486,7 +490,8 @@ ${eklerHtml}
 
 <footer>
   <strong id="toplam"></strong> ajan · ${komutSayisi} komut · ${beceriSayisi} beceri · Son güncelleme ${damga} ·
-  MIT lisansı · Kurulum: <code>kur.ps1</code>
+  MIT lisansı · Kurulum: <code>kur.ps1</code> ya da plugin ·
+  Kaynak ve kurulum: <a href="${DEPO}" id="depo-baglanti">${DEPO.replace("https://", "")}</a>
 </footer>
 
 </div>

@@ -13,11 +13,11 @@
  * ajanda BIR tetikleyici ifade bulunmasini sart kosuyor -- ama ayni ifadeyi
  * iki ajanin sahiplenmesini kimse engellemiyordu.
  *
- * 70 ajanda bunun sonucu somut: kullanici dogru cumleyi kuruyor, yanlis ajan
+ * Onlarca ajanda bunun sonucu somut: kullanici dogru cumleyi kuruyor, yanlis ajan
  * kosuyor, ve hicbir kapi kirmizi yanmiyor cunku iki dosya da tek basina
  * kusursuz. Kadro buyudukce olasiligi artan, buyurken fark edilmeyen bir
  * bozulma. Bu arac onu deterministik olarak yakaliyor: API'ye cikmiyor, para
- * harcamiyor, 70/70 kapsiyor.
+ * harcamiyor, tum kadroyu kapsiyor.
  *
  * BAKTIKLARI
  * ----------
