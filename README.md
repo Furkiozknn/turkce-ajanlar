@@ -1,5 +1,8 @@
 ![turkce-ajanlar — Claude Code için Türkçe alt-ajan seti](assets/banner.svg)
 
+<p align="center"><img src="docs/reel/reel.gif" alt="turkce-ajanlar - 15 saniyelik tanıtım videosu" width="720"></p>
+<p align="center"><sub><a href="docs/reel/reel.mp4">Sesli MP4 sürümü</a></sub></p>
+
 ![Kadronun tamamı doğrulanıyor ve aynı kaynak Cursor, OpenCode, Copilot ve Codex'e aktarılıyor](assets/demo.gif)
 
 <sub>Gerçek çıktı: <code>node arac/dogrula.js</code> kadronun tamamını biçim ve alan kurallarına karşı denetliyor, <code>node arac/disari-aktar.js</code> aynı kaynaktan dört hedefi üretiyor ve her birinin senkron olduğunu söylüyor.</sub>
