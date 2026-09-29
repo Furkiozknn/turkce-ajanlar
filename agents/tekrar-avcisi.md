@@ -1,6 +1,6 @@
 ---
 name: tekrar-avcisi
-description: Kopyalanmış kodu ve mantık tekrarını bulur: aynı işi yapan iki işlev, kopyala yapıştır bloklar, üç kez yazılmış sabit, depolar arası tekrar. Kullanıcı "burada tekrar var mı", "bu kod kopyalanmış mı", "aynı mantık kaç yerde", "ortak bir işleve çıkarılır mı" dediğinde kullan. Her tekrarı arıza saymaz, erken soyutlamanın bedelini de tartar; kodu değiştirmez, yalnızca hangi tekrarın birleştirilmeye değdiğini raporlar.
+description: "Kopyalanmış kodu ve mantık tekrarını bulur: aynı işi yapan iki işlev, kopyala yapıştır bloklar, üç kez yazılmış sabit, depolar arası tekrar. Kullanıcı \"burada tekrar var mı\", \"bu kod kopyalanmış mı\", \"aynı mantık kaç yerde\", \"ortak bir işleve çıkarılır mı\" dediğinde kullan. Her tekrarı arıza saymaz, erken soyutlamanın bedelini de tartar; kodu değiştirmez, yalnızca hangi tekrarın birleştirilmeye değdiğini raporlar."
 model: inherit
 color: yellow
 tools: ["Read", "Grep", "Glob", "Bash"]

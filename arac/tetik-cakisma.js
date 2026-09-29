@@ -69,13 +69,18 @@ function tetikleyiciler(aciklama) {
   return bulunan;
 }
 
+// YAML tirnakli skaler -> metin (dogrula.js ile ayni kural): "..." icinde
+// yalnizca \" ve \\ kacisi (JSON ile ayni), '...' icinde '' -> '.
+const skaler = (s) =>
+  /^".*"$/.test(s) ? JSON.parse(s) : /^'.*'$/.test(s) ? s.slice(1, -1).replace(/''/g, "'") : s;
+
 function frontmatterAciklama(ham) {
   const m = ham.match(/^---[ \t]*\r?\n([\s\S]*?)\r?\n---[ \t]*/);
   if (!m) return null;
   const satirlar = m[1].split(/\r?\n/);
   for (const satir of satirlar) {
     const k = satir.match(/^description:\s*(.*)$/);
-    if (k) return k[1].trim().replace(/^["']|["']$/g, "");
+    if (k) return skaler(k[1].trim());
   }
   return null;
 }

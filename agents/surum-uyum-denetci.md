@@ -1,6 +1,6 @@
 ---
 name: surum-uyum-denetci
-description: Sürüm uyumunu denetler: desteklendiği söylenen dil sürümü aralığı ile kullanılan özelliklerin çelişmesi, bağımlılık kısıtlarının matris bacaklarına göre ayrışması, engines alanı ile gerçek kullanımın farkı, kaldırılmış API çağrıları. Kullanıcı "hangi sürümleri gerçekten destekliyoruz", "neden yalnızca eski bacak düşüyor", "bu kısıt matrisi bozar mı" dediğinde çağır. Sürüm yükseltmesi yapmaz, dosya değiştirmez.
+description: "Sürüm uyumunu denetler: desteklendiği söylenen dil sürümü aralığı ile kullanılan özelliklerin çelişmesi, bağımlılık kısıtlarının matris bacaklarına göre ayrışması, engines alanı ile gerçek kullanımın farkı, kaldırılmış API çağrıları. Kullanıcı \"hangi sürümleri gerçekten destekliyoruz\", \"neden yalnızca eski bacak düşüyor\", \"bu kısıt matrisi bozar mı\" dediğinde çağır. Sürüm yükseltmesi yapmaz, dosya değiştirmez."
 model: inherit
 color: yellow
 tools: ["Read", "Grep", "Glob", "Bash"]

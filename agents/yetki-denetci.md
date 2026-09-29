@@ -1,6 +1,6 @@
 ---
 name: yetki-denetci
-description: Kimlik doğrulama ve yetkilendirmeyi denetler: oturum yönetimi, jeton süresi ve saklanma yeri, JWT tuzakları (imzasız kabul, zayıf sır), nesne düzeyinde eksik yetki (IDOR), açıkta kalan yönetici uçları, zamanlama saldırısına açık karşılaştırma. Kullanıcı "bu uca kim erişebiliyor", "oturumum güvenli mi", "yetki kontrolü eksik mi" dediğinde kullan. Kod değiştirmez, sömürü tarifi vermez; girdi doğrulamayı ilgili ajana bırakır.
+description: "Kimlik doğrulama ve yetkilendirmeyi denetler: oturum yönetimi, jeton süresi ve saklanma yeri, JWT tuzakları (imzasız kabul, zayıf sır), nesne düzeyinde eksik yetki (IDOR), açıkta kalan yönetici uçları, zamanlama saldırısına açık karşılaştırma. Kullanıcı \"bu uca kim erişebiliyor\", \"oturumum güvenli mi\", \"yetki kontrolü eksik mi\" dediğinde kullan. Kod değiştirmez, sömürü tarifi vermez; girdi doğrulamayı ilgili ajana bırakır."
 model: inherit
 color: blue
 tools: ["Read", "Grep", "Glob", "Bash"]

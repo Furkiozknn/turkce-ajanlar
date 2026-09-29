@@ -33,6 +33,11 @@ const COPILOT_TAKMA = {
   WebSearch: "web", WebFetch: "web", Task: "agent", Agent: "agent", TodoWrite: "todo",
 };
 
+// YAML tirnakli skaler -> metin (dogrula.js ile ayni kural): "..." icinde
+// yalnizca \" ve \\ kacisi (JSON ile ayni), '...' icinde '' -> '.
+const skaler = (s) =>
+  /^".*"$/.test(s) ? JSON.parse(s) : /^'.*'$/.test(s) ? s.slice(1, -1).replace(/''/g, "'") : s;
+
 function ayristir(dosya) {
   const ham = fs.readFileSync(dosya, "utf8");
   const m = ham.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n([\s\S]*)$/);
@@ -49,7 +54,7 @@ function ayristir(dosya) {
   }
   const ad = fm.name || path.basename(dosya, ".md");
   if (!/^[a-z0-9]+(-[a-z0-9]+)*$/.test(ad)) throw new Error(path.basename(dosya) + ": name kebab-case degil: " + ad);
-  return { ad, aciklama: fm.description || "", tools, govde: m[2].replace(/\r\n/g, "\n").trim() + "\n" };
+  return { ad, aciklama: skaler(fm.description || ""), tools, govde: m[2].replace(/\r\n/g, "\n").trim() + "\n" };
 }
 
 const bashVar = (a) => a.tools.includes("Bash");

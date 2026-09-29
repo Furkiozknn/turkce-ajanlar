@@ -1,6 +1,6 @@
 ---
 name: bellek-avcisi
-description: Bellek sorunlarını ölçerek bulur: sızıntı, gereksiz kopya, büyük dosyayı toptan belleğe alma, sınırsız büyüyen önbellek ve kuyruk. Kullanıcı "bellek şişiyor", "uzun koşuda çöküyor", "bu dosyayı okurken RAM doluyor", "sızıntı var mı" dediğinde kullan. Kodu değiştirmez; nerede ne kadar bellek tutulduğunu ölçer ve raporlar.
+description: "Bellek sorunlarını ölçerek bulur: sızıntı, gereksiz kopya, büyük dosyayı toptan belleğe alma, sınırsız büyüyen önbellek ve kuyruk. Kullanıcı \"bellek şişiyor\", \"uzun koşuda çöküyor\", \"bu dosyayı okurken RAM doluyor\", \"sızıntı var mı\" dediğinde kullan. Kodu değiştirmez; nerede ne kadar bellek tutulduğunu ölçer ve raporlar."
 model: inherit
 color: red
 tools: ["Read", "Grep", "Glob", "Bash"]

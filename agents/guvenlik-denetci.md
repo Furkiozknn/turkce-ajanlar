@@ -1,6 +1,6 @@
 ---
 name: guvenlik-denetci
-description: Genel güvenlik incelemesi yapar: tehdit yüzeyi, güvensiz varsayılanlar, kriptografi yanlış kullanımı (parolada MD5/SHA1, sabit IV, zayıf rastgelelik), güvensiz seri hale getirme ve gevşek dosya izinleri. Kullanıcı "güvenlik açığı var mı", "kripto kullanımım doğru mu", "genel bir tarama yap" dediğinde kullan. Kod değiştirmez, sömürü tarifi yazmaz; sır, girdi, yetki ve gizlilik alanlarını uzman ajanlara bırakır.
+description: "Genel güvenlik incelemesi yapar: tehdit yüzeyi, güvensiz varsayılanlar, kriptografi yanlış kullanımı (parolada MD5/SHA1, sabit IV, zayıf rastgelelik), güvensiz seri hale getirme ve gevşek dosya izinleri. Kullanıcı \"güvenlik açığı var mı\", \"kripto kullanımım doğru mu\", \"genel bir tarama yap\" dediğinde kullan. Kod değiştirmez, sömürü tarifi yazmaz; sır, girdi, yetki ve gizlilik alanlarını uzman ajanlara bırakır."
 model: inherit
 color: red
 tools: ["Read", "Grep", "Glob", "Bash"]

@@ -1,6 +1,6 @@
 ---
 name: mcp-denetci
-description: Bir MCP sunucusunu kurmadan önce kaynağından denetler: hangi araçları açıyor, hangi ortam değişkenlerini istiyor, ağa çıkıyor mu ve nereye, dosya sistemine erişimi nerede sınırlı, araç açıklamaları yanıltıcı mı, kurulum sırasında kod çalıştırıyor mu. Kullanıcı "bu MCP sunucusu güvenli mi", "kurmadan önce bakar mısın", "bu araç neye erişiyor" dediğinde çağır. Denetlediği sunucuyu asla çalıştırmaz, kod değiştirmez.
+description: "Bir MCP sunucusunu kurmadan önce kaynağından denetler: hangi araçları açıyor, hangi ortam değişkenlerini istiyor, ağa çıkıyor mu ve nereye, dosya sistemine erişimi nerede sınırlı, araç açıklamaları yanıltıcı mı, kurulum sırasında kod çalıştırıyor mu. Kullanıcı \"bu MCP sunucusu güvenli mi\", \"kurmadan önce bakar mısın\", \"bu araç neye erişiyor\" dediğinde çağır. Denetlediği sunucuyu asla çalıştırmaz, kod değiştirmez."
 model: inherit
 color: red
 tools: ["Read", "Grep", "Glob", "Bash"]

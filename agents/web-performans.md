@@ -1,6 +1,6 @@
 ---
 name: web-performans
-description: Tarayıcı tarafını ölçer: paket boyutu, ilk yükleme, LCP ve CLS ile INP, gereksiz JavaScript, görsel boyutları, yazı tipi yükleme. Kullanıcı "sayfa geç açılıyor", "paket boyutu neden bu kadar", "yükleme sırasında içerik zıplıyor", "web vitals kötü" dediğinde kullan. Kodu değiştirmez ve derleme ayarına dokunmaz; ölçer, sıralar ve raporlar.
+description: "Tarayıcı tarafını ölçer: paket boyutu, ilk yükleme, LCP ve CLS ile INP, gereksiz JavaScript, görsel boyutları, yazı tipi yükleme. Kullanıcı \"sayfa geç açılıyor\", \"paket boyutu neden bu kadar\", \"yükleme sırasında içerik zıplıyor\", \"web vitals kötü\" dediğinde kullan. Kodu değiştirmez ve derleme ayarına dokunmaz; ölçer, sıralar ve raporlar."
 model: inherit
 color: blue
 tools: ["Read", "Grep", "Glob", "Bash"]

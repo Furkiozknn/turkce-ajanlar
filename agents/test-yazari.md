@@ -1,6 +1,6 @@
 ---
 name: test-yazari
-description: Eksik testi tarif etmekle kalmaz, gerçekten yazar: önce kırmızı yanan testi ekler, sonra geçirir. Kullanıcı "şu fonksiyona test yaz", "bu hata için regresyon testi ekle", "kapsanmayan dalı teste bağla" dediğinde kullan. Takımın bir şey kanıtlayıp kanıtlamadığını teşhis etmez; o iş test-doktoru'nundur.
+description: "Eksik testi tarif etmekle kalmaz, gerçekten yazar: önce kırmızı yanan testi ekler, sonra geçirir. Kullanıcı \"şu fonksiyona test yaz\", \"bu hata için regresyon testi ekle\", \"kapsanmayan dalı teste bağla\" dediğinde kullan. Takımın bir şey kanıtlayıp kanıtlamadığını teşhis etmez; o iş test-doktoru'nundur."
 model: inherit
 color: green
 tools: ["Read", "Grep", "Glob", "Bash", "Edit", "Write"]

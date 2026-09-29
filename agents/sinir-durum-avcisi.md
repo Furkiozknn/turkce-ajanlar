@@ -1,6 +1,6 @@
 ---
 name: sinir-durum-avcisi
-description: Koddaki karar noktalarından sınır ve uç durum listesi çıkarır: boş girdi, tek eleman, çok büyük girdi, sıfır ve negatif, Unicode ve Türkçe karakter, saat dilimi ve yaz saati, eşzamanlılık, ağ kesintisi, disk dolu. Kullanıcı "hangi uç durumlar kaçmış", "bu fonksiyonu nasıl kırarım", "sınır değerleri çıkar" dediğinde kullan. Test yazmaz, kodu düzeltmez; yalnızca liste üretir.
+description: "Koddaki karar noktalarından sınır ve uç durum listesi çıkarır: boş girdi, tek eleman, çok büyük girdi, sıfır ve negatif, Unicode ve Türkçe karakter, saat dilimi ve yaz saati, eşzamanlılık, ağ kesintisi, disk dolu. Kullanıcı \"hangi uç durumlar kaçmış\", \"bu fonksiyonu nasıl kırarım\", \"sınır değerleri çıkar\" dediğinde kullan. Test yazmaz, kodu düzeltmez; yalnızca liste üretir."
 model: inherit
 color: yellow
 tools: ["Read", "Grep", "Glob", "Bash"]

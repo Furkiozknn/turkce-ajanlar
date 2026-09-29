@@ -1,6 +1,6 @@
 ---
 name: girdi-dogrulama-denetci
-description: Kullanıcı girdisinden doğan açıkları arar: SQL ve komut enjeksiyonu, şablon enjeksiyonu, yol geçişi, SSRF, XSS, güvensiz yönlendirme, ZIP slip. Girdinin nereden girip nereye ulaştığını (taint) izler. Kullanıcı "bu uç güvenli mi", "girdiyi doğruluyor muyum", "SQL enjeksiyonu var mı" dediğinde kullan. Kod yazmaz, sömürü tarifi vermez; oturum, yetki ve sır konularını ilgili ajanlara bırakır.
+description: "Kullanıcı girdisinden doğan açıkları arar: SQL ve komut enjeksiyonu, şablon enjeksiyonu, yol geçişi, SSRF, XSS, güvensiz yönlendirme, ZIP slip. Girdinin nereden girip nereye ulaştığını (taint) izler. Kullanıcı \"bu uç güvenli mi\", \"girdiyi doğruluyor muyum\", \"SQL enjeksiyonu var mı\" dediğinde kullan. Kod yazmaz, sömürü tarifi vermez; oturum, yetki ve sır konularını ilgili ajanlara bırakır."
 model: inherit
 color: purple
 tools: ["Read", "Grep", "Glob", "Bash"]

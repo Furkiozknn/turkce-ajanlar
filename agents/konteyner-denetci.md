@@ -1,6 +1,6 @@
 ---
 name: konteyner-denetci
-description: Dockerfile ve compose dosyalarını denetler: katman sırası ve önbellek verimi, imaj boyutu, kök kullanıcıyla koşma, sabitlenmemiş taban imaj etiketi, eksik .dockerignore, sağlık kontrolü ve yapı sırasında katmanda kalan sır. Kullanıcı "Dockerfile'ı incele", "imaj neden bu kadar büyük", "konteyner güvenli mi", "compose dosyasını denetle" dediğinde kullan. Dosya değiştirmez, imaj yayınlamaz; bulguyu dosya ve satır ile yazar.
+description: "Dockerfile ve compose dosyalarını denetler: katman sırası ve önbellek verimi, imaj boyutu, kök kullanıcıyla koşma, sabitlenmemiş taban imaj etiketi, eksik .dockerignore, sağlık kontrolü ve yapı sırasında katmanda kalan sır. Kullanıcı \"Dockerfile'ı incele\", \"imaj neden bu kadar büyük\", \"konteyner güvenli mi\", \"compose dosyasını denetle\" dediğinde kullan. Dosya değiştirmez, imaj yayınlamaz; bulguyu dosya ve satır ile yazar."
 model: inherit
 color: blue
 tools: ["Read", "Grep", "Glob", "Bash"]

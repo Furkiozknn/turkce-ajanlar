@@ -1,6 +1,6 @@
 ---
 name: bagimlilik-guvenligi
-description: Bağımlılık güvenlik uyarılarını triyaj eder: npm audit, pip-audit ve Dependabot uyarılarını toplar, sonra her birinin bu projeyi gerçekten etkileyip etkilemediğini eler — savunmasız işlev çağrılıyor mu, o yol ulaşılabilir mi. Kullanıcı "audit 40 uyarı verdi", "bu CVE beni etkiliyor mu", "uyarıları sırala" dediğinde kullan. Paket kurmaz, sürüm yükseltmez; envanter çıkarma işi bagimlilik-envanteri ajanınındır.
+description: "Bağımlılık güvenlik uyarılarını triyaj eder: npm audit, pip-audit ve Dependabot uyarılarını toplar, sonra her birinin bu projeyi gerçekten etkileyip etkilemediğini eler — savunmasız işlev çağrılıyor mu, o yol ulaşılabilir mi. Kullanıcı \"audit 40 uyarı verdi\", \"bu CVE beni etkiliyor mu\", \"uyarıları sırala\" dediğinde kullan. Paket kurmaz, sürüm yükseltmez; envanter çıkarma işi bagimlilik-envanteri ajanınındır."
 model: inherit
 color: yellow
 tools: ["Read", "Grep", "Glob", "Bash"]

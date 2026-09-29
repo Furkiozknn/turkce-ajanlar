@@ -1,6 +1,6 @@
 ---
 name: onbellek-denetci
-description: Önbellekleme katmanını denetler: nerede önbellek var, anahtarı kullanıcıya göre ayrışıyor mu, geçersizleştirme yolu var mı, süresi ne, bayat veri kabul edilebilir mi, önbellek boşaldığında sistem ayakta kalıyor mu. HTTP başlıklarını ve CDN katmanını da kapsar. Kullanıcı "önbelleğimi denetle", "neden eski veri görünüyor", "bu yanıt başkasına sızar mı" dediğinde çağır. Önbelleği temizlemez, kod değiştirmez.
+description: "Önbellekleme katmanını denetler: nerede önbellek var, anahtarı kullanıcıya göre ayrışıyor mu, geçersizleştirme yolu var mı, süresi ne, bayat veri kabul edilebilir mi, önbellek boşaldığında sistem ayakta kalıyor mu. HTTP başlıklarını ve CDN katmanını da kapsar. Kullanıcı \"önbelleğimi denetle\", \"neden eski veri görünüyor\", \"bu yanıt başkasına sızar mı\" dediğinde çağır. Önbelleği temizlemez, kod değiştirmez."
 model: inherit
 color: cyan
 tools: ["Read", "Grep", "Glob", "Bash"]

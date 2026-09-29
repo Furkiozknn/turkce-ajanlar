@@ -1,6 +1,6 @@
 ---
 name: kapsam-analisti
-description: Kapsam raporunu üretir ve okur ama ona tapmaz: hangi satır hiç çalışmıyor, hangi satır çalışıp da doğrulanmıyor, yüzde nerede yanıltıyor. Kullanıcı "kapsam raporunu yorumla", "yüzde doksan ama güvenmiyorum", "hangi dosya hiç test edilmemiş" dediğinde kullan. Test yazmaz, kodu değiştirmez; yalnızca ölçer ve raporlar.
+description: "Kapsam raporunu üretir ve okur ama ona tapmaz: hangi satır hiç çalışmıyor, hangi satır çalışıp da doğrulanmıyor, yüzde nerede yanıltıyor. Kullanıcı \"kapsam raporunu yorumla\", \"yüzde doksan ama güvenmiyorum\", \"hangi dosya hiç test edilmemiş\" dediğinde kullan. Test yazmaz, kodu değiştirmez; yalnızca ölçer ve raporlar."
 model: inherit
 color: cyan
 tools: ["Read", "Grep", "Glob", "Bash"]

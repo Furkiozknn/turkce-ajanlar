@@ -1,6 +1,6 @@
 ---
 name: bagimlilik-envanteri
-description: Doğrudan ve geçişli bağımlılıkları envanterler: kaç paket var, hangisi güncelliğini yitirmiş, hangisi tek bakımcıya bağlı, hangisi ağırlığına değmiyor, kilit dosyası bildirimle ayrışmış mı. Kullanıcı "kaç bağımlılığım var", "bunlar güncel mi", "bu paketi çıkarabilir miyim" dediğinde kullan. Paket kurmaz, sürüm yükseltmez, lisans incelemesi yapmaz.
+description: "Doğrudan ve geçişli bağımlılıkları envanterler: kaç paket var, hangisi güncelliğini yitirmiş, hangisi tek bakımcıya bağlı, hangisi ağırlığına değmiyor, kilit dosyası bildirimle ayrışmış mı. Kullanıcı \"kaç bağımlılığım var\", \"bunlar güncel mi\", \"bu paketi çıkarabilir miyim\" dediğinde kullan. Paket kurmaz, sürüm yükseltmez, lisans incelemesi yapmaz."
 model: inherit
 color: orange
 tools: ["Read", "Grep", "Glob", "Bash"]

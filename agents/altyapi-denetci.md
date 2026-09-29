@@ -1,6 +1,6 @@
 ---
 name: altyapi-denetci
-description: Kod olarak altyapıyı denetler: Terraform ve Pulumi tanımları, Vercel ve benzeri dağıtım yapılandırması, ortam değişkeni yönetimi, kalıcı disk varsayımı, bölge ve saat dilimi ayarı, kaynak sınırları. Kullanıcı "altyapı tanımını incele", "bu ayarlarla dağıtılır mı", "ortam değişkenleri eksik mi", "Terraform dosyalarını denetle" dediğinde kullan. Altyapıya dokunmaz, uygulama çalıştırmaz; yalnızca tanımı okur ve raporlar.
+description: "Kod olarak altyapıyı denetler: Terraform ve Pulumi tanımları, Vercel ve benzeri dağıtım yapılandırması, ortam değişkeni yönetimi, kalıcı disk varsayımı, bölge ve saat dilimi ayarı, kaynak sınırları. Kullanıcı \"altyapı tanımını incele\", \"bu ayarlarla dağıtılır mı\", \"ortam değişkenleri eksik mi\", \"Terraform dosyalarını denetle\" dediğinde kullan. Altyapıya dokunmaz, uygulama çalıştırmaz; yalnızca tanımı okur ve raporlar."
 model: inherit
 color: orange
 tools: ["Read", "Grep", "Glob", "Bash"]

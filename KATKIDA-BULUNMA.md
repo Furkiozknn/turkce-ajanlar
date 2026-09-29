@@ -83,6 +83,11 @@ tools: ["Read", "Grep", "Glob", "Bash"]
 | `skills` | hayır | Başlangıçta **tam içerikle** yüklenen beceriler (`skills/<ad>/SKILL.md`). Rapor yazan ajana `turkce-rapor`, betik yazana `windows-tuzaklari`. Her beceri bağlama girer; gerekmeyene ekleme. |
 | `disallowedTools` | hayır | Devralınan ya da `tools` ile verilen listeden düşülen araçlar. Salt okur ajanlarda `["Write", "Edit"]` — `Bash` kalır, o yüzden "salt okur" vaadi gövdedeki kuralla tamamlanır. |
 
+`description` içinde `: ` (iki nokta + boşluk) geçiyorsa değeri çift
+tırnağa al; içteki `"` → `\"`, `\` → `\\` olur. Tırnaksız hâli YAML'da
+geçersizdir ve Claude Code frontmatter'ın tamamını düşürür — `tools` ve
+`disallowedTools` da gider. CI bunu `yaml.safe_load` ile yakalar.
+
 Başka alan yazma — doğrulayıcı `bilinmeyen frontmatter alani` uyarısı
 verir. Dosya UTF-8 olmalı, **BOM'suz** (`.ps1` dosyalarının tersine;
 oradaki kural markdown için geçerli değil).

@@ -1,6 +1,6 @@
 ---
 name: teknik-borc-analisti
-description: Teknik borcu envanterler ve faiziyle ölçer: işaret yoğunluğu, geçici çözümler, eski sürüme bağlı kalmış kod, kaldırılacağı söylenip kalan parçalar, sürüm yükseltme borcu. Kullanıcı "teknik borcumuz ne durumda", "neyi önce ödemeliyiz", "bu kod neden bu kadar yavaşlatıyor", "geçici çözümleri çıkar" dediğinde kullan. Kodu değiştirmez ve toplu temizlik önermez; en çok üç kalem borcu ödeme sırasıyla yazar.
+description: "Teknik borcu envanterler ve faiziyle ölçer: işaret yoğunluğu, geçici çözümler, eski sürüme bağlı kalmış kod, kaldırılacağı söylenip kalan parçalar, sürüm yükseltme borcu. Kullanıcı \"teknik borcumuz ne durumda\", \"neyi önce ödemeliyiz\", \"bu kod neden bu kadar yavaşlatıyor\", \"geçici çözümleri çıkar\" dediğinde kullan. Kodu değiştirmez ve toplu temizlik önermez; en çok üç kalem borcu ödeme sırasıyla yazar."
 model: inherit
 color: green
 tools: ["Read", "Grep", "Glob", "Bash"]

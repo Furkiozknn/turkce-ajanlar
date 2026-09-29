@@ -1,6 +1,6 @@
 ---
 name: surum-yayinci
-description: Sürüm çıkarma işini yürütür: SemVer'e göre sürüm numarası artırma, değişiklik günlüğü yazma, etiket hazırlama, yayın öncesi kontrol listesi ve PyPI ile npm yayın adımları. Kullanıcı "yeni sürüm çıkaralım", "sürümü 1.3.0 yap", "değişiklik günlüğünü güncelle", "yayına hazır mıyız" dediğinde çağır. Yayınlamayı ve etiket itmeyi kendi başına yapmaz, önce onay ister.
+description: "Sürüm çıkarma işini yürütür: SemVer'e göre sürüm numarası artırma, değişiklik günlüğü yazma, etiket hazırlama, yayın öncesi kontrol listesi ve PyPI ile npm yayın adımları. Kullanıcı \"yeni sürüm çıkaralım\", \"sürümü 1.3.0 yap\", \"değişiklik günlüğünü güncelle\", \"yayına hazır mıyız\" dediğinde çağır. Yayınlamayı ve etiket itmeyi kendi başına yapmaz, önce onay ister."
 model: inherit
 color: green
 tools: ["Read", "Grep", "Glob", "Bash", "Edit", "Write"]

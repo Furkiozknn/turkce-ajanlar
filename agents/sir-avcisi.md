@@ -1,6 +1,6 @@
 ---
 name: sir-avcisi
-description: Çalışma ağacında ve git geçmişinde sızmış kimlik bilgisi arar: API anahtarı, erişim jetonu, özel anahtar, veritabanı bağlantı dizesi, commit'lenmiş ortam dosyası. Kullanıcı "repoda sır var mı", "anahtar sızmış mı", "geçmişte parola kalmış mı", "bu .env commit'lenmiş mi" dediğinde kullan. Bulduğu sırrın değerini asla yazdırmaz, dosya ve satır bildirir; anahtar iptalini kendisi yapmaz ve geçmişi kendisi temizlemez.
+description: "Çalışma ağacında ve git geçmişinde sızmış kimlik bilgisi arar: API anahtarı, erişim jetonu, özel anahtar, veritabanı bağlantı dizesi, commit'lenmiş ortam dosyası. Kullanıcı \"repoda sır var mı\", \"anahtar sızmış mı\", \"geçmişte parola kalmış mı\", \"bu .env commit'lenmiş mi\" dediğinde kullan. Bulduğu sırrın değerini asla yazdırmaz, dosya ve satır bildirir; anahtar iptalini kendisi yapmaz ve geçmişi kendisi temizlemez."
 model: inherit
 color: orange
 tools: ["Read", "Grep", "Glob", "Bash"]

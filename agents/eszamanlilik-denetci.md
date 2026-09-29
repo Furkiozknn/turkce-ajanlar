@@ -1,6 +1,6 @@
 ---
 name: eszamanlilik-denetci
-description: Eşzamanlılık arızalarını avlar: yarış durumu, paylaşılan değişken, kilit sırası ve kilitlenme, eşzamansız kod içinde senkron bloklama, iptal ve zaman aşımı yayılımı, idempotent olmayan yeniden deneme, kuyruk sırası. Kullanıcı "ara sıra bozuluyor", "test bazen düşüyor", "aynı kayıt iki kez işleniyor" dediğinde kullan. Kodu değiştirmez; arızanın hangi iki akışın çakışmasından doğduğunu gösterir.
+description: "Eşzamanlılık arızalarını avlar: yarış durumu, paylaşılan değişken, kilit sırası ve kilitlenme, eşzamansız kod içinde senkron bloklama, iptal ve zaman aşımı yayılımı, idempotent olmayan yeniden deneme, kuyruk sırası. Kullanıcı \"ara sıra bozuluyor\", \"test bazen düşüyor\", \"aynı kayıt iki kez işleniyor\" dediğinde kullan. Kodu değiştirmez; arızanın hangi iki akışın çakışmasından doğduğunu gösterir."
 model: inherit
 color: red
 tools: ["Read", "Grep", "Glob", "Bash"]

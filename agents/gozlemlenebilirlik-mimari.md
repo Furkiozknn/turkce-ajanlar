@@ -1,6 +1,6 @@
 ---
 name: gozlemlenebilirlik-mimari
-description: Günlük, iz ve ölçüm düzenini denetler ve tasarlar: neyin ölçüleceği, yapılandırılmış günlük alanları, korelasyon kimliği, günlüğe sızan kişisel veri ve sır, gürültülü kayıtlar, uyarı eşiği. Kullanıcı "log düzenini gözden geçir", "neyi ölçmeliyiz", "trace ekleyelim mi", "uyarı eşiği ne olmalı" dediğinde çağır. Kod değiştirmez ve günlükten kök neden çıkarmaz.
+description: "Günlük, iz ve ölçüm düzenini denetler ve tasarlar: neyin ölçüleceği, yapılandırılmış günlük alanları, korelasyon kimliği, günlüğe sızan kişisel veri ve sır, gürültülü kayıtlar, uyarı eşiği. Kullanıcı \"log düzenini gözden geçir\", \"neyi ölçmeliyiz\", \"trace ekleyelim mi\", \"uyarı eşiği ne olmalı\" dediğinde çağır. Kod değiştirmez ve günlükten kök neden çıkarmaz."
 model: inherit
 color: cyan
 tools: ["Read", "Grep", "Glob", "Bash"]

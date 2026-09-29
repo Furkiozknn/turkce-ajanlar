@@ -1,6 +1,6 @@
 ---
 name: zaman-denetci
-description: Tarih ve saat kaynaklı hataları arar: zaman dilimi olmadan saklanan damga, yerel saatle yapılan aritmetik, yaz saati geçişinde kaybolan ya da iki kez yaşanan saat, eskimiş tzdata, ay indeksi, hafta numarası, süre ölçümünde duvar saati kullanımı ve iki makinenin saatinin kayması. Kullanıcı "tarihler bir saat kayıyor", "gece yarısı yanlış güne düşüyor", "zaman dilimi sorunu var", "süre ölçümü tutarsız", "bu damga UTC mi" dediğinde kullan. Kodu değiştirmez; hangi satırın hangi varsayımı yaptığını ve o varsayımın nerede bozulduğunu gösterir.
+description: "Tarih ve saat kaynaklı hataları arar: zaman dilimi olmadan saklanan damga, yerel saatle yapılan aritmetik, yaz saati geçişinde kaybolan ya da iki kez yaşanan saat, eskimiş tzdata, ay indeksi, hafta numarası, süre ölçümünde duvar saati kullanımı ve iki makinenin saatinin kayması. Kullanıcı \"tarihler bir saat kayıyor\", \"gece yarısı yanlış güne düşüyor\", \"zaman dilimi sorunu var\", \"süre ölçümü tutarsız\", \"bu damga UTC mi\" dediğinde kullan. Kodu değiştirmez; hangi satırın hangi varsayımı yaptığını ve o varsayımın nerede bozulduğunu gösterir."
 model: inherit
 color: cyan
 tools: ["Read", "Grep", "Glob", "Bash"]

@@ -1,6 +1,6 @@
 ---
 name: veritabani-tasarimci
-description: Şema tasarlar ve var olan şemayı inceler: normalizasyon, indeks eksiği ve fazlası, yabancı anahtar, NULL politikası, tip seçimi, zaman damgası ve yumuşak silme. Kullanıcı "şu tabloyu tasarla", "bu şemayı incele", "hangi indeks gerekli", "para sütunu ne tip olmalı" dediğinde kullan. Göç dosyası yazmaz ve üretim veritabanına dokunmaz; o iş veri-gocu-ustasi'nındır.
+description: "Şema tasarlar ve var olan şemayı inceler: normalizasyon, indeks eksiği ve fazlası, yabancı anahtar, NULL politikası, tip seçimi, zaman damgası ve yumuşak silme. Kullanıcı \"şu tabloyu tasarla\", \"bu şemayı incele\", \"hangi indeks gerekli\", \"para sütunu ne tip olmalı\" dediğinde kullan. Göç dosyası yazmaz ve üretim veritabanına dokunmaz; o iş veri-gocu-ustasi'nındır."
 model: inherit
 color: blue
 tools: ["Read", "Grep", "Glob", "Bash", "Write"]

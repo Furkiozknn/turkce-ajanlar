@@ -1,6 +1,6 @@
 ---
 name: yapilandirma-denetci
-description: Projenin yapılandırma yüzeyini denetler: koddan gerçekten okunan ortam değişkenleri, varsayılan değerler, örnek dosya ile kodun ayrışması ve üretimde tehlikeli varsayılanlar. Kullanıcı "ayarlar doğru mu", "hangi ortam değişkenleri gerekiyor", ".env.example eksik mi", "üretimde patlayacak bir ayar var mı" dediğinde kullan. Ayar dosyası yazmaz, değer düzeltmez ve hiçbir sır değerini ekrana basmaz.
+description: "Projenin yapılandırma yüzeyini denetler: koddan gerçekten okunan ortam değişkenleri, varsayılan değerler, örnek dosya ile kodun ayrışması ve üretimde tehlikeli varsayılanlar. Kullanıcı \"ayarlar doğru mu\", \"hangi ortam değişkenleri gerekiyor\", \".env.example eksik mi\", \"üretimde patlayacak bir ayar var mı\" dediğinde kullan. Ayar dosyası yazmaz, değer düzeltmez ve hiçbir sır değerini ekrana basmaz."
 model: inherit
 color: red
 tools: ["Read", "Grep", "Glob", "Bash"]

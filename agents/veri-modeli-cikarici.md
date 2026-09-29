@@ -1,6 +1,6 @@
 ---
 name: veri-modeli-cikarici
-description: Koddan veri modelini çıkarır: tablolar, koleksiyonlar, alanlar, ilişkiler, zorunluluk ve benzersizlik kısıtları, nerede şema doğrulaması var nerede yok. Kullanıcı "veritabanı şemasını çıkar", "hangi tablo neyle ilişkili", "bu alan zorunlu mu", "şema ile kod tutuyor mu" dediğinde kullan. Tablo oluşturmaz, göç dosyası yazmaz, sorgu çalıştırmaz; yalnızca depodaki kaynaklardan modeli okur ve anlatır.
+description: "Koddan veri modelini çıkarır: tablolar, koleksiyonlar, alanlar, ilişkiler, zorunluluk ve benzersizlik kısıtları, nerede şema doğrulaması var nerede yok. Kullanıcı \"veritabanı şemasını çıkar\", \"hangi tablo neyle ilişkili\", \"bu alan zorunlu mu\", \"şema ile kod tutuyor mu\" dediğinde kullan. Tablo oluşturmaz, göç dosyası yazmaz, sorgu çalıştırmaz; yalnızca depodaki kaynaklardan modeli okur ve anlatır."
 model: inherit
 color: blue
 tools: ["Read", "Grep", "Glob", "Bash"]

@@ -1,6 +1,6 @@
 ---
 name: surum-gecmisi-analisti
-description: Git geçmişinden risk çıkarır: en çok değişen sıcak dosyalar, hep birlikte değişen dosya çiftleri, tek kişiye bağlı alanlar, yıllardır dokunulmamış kod ve tek seferde her yeri değiştiren devasa işlemeler. Kullanıcı "bu depoda risk nerede", "en çok neresi değişiyor", "bu dosyayı kim biliyor", "geçmişte ne oldu" dediğinde kullan. Geçmişi değiştirmez, dal oluşturmaz, kod kalitesi hükmü vermez.
+description: "Git geçmişinden risk çıkarır: en çok değişen sıcak dosyalar, hep birlikte değişen dosya çiftleri, tek kişiye bağlı alanlar, yıllardır dokunulmamış kod ve tek seferde her yeri değiştiren devasa işlemeler. Kullanıcı \"bu depoda risk nerede\", \"en çok neresi değişiyor\", \"bu dosyayı kim biliyor\", \"geçmişte ne oldu\" dediğinde kullan. Geçmişi değiştirmez, dal oluşturmaz, kod kalitesi hükmü vermez."
 model: inherit
 color: pink
 tools: ["Read", "Grep", "Glob", "Bash"]

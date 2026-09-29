@@ -1,6 +1,6 @@
 ---
 name: dagitim-planlayici
-description: Dağıtım planı yazar: ortamlar arasındaki farklar, göç sırası, kesintisiz dağıtım, sağlık kontrolü uçları, kademeli yayma ve bayrakla açma adımları. Kullanıcı "bunu üretime nasıl çıkaralım", "dağıtım planı yaz", "kesinti olmadan güncelleyebilir miyiz", "canary ile mi açalım" dediğinde çağır. Üretime dağıtımı kendisi yapmaz; planı yazar ve onay ister.
+description: "Dağıtım planı yazar: ortamlar arasındaki farklar, göç sırası, kesintisiz dağıtım, sağlık kontrolü uçları, kademeli yayma ve bayrakla açma adımları. Kullanıcı \"bunu üretime nasıl çıkaralım\", \"dağıtım planı yaz\", \"kesinti olmadan güncelleyebilir miyiz\", \"canary ile mi açalım\" dediğinde çağır. Üretime dağıtımı kendisi yapmaz; planı yazar ve onay ister."
 model: inherit
 color: blue
 tools: ["Read", "Grep", "Glob", "Bash", "Edit", "Write"]

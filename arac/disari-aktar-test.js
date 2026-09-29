@@ -23,7 +23,9 @@ function fm(metin) {
   return { alan, govde: m[2].replace(/^\n/, "") };
 }
 // Uretici aciklamayi YAML cift tirnakli skaler yazar; sadece \\ ve \" kacisi kullanir -> JSON ile cozulur.
-const yamlCoz = (s) => (s && s.startsWith('"') ? JSON.parse(s) : s);
+// Kaynaktaki description da tirnakli olabilir (dogrula.js ile ayni kural; '...' icinde '' -> ').
+const yamlCoz = (s) =>
+  /^".*"$/.test(s) ? JSON.parse(s) : /^'.*'$/.test(s) ? s.slice(1, -1).replace(/''/g, "'") : s;
 const COPILOT = new Set(["read", "search", "execute", "edit", "web", "agent", "todo"]);
 
 const hatalar = [];
@@ -34,7 +36,7 @@ for (const f of kaynaklar) {
   const src = fm(oku(path.join(KOK, "agents", f)));
   const ad = src.alan.name;
   const govde = src.govde.trim() + "\n";
-  const aciklama = src.alan.description;
+  const aciklama = yamlCoz(src.alan.description);
 
   const c = fm(oku(path.join(KOK, ".cursor", "agents", ad + ".md")));
   if (!c) hata(ad + " cursor: frontmatter yok");

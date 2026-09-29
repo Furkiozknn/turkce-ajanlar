@@ -19,6 +19,11 @@ const CIKTI = path.join(CIKTI_KLASOR, "index.html");
 const DEPO = "https://github.com/Furkiozknn/turkce-ajanlar";
 
 // --- frontmatter ayristirma ------------------------------------------------
+// YAML tirnakli skaler -> metin (dogrula.js ile ayni kural): "..." icinde
+// yalnizca \" ve \\ kacisi (JSON ile ayni), '...' icinde '' -> '.
+const skaler = (s) =>
+  /^".*"$/.test(s) ? JSON.parse(s) : /^'.*'$/.test(s) ? s.slice(1, -1).replace(/''/g, "'") : s;
+
 function ayristir(ham, dosyaAdi) {
   const m = ham.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n([\s\S]*)$/);
   if (!m) throw new Error(`${dosyaAdi}: frontmatter bulunamadi`);
@@ -35,7 +40,7 @@ function ayristir(ham, dosyaAdi) {
         .map((x) => x.trim().replace(/^["']|["']$/g, ""))
         .filter(Boolean);
     } else {
-      deger = deger.replace(/^["']|["']$/g, "");
+      deger = skaler(deger);
     }
     alanlar[k[1]] = deger;
   }
@@ -82,7 +87,9 @@ if (!fs.existsSync(KAYNAK)) {
 const ajanlar = [];
 for (const ad of fs.readdirSync(KAYNAK).sort()) {
   if (!ad.endsWith(".md")) continue;
-  const ham = fs.readFileSync(path.join(KAYNAK, ad), "utf8");
+  // Depo LF tutuyor; Windows'ta (core.autocrlf=true) calisma kopyasi CRLF.
+  // Normallestirilmezse sayfaya gomulen metin "\r\n" tasir ve CI "bayat" der.
+  const ham = fs.readFileSync(path.join(KAYNAK, ad), "utf8").replace(/\r\n/g, "\n");
   const { alanlar } = ayristir(ham, ad);
   const aciklama = alanlar.description || "";
   const { ozet, sinir } = bolumle(aciklama);

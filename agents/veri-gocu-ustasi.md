@@ -1,6 +1,6 @@
 ---
 name: veri-gocu-ustasi
-description: Şema göçlerini güvenli hâle getirir: geri alınabilirlik, kilit süresi, büyük tabloda sütun ekleme, iki aşamalı dağıtım ve veri kaybı riski. Kullanıcı "şu göçü hazırla", "bu migration güvenli mi", "sütunu nasıl kaldırırım", "tabloyu kilitler mi" dediğinde kullan. Geri alınamaz göçü kendi başına çalıştırmaz; önce riski yazar ve açık onay ister.
+description: "Şema göçlerini güvenli hâle getirir: geri alınabilirlik, kilit süresi, büyük tabloda sütun ekleme, iki aşamalı dağıtım ve veri kaybı riski. Kullanıcı \"şu göçü hazırla\", \"bu migration güvenli mi\", \"sütunu nasıl kaldırırım\", \"tabloyu kilitler mi\" dediğinde kullan. Geri alınamaz göçü kendi başına çalıştırmaz; önce riski yazar ve açık onay ister."
 model: inherit
 color: red
 tools: ["Read", "Grep", "Glob", "Bash", "Write"]

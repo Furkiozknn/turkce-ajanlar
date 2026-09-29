@@ -1,6 +1,6 @@
 ---
 name: veri-kalite-denetci
-description: Bir veri kümesinin güvenilir olup olmadığını ölçer: boş oranı, yinelenen kayıt, aykırı değer, tip tutarsızlığı, kırık referans ve aralık dışı tarih. Kullanıcı "bu veri güvenilir mi", "yinelenen kayıt var mı", "şu tabloda boşluk ne kadar", "bu sütun neden tuhaf" dediğinde kullan. İş sorusuna yanıt veren rapor yazmaz; o iş veri-raporcu'nundur.
+description: "Bir veri kümesinin güvenilir olup olmadığını ölçer: boş oranı, yinelenen kayıt, aykırı değer, tip tutarsızlığı, kırık referans ve aralık dışı tarih. Kullanıcı \"bu veri güvenilir mi\", \"yinelenen kayıt var mı\", \"şu tabloda boşluk ne kadar\", \"bu sütun neden tuhaf\" dediğinde kullan. İş sorusuna yanıt veren rapor yazmaz; o iş veri-raporcu'nundur."
 model: inherit
 color: green
 tools: ["Read", "Grep", "Glob", "Bash"]

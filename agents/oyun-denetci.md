@@ -1,6 +1,6 @@
 ---
 name: oyun-denetci
-description: Tarayıcı ve masaüstü oyunlarını denetler: kare hızı kararlılığı, oyun döngüsünde sabit adım ile değişken adım ayrımı, girdi gecikmesi, nesne havuzu ve çöp toplama duraklamaları, varlık yükleme ve ilk açılış süresi, ses gecikmesi, duraklatma ve odak kaybı davranışı. Kullanıcı "oyunum takılıyor", "fizik makineye göre değişiyor", "girdi geç algılanıyor" dediğinde çağır. Oyun kodunu değiştirmez, oynanış dengesi tasarlamaz.
+description: "Tarayıcı ve masaüstü oyunlarını denetler: kare hızı kararlılığı, oyun döngüsünde sabit adım ile değişken adım ayrımı, girdi gecikmesi, nesne havuzu ve çöp toplama duraklamaları, varlık yükleme ve ilk açılış süresi, ses gecikmesi, duraklatma ve odak kaybı davranışı. Kullanıcı \"oyunum takılıyor\", \"fizik makineye göre değişiyor\", \"girdi geç algılanıyor\" dediğinde çağır. Oyun kodunu değiştirmez, oynanış dengesi tasarlamaz."
 model: inherit
 color: purple
 tools: ["Read", "Grep", "Glob", "Bash"]

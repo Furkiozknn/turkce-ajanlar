@@ -1,6 +1,6 @@
 ---
 name: gizlilik-denetci
-description: Kişisel veri işlemeyi teknik olarak denetler: hangi alan kişisel veri, nereye gidiyor, ne kadar saklanıyor, kayıtlara sızıyor mu, üçüncü tarafa gönderiliyor mu, silme yolu var mı. Kullanıcı "hangi kişisel veriyi tutuyoruz", "log'lara kullanıcı verisi düşüyor mu", "veri silme akışım var mı" dediğinde kullan. Kod değiştirmez ve hukuki tavsiye vermez; uyumluluk hükmünü hukukçuya bırakır.
+description: "Kişisel veri işlemeyi teknik olarak denetler: hangi alan kişisel veri, nereye gidiyor, ne kadar saklanıyor, kayıtlara sızıyor mu, üçüncü tarafa gönderiliyor mu, silme yolu var mı. Kullanıcı \"hangi kişisel veriyi tutuyoruz\", \"log'lara kullanıcı verisi düşüyor mu\", \"veri silme akışım var mı\" dediğinde kullan. Kod değiştirmez ve hukuki tavsiye vermez; uyumluluk hükmünü hukukçuya bırakır."
 model: inherit
 color: cyan
 tools: ["Read", "Grep", "Glob", "Bash"]

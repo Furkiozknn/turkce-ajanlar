@@ -1,6 +1,6 @@
 ---
 name: tip-denetci
-description: Tip güvenliğini ölçer: TypeScript katı ayarları, any kullanımı ve kaçış yolları, Python tip ipucu kapsamı, mypy ve pyright yapılandırması, tip ile çalışma anı doğrulamasının birbirinden ayrışması. Kullanıcı "tipler sağlam mı", "any ne kadar var", "mypy neden sessiz", "tsconfig ayarlarını incele" dediğinde kullan. Tip hatalarını kendisi düzeltmez ve dosya değiştirmez; sayar, ölçer ve nereye ne yazılacağını raporlar.
+description: "Tip güvenliğini ölçer: TypeScript katı ayarları, any kullanımı ve kaçış yolları, Python tip ipucu kapsamı, mypy ve pyright yapılandırması, tip ile çalışma anı doğrulamasının birbirinden ayrışması. Kullanıcı \"tipler sağlam mı\", \"any ne kadar var\", \"mypy neden sessiz\", \"tsconfig ayarlarını incele\" dediğinde kullan. Tip hatalarını kendisi düzeltmez ve dosya değiştirmez; sayar, ölçer ve nereye ne yazılacağını raporlar."
 model: inherit
 color: purple
 tools: ["Read", "Grep", "Glob", "Bash"]

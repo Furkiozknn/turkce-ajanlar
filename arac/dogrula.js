@@ -141,6 +141,17 @@ function sozcukSay(metin, kume) {
 // --- frontmatter ayristirma ------------------------------------------------
 
 /**
+ * YAML tirnakli skaleri metne cevirir; tirnaksiz deger oldugu gibi kalir.
+ * Claude Code frontmatter'i gercek bir YAML ayristiricisiyla okur: tirnaksiz
+ * bir degerde ": " gecerse dosyanin TUM alanlari (disallowedTools dahil)
+ * sessizce dusuyor. Oyle bir description cift tirnakla yazilir; icinde
+ * yalnizca \" ve \\ kacisi olur, yani JSON ile ayni. '...' icinde '' -> '.
+ * web-uret, disari-aktar, sinir-denetle ve tetik-cakisma ayni kurali kullanir.
+ */
+const skaler = (s) =>
+  /^".*"$/.test(s) ? JSON.parse(s) : /^'.*'$/.test(s) ? s.slice(1, -1).replace(/''/g, "'") : s;
+
+/**
  * Frontmatter'i ayristirir. Hata durumunda { hata } doner.
  * Blok liste (`- Read`) ve satir ici liste (`["Read"]`) destekli.
  */
@@ -182,7 +193,11 @@ function frontmatterAyristir(ham) {
     } else if (deger === "") {
       deger = ""; // blok liste gelebilir
     } else {
-      deger = deger.replace(/^["']|["']$/g, "");
+      try {
+        deger = skaler(deger);
+      } catch {
+        return { hata: 'tirnakli deger cozulemedi (cift tirnakta yalnizca \\" ve \\\\ kacisi): ' + satir.trim() };
+      }
     }
 
     alanlar[anahtar] = deger;

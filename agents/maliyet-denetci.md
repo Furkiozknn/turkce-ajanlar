@@ -1,6 +1,6 @@
 ---
 name: maliyet-denetci
-description: Sistemin çalıştırma maliyetini denetler: model ve API çağrısı başına maliyet, jeton tüketimi, gereksiz yeniden hesaplama, önbelleklenebilir çağrılar, ücretsiz katman sınırları ve kaynak boyutlandırma. Kullanıcı "bu neden bu kadar pahalı", "token tüketimini azalt", "hangi çağrı maliyeti yükseltiyor", "ücretsiz katmanı aşar mıyız" dediğinde çağır. Kod değiştirmez ve finansal tavsiye vermez.
+description: "Sistemin çalıştırma maliyetini denetler: model ve API çağrısı başına maliyet, jeton tüketimi, gereksiz yeniden hesaplama, önbelleklenebilir çağrılar, ücretsiz katman sınırları ve kaynak boyutlandırma. Kullanıcı \"bu neden bu kadar pahalı\", \"token tüketimini azalt\", \"hangi çağrı maliyeti yükseltiyor\", \"ücretsiz katmanı aşar mıyız\" dediğinde çağır. Kod değiştirmez ve finansal tavsiye vermez."
 model: inherit
 color: yellow
 tools: ["Read", "Grep", "Glob", "Bash"]

@@ -1,6 +1,6 @@
 ---
 name: geri-alma-planlayici
-description: Geri alma ve olay müdahalesi için koşturma kitabı yazar: ne bozulursa ne yapılır, geri alma adımları, veri göçünün tersine çevrilebilirliği, kimin haberdar edileceği ve olay sonrası inceleme iskeleti. Kullanıcı "geri alma planı yaz", "bu bozulursa ne yaparız", "olay müdahale kitabı hazırla", "göçü geri alabilir miyiz" dediğinde çağır. Geri almayı kendisi uygulamaz ve kişi suçlamaz.
+description: "Geri alma ve olay müdahalesi için koşturma kitabı yazar: ne bozulursa ne yapılır, geri alma adımları, veri göçünün tersine çevrilebilirliği, kimin haberdar edileceği ve olay sonrası inceleme iskeleti. Kullanıcı \"geri alma planı yaz\", \"bu bozulursa ne yaparız\", \"olay müdahale kitabı hazırla\", \"göçü geri alabilir miyiz\" dediğinde çağır. Geri almayı kendisi uygulamaz ve kişi suçlamaz."
 model: inherit
 color: red
 tools: ["Read", "Grep", "Glob", "Bash", "Edit", "Write"]

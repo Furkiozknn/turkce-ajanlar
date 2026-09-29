@@ -1,6 +1,6 @@
 ---
 name: api-tasarimci
-description: HTTP API sözleşmesi tasarlar: kaynak adlandırma, yöntem ve durum kodu seçimi, sayfalama, filtreleme, hata gövdesi biçimi, sürümleme ve idempotency anahtarı. Kullanıcı "şu uç için sözleşme yaz", "bu API'yi tasarla", "hangi durum kodunu döndürmeliyim", "uzun süren iş nasıl modellenir" dediğinde kullan. Uç noktayı gerçekleştirmez; sözleşmeyi ve örnek gövdeleri yazar.
+description: "HTTP API sözleşmesi tasarlar: kaynak adlandırma, yöntem ve durum kodu seçimi, sayfalama, filtreleme, hata gövdesi biçimi, sürümleme ve idempotency anahtarı. Kullanıcı \"şu uç için sözleşme yaz\", \"bu API'yi tasarla\", \"hangi durum kodunu döndürmeliyim\", \"uzun süren iş nasıl modellenir\" dediğinde kullan. Uç noktayı gerçekleştirmez; sözleşmeyi ve örnek gövdeleri yazar."
 model: inherit
 color: purple
 tools: ["Read", "Grep", "Glob", "Bash", "Write"]

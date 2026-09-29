@@ -33,6 +33,42 @@ jobs:
       - name: Ajan dosyalari
         run: node arac/dogrula.js
 
+      # Claude Code (Cursor, OpenCode ve Copilot da) frontmatter'i gercek bir
+      # YAML ayristiricisiyla okur; arac/ altindakiler satir tabanli. 29 Eylul
+      # 2026'ya kadar 41 ajanin tirnaksiz description'inda ": " vardi:
+      # dogrula.js gecti, YAML "mapping values are not allowed here" dedi ve
+      # Claude Code bu ajanlarin tools/disallowedTools dahil butun alanlarini
+      # sessizce dusurdu -- salt okur ajanlar yazabilir hale geldi.
+      - name: Frontmatter gercek YAML mi
+        run: |
+          python3 -c 'import yaml' 2>/dev/null || python3 -m pip install --quiet --break-system-packages pyyaml
+          python3 - <<'PY'
+          import glob, re, sys, yaml
+          desen = ["agents/*.md", "commands/*.md", "skills/*/SKILL.md",
+                   ".cursor/agents/*.md", ".opencode/agents/*.md", ".github/agents/*.md"]
+          dosyalar = sorted(p for d in desen for p in glob.glob(d))
+          if not glob.glob("agents/*.md"):
+              sys.exit("::error::agents/*.md bulunamadi")
+          hata = 0
+          for p in dosyalar:
+              try:
+                  m = re.match(r"---\n(.*?)\n---[ \t]*(?:\n|$)", open(p, encoding="utf-8").read(), re.S)
+                  assert m, "frontmatter yok"
+                  fm = yaml.safe_load(m.group(1))
+                  assert isinstance(fm, dict), "frontmatter bir esleme degil"
+                  assert isinstance(fm.get("description"), str) and fm["description"].strip(), "description metin degil ya da bos"
+                  for alan in ("tools", "disallowedTools"):  # "Read, Grep" da gecerli bir yazim
+                      v = fm.get(alan, "")
+                      assert isinstance(v, str) or (isinstance(v, list) and all(isinstance(x, str) for x in v)), alan + " metin ya da metin listesi degil"
+              except Exception as e:
+                  hata += 1
+                  print("::error file=%s::%s" % (p, " ".join(str(e).split())))
+          print("frontmatter: %d dosya, %d hata" % (len(dosyalar), hata))
+          if hata:
+              print("Deger ': ' iceriyorsa cift tirnaga al; icteki \" -> \\\" , \\ -> \\\\ olur.")
+          sys.exit(1 if hata else 0)
+          PY
+
       - name: Komut ve beceri dosyalari
         run: node arac/eklenti-dogrula.js
 

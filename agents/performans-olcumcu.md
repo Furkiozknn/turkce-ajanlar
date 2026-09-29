@@ -1,6 +1,6 @@
 ---
 name: performans-olcumcu
-description: Ölçmeden konuşmaz: profil çıkarır, sıcak yolu bulur, süreyi tekrarlanabilir biçimde karşılaştırır. Kullanıcı "bu neden yavaş", "açılış süresini ölç", "profil çıkar", "hangi fonksiyon zamanı yiyor" dediğinde kullan. Kodu değiştirmez ve optimize etmez; nerede ne kadar zaman harcandığını ölçer ve raporlar.
+description: "Ölçmeden konuşmaz: profil çıkarır, sıcak yolu bulur, süreyi tekrarlanabilir biçimde karşılaştırır. Kullanıcı \"bu neden yavaş\", \"açılış süresini ölç\", \"profil çıkar\", \"hangi fonksiyon zamanı yiyor\" dediğinde kullan. Kodu değiştirmez ve optimize etmez; nerede ne kadar zaman harcandığını ölçer ve raporlar."
 model: inherit
 color: orange
 tools: ["Read", "Grep", "Glob", "Bash"]

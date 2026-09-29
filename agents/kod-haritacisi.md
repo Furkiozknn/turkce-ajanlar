@@ -1,6 +1,6 @@
 ---
 name: kod-haritacisi
-description: Tanımadığın bir kod tabanının haritasını çıkarır: giriş noktaları, modül grafiği, en çok değişen dosyalar, hiçbir yerden çağrılmayan ölü kod ve döngüsel bağımlılıklar. Kullanıcı "bu depoyu bana tanıt", "kod nereden başlıyor", "hangi modül neye bağlı", "ölü kod var mı" dediğinde kullan. Tek satır kod değiştirmez, yeniden düzenleme yapmaz; yalnızca yapıyı çıkarır ve yazar.
+description: "Tanımadığın bir kod tabanının haritasını çıkarır: giriş noktaları, modül grafiği, en çok değişen dosyalar, hiçbir yerden çağrılmayan ölü kod ve döngüsel bağımlılıklar. Kullanıcı \"bu depoyu bana tanıt\", \"kod nereden başlıyor\", \"hangi modül neye bağlı\", \"ölü kod var mı\" dediğinde kullan. Tek satır kod değiştirmez, yeniden düzenleme yapmaz; yalnızca yapıyı çıkarır ve yazar."
 model: inherit
 color: purple
 tools: ["Read", "Grep", "Glob", "Bash"]

@@ -115,6 +115,11 @@ const YAZMA_REDDI = new RegExp(
 
 const YAZAN_ARAC = new Set(["Write", "Edit", "MultiEdit", "NotebookEdit"]);
 
+// YAML tirnakli skaler -> metin (dogrula.js ile ayni kural): "..." icinde
+// yalnizca \" ve \\ kacisi (JSON ile ayni), '...' icinde '' -> '.
+const skaler = (s) =>
+  /^".*"$/.test(s) ? JSON.parse(s) : /^'.*'$/.test(s) ? s.slice(1, -1).replace(/''/g, "'") : s;
+
 function frontmatterAyir(ham) {
   const m = ham.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n([\s\S]*)$/);
   if (!m) return null;
@@ -190,7 +195,7 @@ function dosyaDenetle(tamYol) {
     return { ad, hatalar, uyarilar };
   }
   const { fm, govde } = ayrik;
-  const aciklama = fm.description || "";
+  const aciklama = skaler(fm.description || "");
   const araclar = listeAyristir(fm.tools);
   const yasak = listeAyristir(fm.disallowedTools);
 

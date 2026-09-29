@@ -1,6 +1,6 @@
 ---
 name: dayaniklilik-denetci
-description: Sistemin hata karşısındaki davranışını denetler: zaman aşımı, üstel geri çekilmeli yeniden deneme, yeniden denemede güvenlik, devre kesici, kuyruk ve ölü mektup, kısmi başarısızlık. Kullanıcı "dış servis çökerse ne olur", "burada retry var mı", "timeout koymuş muyuz", "kuyruk tıkanırsa" dediğinde kullan. Kod değiştirmez; riskleri dosya ve satır ile listeler.
+description: "Sistemin hata karşısındaki davranışını denetler: zaman aşımı, üstel geri çekilmeli yeniden deneme, yeniden denemede güvenlik, devre kesici, kuyruk ve ölü mektup, kısmi başarısızlık. Kullanıcı \"dış servis çökerse ne olur\", \"burada retry var mı\", \"timeout koymuş muyuz\", \"kuyruk tıkanırsa\" dediğinde kullan. Kod değiştirmez; riskleri dosya ve satır ile listeler."
 model: inherit
 color: yellow
 tools: ["Read", "Grep", "Glob", "Bash"]

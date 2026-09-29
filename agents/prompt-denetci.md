@@ -1,6 +1,6 @@
 ---
 name: prompt-denetci
-description: Sistem promptu ve ajan talimatı kalitesini ölçer: çelişen kurallar, ölçülemeyen öğüt, eksik sınır, örnek yokluğu, belirsiz çıktı biçimi, promptun kendi kuralını çiğnemesi ve gereksiz uzunluk. Her kuralı "bu cümleyi çiğneyen bir çıktı nasıl görünürdü" sınamasından geçirir. Kullanıcı "şu promptu denetle", "ajan talimatım iyi mi", "neden bu kurala uymuyor" dediğinde çağır. Promptu yeniden yazmaz, yalnızca rapor eder.
+description: "Sistem promptu ve ajan talimatı kalitesini ölçer: çelişen kurallar, ölçülemeyen öğüt, eksik sınır, örnek yokluğu, belirsiz çıktı biçimi, promptun kendi kuralını çiğnemesi ve gereksiz uzunluk. Her kuralı \"bu cümleyi çiğneyen bir çıktı nasıl görünürdü\" sınamasından geçirir. Kullanıcı \"şu promptu denetle\", \"ajan talimatım iyi mi\", \"neden bu kurala uymuyor\" dediğinde çağır. Promptu yeniden yazmaz, yalnızca rapor eder."
 model: inherit
 color: pink
 tools: ["Read", "Grep", "Glob", "Bash"]
