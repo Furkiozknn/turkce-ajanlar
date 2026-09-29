@@ -9,6 +9,28 @@ version" der ve yeni ajanlar kullanıcıya hiç ulaşmaz. Bu yüzden `agents/`,
 Biçim Keep a Changelog düzenine yakındır; sürümler SemVer izler (`0.x`
 boyunca küçük sürüm uyumu bozabilir).
 
+## [Yayınlanmamış]
+
+Web arayüzü ve README ilk ekranı yenilendi; ajan, komut, beceri ve kanca
+davranışı değişmedi (sürüm numarası artmadı).
+
+### Değişti
+- Site FRK-OS kimliğinde: siyah zemin, krem yazı, sarı vurgu, League Gothic
+  başlık, JetBrains Mono etiket (ikisi de gömülü, OFL: `arac/yazi/`).
+- Arayüz Türkçe ve İngilizce (tarayıcı diline göre, seçim hatırlanır).
+- Katalog gruba ve yetkiye göre süzülüyor; ilk ekranda tek satır kurulum
+  ve kopyala düğmesi, "ne zaman kullanılır / kullanılmaz".
+- Ajanların tam markdown'ı `web/tam.js` içinde, sayfa yüklendikten sonra geliyor.
+- README ilk ekranı: tek cümle, tek satır kurulum, gerçek çıktılı demo
+  (`docs/demo/`, `node arac/demo-uret.js`), kullanılır/kullanılmaz tablosu.
+
+### Düzeltildi
+- README'nin ajan tablosunda `zaman-denetci` eksikti (71 ajandan 70'i listeliydi).
+- Erişilebilirlik: Lighthouse 94 → 100 (kontrast, ad uyumsuzluğu, `main` bölgesi).
+
+### Kaldırıldı
+- `docs/reel/` (sesli tanıtım) ve eski `assets/demo.gif`: kaynakları depoda yoktu, yeniden üretilemiyordu.
+
 ## [0.4.1] — 29 Eylül 2026
 
 Güvenlik düzeltmesi. 0.4.0'daki 41 ajan dosyasında tırnaksız `description:`

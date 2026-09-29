@@ -1,0 +1,29 @@
+$ claude plugin validate .
+Validating marketplace manifest: .\.claude-plugin\marketplace.json
+
+✔ Validation passed
+[cikis kodu 0]
+
+$ node arac/dogrula.js | tail -n 3
+  OK    agents/zaman-denetci.md
+
+Sonuc: 71/71 dosya gecti, 0 hata, 0 uyari
+[cikis kodu 0]
+
+$ node arac/sinir-denetle.js --kati | tail -n 3
+
+
+Sonuc: 71/71 dosya temiz, 0 hata, 0 uyari
+[cikis kodu 0]
+
+$ node arac/tetik-cakisma.js | tail -n 3
+        dar: kod-gozden-gecirici  |  genis: gozlemlenebilirlik-mimari
+
+71 ajan, 273 tetikleyici ifade, 0 tam cakisma, 2 icerme, 0 ifadesiz ajan
+[cikis kodu 0]
+
+$ node arac/web-uret.js | head -n 3
+Uretildi: .\web\index.html
+  ajan sayisi : 71 (yazabilen 15, salt okur 56)
+  gruplar     : Teslim ve işletme | API ve dayanıklılık | Süreç ve ortam | Arayüz ve ürün | Keşif | Güvenlik ve gizlilik | Belge ve dil | Başarım | Doğruluk | Koordinasyon | Veri
+[cikis kodu 0]

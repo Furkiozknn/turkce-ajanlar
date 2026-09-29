@@ -128,9 +128,9 @@ jobs:
       - name: Web arayuzu guncel mi
         run: |
           node arac/web-uret.js
-          if ! git diff --exit-code --quiet -- web/index.html; then
+          if ! git diff --exit-code --quiet -- web/index.html web/tam.js; then
             echo "::error file=web/index.html::web/index.html bayat. Calistir: node arac/web-uret.js ve commit'le."
-            git --no-pager diff --stat -- web/index.html
+            git --no-pager diff --stat -- web/index.html web/tam.js
             exit 1
           fi
           echo "web/index.html kaynakla uyumlu."
