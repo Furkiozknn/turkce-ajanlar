@@ -1,11 +1,34 @@
 ![turkce-ajanlar — Claude Code için Türkçe alt-ajan seti](assets/banner.svg)
 
-<p align="center"><img src="docs/reel/reel.gif" alt="turkce-ajanlar - 15 saniyelik tanıtım videosu" width="720"></p>
-<p align="center"><sub><a href="docs/reel/reel.mp4">Sesli MP4 sürümü</a></sub></p>
+**Claude Code için 71 Türkçe alt-ajan: Türkçe rapor yazar, Windows'un tuzaklarını bilir ve neyi yapmayacağını baştan söyler.**
 
-![Kadronun tamamı doğrulanıyor ve aynı kaynak Cursor, OpenCode, Copilot ve Codex'e aktarılıyor](assets/demo.gif)
+```bash
+claude plugin marketplace add Furkiozknn/turkce-ajanlar; claude plugin install turkce-ajanlar@turkce-ajanlar
+```
 
-<sub>Gerçek çıktı: <code>node arac/dogrula.js</code> kadronun tamamını biçim ve alan kurallarına karşı denetliyor, <code>node arac/disari-aktar.js</code> aynı kaynaktan dört hedefi üretiyor ve her birinin senkron olduğunu söylüyor.</sub>
+<p align="center"><img src="docs/demo/demo.gif" alt="Gerçek terminal çıktısı: claude plugin validate, ajan doğrulayıcı, sınır sözleşmesi ve yönlendirme denetimi 71 ajanın hepsinde geçiyor" width="720"></p>
+
+<sub>20 saniyeye yakın demo, uydurma değil: <code>docs/demo/komutlar.txt</code> içindeki komutlar bu depoda gerçekten koşturuldu, çıktı olduğu gibi oynatılıyor (<code>node arac/demo-uret.js</code> yeniden üretir).</sub>
+
+| Ne zaman kullanılır | Ne zaman kullanılmaz |
+|---|---|
+| Claude Code'dan Türkçe rapor ve Türkçe biçim (ondalık virgül, gün.ay.yıl) istiyorsan | Çıktı dili önemli değilse: büyük İngilizce koleksiyonlar (ör. `wshobson/agents`) daha geniştir |
+| Windows/PowerShell 5.1 makinesinde çalışıyorsan (cp1254, `&&` yok, heredoc ters bölüyü yutar) | Yalnız iki üç ajana ihtiyacın varsa eklentinin tamamını kurma; istediklerini `.claude/agents/` altına kopyala ([Dosya kopyalayarak](#dosya-kopyalayarak)) |
+| Bir ajanın neyi yapmayacağını baştan bilmek istiyorsan (56'sı salt okur, 15'i dosya yazabilir) | Kodu senin yerine değiştirmesini bekliyorsan: ajanların çoğu bilerek yalnızca okur ve rapor yazar |
+
+Kurulumdan sonra yeni bir oturumda işini normal cümleyle iste — *"şu
+değişikliği gözden geçir"* → `kod-gozden-gecirici`. Ayrıntı:
+[Kurulum](#kurulum), [Kullanım](#kullanım).
+
+**Canlı katalog (TR/EN arayüz): [furkiozknn.github.io/turkce-ajanlar](https://furkiozknn.github.io/turkce-ajanlar/)**
+— 71 ajanın hepsi, Türkçe harf kurallarına uyan arama, gruba ve yetkiye
+göre süzme, her ajanın tam tanımı ve kopyala düğmesi. Ajan açıklamaları
+Türkçe kalır; çevrilen yalnız arayüzdür.
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/ekran-goruntusu-koyu.png">
+  <img alt="Web arayüzü: 71 ajan, tek satır kurulum, arama, grup ve yetki süzgeçleri" src="assets/ekran-goruntusu.png">
+</picture>
 
 <details>
 <summary><strong>In English</strong> — what this is and why it is in Turkish</summary>
@@ -42,35 +65,6 @@ Everything below is in Turkish on purpose.
 [![Bağımlılık: 0](https://img.shields.io/badge/ba%C4%9F%C4%B1ml%C4%B1l%C4%B1k-0-166534?style=flat-square)](#web-arayüzü)
 [![Lisans: MIT](https://img.shields.io/badge/lisans-MIT-1f6feb?style=flat-square)](LICENSE)
 [![dogrula](https://github.com/Furkiozknn/turkce-ajanlar/actions/workflows/dogrula.yml/badge.svg)](https://github.com/Furkiozknn/turkce-ajanlar/actions/workflows/dogrula.yml)
-
-**Claude Code için Türkçe alt-ajan seti.** Bir İngilizce koleksiyonun
-çevirisi değil — az sayıda, gerçekten kullanılan, ve çalıştığı makinenin
-tuzaklarını içine gömmüş ajanlar.
-
-**Canlı katalog: [furkiozknn.github.io/turkce-ajanlar](https://furkiozknn.github.io/turkce-ajanlar/)**
-— 71 ajanın hepsi, Türkçe harf kurallarına uyan arama, her ajanın tam
-tanımı ve kopyala düğmesi. Kurmadan önce ne aldığını orada gör.
-
-**Hızlı başlangıç** (Claude Code kurulu olmalı):
-
-```bash
-claude plugin marketplace add Furkiozknn/turkce-ajanlar
-claude plugin install turkce-ajanlar@turkce-ajanlar
-claude plugin details turkce-ajanlar   # 71 ajan, 5 komut/beceri, 1 kanca
-```
-
-Sonra yeni bir oturumda işini normal cümleyle iste — *"şu değişikliği
-gözden geçir"* → `kod-gozden-gecirici`. Ayrıntı: [Kurulum](#kurulum),
-[Kullanım](#kullanım).
-
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="assets/ekran-goruntusu-koyu.png">
-  <img alt="Web arayüzü: 71 ajan, arama kutusu, her kart için tetikleyici ifadeler ve ajanın sınırı" src="assets/ekran-goruntusu.png">
-</picture>
-
-<sub><code>web/index.html</code> — tek dosya, bağımlılık yok,
-<code>file://</code> ile de açılır. Ajan verisi <code>agents/*.md</code>
-içinden üretilip HTML'e gömülür.</sub>
 
 ## Neden bu var
 
@@ -192,6 +186,7 @@ gerekli olanları bağımlılık sırasına göre dalgalar hâlinde çağırır.
 | `tip-denetci` | Tip güvenliğini ölçer | Tip hatalarını kendisi düzeltmez ve dosya… |
 | `eszamanlilik-denetci` | Eşzamanlılık arızalarını avlar: yarış durumu, paylaşılan değişken, kilit sırası ve kilitlenme,… | Kodu değiştirmez; arızanın hangi iki akışın… |
 | `tekrar-avcisi` | Kopyalanmış kodu ve mantık tekrarını bulur: aynı işi yapan iki işlev, kopyala yapıştır bloklar, üç… | Her tekrarı arıza saymaz, erken soyutlamanın… |
+| `zaman-denetci` | Tarih ve saat kaynaklı hataları arar: zaman dilimi olmadan saklanan damga, yerel saatle yapılan aritmetik, yaz saati geçişinde kaybolan ya da iki kez yaşanan saat,… | Kodu değiştirmez; hangi satırın hangi varsayımı yaptığını ve nerede bozulduğunu gösterir |
 | `hata-avcisi` | Başarısız bir çalıştırmanın kök nedenini bulur — log dosyalarını, hata çıktılarını, yığın izlerini ve… | Kodu kendisi düzeltmez; en küçük düzeltmeyi önerir |
 
 ### Güvenlik ve gizlilik
@@ -574,8 +569,14 @@ yazabilir. Salt okuma vaadi ajan gövdesindeki kuralla, OpenCode'da ise
 
 Canlı: **https://furkiozknn.github.io/turkce-ajanlar/**
 
-`web/index.html` — tek dosya, bağımlılık yok, `file://` ile de açılır.
-Ajan verisi `agents/*.md` frontmatter'ından üretilip HTML'e gömülür.
+`web/index.html` — bağımlılık yok (yazı tipleri gömülü, Google Fonts'a
+bağlantı yok), `file://` ile de açılır. Ajan verisi `agents/*.md`
+frontmatter'ından üretilip HTML'e gömülür; her ajanın tam markdown'ı
+ayrı `web/tam.js` dosyasında durur ve sayfa yüklendikten sonra arka
+planda gelir (ilk boyamayı ~400 KB yavaşlatmasın diye) — ikisini birlikte
+tut. Arayüz Türkçe ve İngilizce: dil tarayıcı dilinden seçilir (`tr*` ise
+Türkçe), sağ üstten değiştirilir, seçim hatırlanır. Ajan açıklamaları ve
+tetikleyici ifadeler her iki dilde de Türkçedir.
 `master`'a giden bir commit `web/index.html`'i değiştirdiğinde
 `.github/workflows/yayinla.yml` sayfayı GitHub Pages'e yeniden yayınlar;
 sayfa kaynakla uyumsuzsa yayın yapılmaz.
@@ -590,8 +591,11 @@ kurallarına uyar (`TÜRKÇE` yazınca `türkçe` bulunur). `/` tuşu aramaya
 atlar, `Esc` aramayı temizler. Her ajanın detayında tam markdown ve
 "kopyala" düğmesi var — pano engellenirse metni seçer, `Ctrl+C` yeter.
 
-Tema sistem tercihine uyar, sağ üstten değiştirilebilir ve seçim
-tarayıcıda hatırlanır.
+Kimlik FRK-OS: siyah zemin, krem yazı, sarı vurgu. Açık tema sağ
+üstten seçilir ve tarayıcıda hatırlanır; sistem tercihi izlenmez.
+Katalog gruba (README'deki 11 grup) ve yetkiye (salt okur / yazabilir)
+göre süzülür. Ayrıntı: [docs/TASARIM.md](docs/TASARIM.md),
+[docs/DENETIM.md](docs/DENETIM.md).
 
 Yukarıdaki ekran görüntüleri de üretilmiş dosyadır — arayüz değişince
 yenilenir:
@@ -608,7 +612,7 @@ aynısı; API'ye çıkmaz, para harcamaz, birkaç saniye sürer):
 
 ```bash
 npm test          # 13 adım: ajan/eklenti/sınır/yönlendirme kapıları ve araçların kendi testleri
-npm run test:web  # 45 tarayıcı kontrolü; ayrı pencerede: node arac/sunucu.js 8788
+npm run test:web  # 99 tarayıcı kontrolü; ayrı pencerede: node arac/sunucu.js 8788
 ```
 
 `test:web` Playwright ister ama onu bağımlılık olarak kurmaz; bulamazsa
@@ -661,7 +665,7 @@ kadronun temiz geçtiğini doğrular).
 Doğrulayıcının kendi testi: `node arac/dogrula-test.js` (geçici klasörde
 27 senaryo için bozuk/eksik/aşırı büyük örnekler üretir, her kuralın
 gerçekten yakaladığını gösterir). Arayüzün kendi testi de var:
-`node arac/web-test.js` (gerçek tarayıcıda 45 kontrol; ayrı bir pencerede
+`node arac/web-test.js` (gerçek tarayıcıda 99 kontrol; ayrı bir pencerede
 `node arac/sunucu.js 8788` gerekir). İkisi de CI'da koşar. Yerel sunucunun
 kendi testi `node arac/sunucu-test.js` (11 kontrol: bozuk URL isteği sunucuyu
 düşürmez; `../`, kodlanmış ayırıcı ya da dışarı işaret eden sembolik bağla

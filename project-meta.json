@@ -52,14 +52,14 @@
       "assets/ekran-goruntusu.png"
     ],
     "gifs": [
-      "assets/demo.gif"
+      "docs/demo/demo.gif"
     ],
     "videos": []
   },
   "tests": {
-    "count": 198,
-    "source": "27 validator + 33 format + 45 browser + 23 team-runner + 19 trigger-collision + 14 boundary + 4 module-type + 11 local-server + 22 banner, each from its own printed line",
-    "measured": "2026-09-25"
+    "count": 252,
+    "source": "27 validator + 33 format + 99 browser + 23 team-runner + 19 trigger-collision + 14 boundary + 4 module-type + 11 local-server + 22 banner, each from its own printed line",
+    "measured": "2026-09-29"
   },
   "ci": {
     "workflows": [

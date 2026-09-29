@@ -16,6 +16,7 @@ on:
     branches: [master]
     paths:
       - web/index.html
+      - web/tam.js
       - .github/workflows/yayinla.yml
   workflow_dispatch:
 
@@ -47,7 +48,7 @@ jobs:
       - name: Arayuz kaynakla uyumlu mu
         run: |
           node arac/web-uret.js
-          if ! git diff --exit-code --quiet -- web/index.html; then
+          if ! git diff --exit-code --quiet -- web/index.html web/tam.js; then
             echo "::error::web/index.html bayat; once node arac/web-uret.js calistirip commit'le."
             exit 1
           fi

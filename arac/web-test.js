@@ -72,7 +72,7 @@ function ol(ad, kosul, ek) {
     await p.waitForTimeout(60);
     return {
       n: await p.locator(".kart").count(),
-      ilk: (await p.locator(".kart").count()) ? await p.locator(".kart h2").first().innerText() : "",
+      ilk: (await p.locator(".kart").count()) ? await p.locator(".kart h3").first().innerText() : "",
       derin: !(await p.locator("#derin-not").isHidden()),
     };
   }
@@ -258,6 +258,210 @@ function ol(ad, kosul, ek) {
     kt.zemin.match(/\d+/g).map(Number).reduce((a, b) => a + b, 0) < 200, kt.zemin);
   ol("tema dugmesi durumu yaziyor", /Açık tema/.test(kt.dugme), kt.dugme);
   await kctx.close();
+
+  // ------------------------------------------------- yenileme (29 Eylul 2026)
+  // Ilk 30 saniye, katalog suzgecleri, TR/EN kabugu, kontrast, sade hareket.
+  const kok2 = path.resolve(__dirname, "..");
+  const ajanDosyalari = fs.readdirSync(path.join(kok2, "agents")).filter((f) => f.endsWith(".md"));
+  const yazanSayisi = ajanDosyalari.filter((f) => {
+    const m = fs.readFileSync(path.join(kok2, "agents", f), "utf8").match(/^tools:\s*(.*)$/m);
+    return m && /"(Write|Edit)"/.test(m[1]);
+  }).length;
+
+  // WCAG kontrast orani: sayfada hesaplanir (renk uzayi tarayicinin kendisinden).
+  const kontrastOlc = (pg, secici) => pg.evaluate((sel) => {
+    const yuk = (c) => {
+      const m = c.match(/rgba?\(([^)]+)\)/); const v = m[1].split(/[ ,\/]+/).filter(Boolean).map(Number);
+      return { r: v[0], g: v[1], b: v[2], a: v.length > 3 ? v[3] : 1 };
+    };
+    const lum = ({ r, g, b }) => {
+      const f = (x) => { x /= 255; return x <= 0.03928 ? x / 12.92 : Math.pow((x + 0.055) / 1.055, 2.4); };
+      return 0.2126 * f(r) + 0.7152 * f(g) + 0.0722 * f(b);
+    };
+    const zemin = (e) => {
+      for (let n = e; n; n = n.parentElement) {
+        const c = yuk(getComputedStyle(n).backgroundColor);
+        if (c.a > 0.95) return c;
+      }
+      return { r: 14, g: 13, b: 11, a: 1 };
+    };
+    return [...document.querySelectorAll(sel)].filter((e) => e.offsetParent !== null || e === document.body).slice(0, 6).map((e) => {
+      const f = yuk(getComputedStyle(e).color), z = zemin(e);
+      const a = lum(f), b = lum(z);
+      return { sel, oran: (Math.max(a, b) + 0.05) / (Math.min(a, b) + 0.05) };
+    });
+  }, secici);
+  const KONTRAST_SECICILER = [
+    "body", ".lead", ".marka", ".kur-etiket", ".kur-satir code", ".kur-not", ".kutu li", ".kutu.evet h2",
+    ".sayac", "kbd", ".dil-notu", ".suz", ".suz[aria-pressed=true]", ".dil button", ".dil button[aria-pressed=true]",
+    ".tema-dugme", "button.eylem", ".kart h3", ".kart p", ".kart .sinir", ".cip.soz", ".yaz-etiket", ".ekler-not", ".ek-aciklama",
+    ".tur", "footer p", "footer a", "a",
+  ];
+
+  console.log("\n— Ilk 30 saniye (masaustu ve mobil) —");
+  for (const [ad, vp, mob] of [["masaustu", { width: 1280, height: 800 }, false], ["mobil", { width: 390, height: 844 }, true]]) {
+    const c = await tarayici.newContext({ viewport: vp, isMobile: mob, hasTouch: mob, locale: "tr-TR" });
+    const g = await c.newPage();
+    await g.goto(ADRES, { waitUntil: "load" });
+    const ilk = await g.evaluate(() => {
+      const r = (s) => { const e = document.querySelector(s); return e ? e.getBoundingClientRect() : null; };
+      const h1 = r("h1"), kur = r("#kur-kopyala"), komut = r("#kur-komut");
+      return {
+        h1: document.querySelector("h1").innerText,
+        h1Alt: h1.bottom, kurAlt: kur.bottom, komutAlt: komut.bottom, kurBoy: kur.height,
+        vh: window.innerHeight,
+        main: document.querySelectorAll("main").length,
+        atla: !!document.querySelector("a.atla[href='#icerik']"),
+        h1Sayisi: document.querySelectorAll("h1").length,
+      };
+    });
+    const yazi = await g.evaluate(async () => { await document.fonts.ready; return [document.fonts.check('40px "League Gothic"'), document.fonts.check('13px "JetBrains Mono"'), getComputedStyle(document.querySelector("h1")).fontFamily]; });
+    ol(ad + ": gomulu yazi tipleri (League Gothic, JetBrains Mono) gercekten yuklendi", yazi[0] && yazi[1], yazi.join(" | "));
+    ol(ad + ": h1 tek ve tek cumlelik tanim var", ilk.h1Sayisi === 1 && /türkçe/i.test(ilk.h1) && /71 alt-ajan/.test(await g.locator(".lead").innerText()), ilk.h1);
+    ol(ad + ": kurulum komutu ve kopyala dugmesi ilk ekranda", ilk.kurAlt <= ilk.vh && ilk.komutAlt <= ilk.vh, ilk.kurAlt + " <= " + ilk.vh);
+    ol(ad + ": kopyala dugmesi dokunma icin yeterli", ilk.kurBoy >= 44, ilk.kurBoy + "px");
+    ol(ad + ": tek main bolgesi ve icerige atla baglantisi", ilk.main === 1 && ilk.atla);
+    const komut = await g.locator("#kur-komut").innerText();
+    ol(ad + ": kurulum satiri iki gercek komutu iceriyor",
+      /^claude plugin marketplace add Furkiozknn\/turkce-ajanlar; claude plugin install turkce-ajanlar@turkce-ajanlar$/.test(komut), komut);
+    await c.grantPermissions(["clipboard-read", "clipboard-write"]).catch(() => {});
+    await g.click("#kur-kopyala");
+    await g.waitForTimeout(150);
+    const pano = await g.evaluate(() => navigator.clipboard.readText().catch(() => "?"));
+    ol(ad + ": kopyala dugmesi kurulum satirini panoya koyuyor", pano === komut, pano.slice(0, 40));
+    ol(ad + ": kopyalayinca dugme geri bildirim veriyor", /Kopyalandı/.test(await g.locator("#kur-kopyala").innerText()));
+    const tasma = await g.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
+    ol(ad + ": yatay tasma yok (yeni ilk ekran)", tasma <= 0, tasma + "px");
+    await c.close();
+  }
+
+  console.log("\n— Katalog suzgecleri —");
+  {
+    const c = await tarayici.newContext({ viewport: { width: 1280, height: 900 }, locale: "tr-TR" });
+    const g = await c.newPage();
+    await g.goto(ADRES, { waitUntil: "load" });
+    const grupSayisi = await g.locator("#grup-suz .suz").count();
+    ol("grup suzgeci: Tumu + 11 grup", grupSayisi === 12, grupSayisi + " dugme");
+    const grupsuz = await g.evaluate(() => AJANLAR.filter((a) => !a.grup).map((a) => a.ad));
+    ol("her ajan bir gruba ait (README'de eksik ajan yok)", grupsuz.length === 0, grupsuz.join(", "));
+    await g.locator("#grup-suz .suz", { hasText: "Güvenlik" }).click();
+    const gs = await g.evaluate(() => ({ n: document.querySelectorAll(".kart").length,
+      hepsiAyni: AJANLAR.filter((a) => a.grup === "Güvenlik ve gizlilik").length }));
+    ol("grup suzgeci yalniz o grubu gosteriyor", gs.n === gs.hepsiAyni && gs.n > 0 && gs.n < 71, gs.n + " kart");
+    ol("basili grup dugmesi aria-pressed=true", (await g.locator("#grup-suz .suz[aria-pressed=true]").count()) === 1);
+    await g.fill("#arama", "sir");
+    await g.waitForTimeout(80);
+    ol("arama grup suzgeciyle birlikte calisiyor", (await g.locator(".kart").count()) >= 1 && (await g.locator(".kart h3").first().innerText()).includes("sir-avcisi"));
+    await g.fill("#arama", "");
+    await g.locator("#grup-suz .suz").first().click();
+    ol("Tumu suzgeci temizliyor", (await g.locator(".kart").count()) === 71);
+
+    await g.locator("#yetki-suz .suz[data-yetki=oku]").click();
+    const oku = await g.locator(".kart").count();
+    await g.locator("#yetki-suz .suz[data-yetki=yaz]").click();
+    const yaz = await g.locator(".kart").count();
+    ol("yetki suzgeci: yazabilen ajan sayisi agents/ ile ayni", yaz === yazanSayisi && oku === 71 - yazanSayisi, "yaz=" + yaz + " oku=" + oku + " beklenen yaz=" + yazanSayisi);
+    ol("yazabilen kartlarda 'yazabilir' etiketi var", (await g.locator(".kart .yaz-etiket").count()) === yaz);
+    await g.locator("#yetki-suz .suz").first().click();
+    ol("sayac suzgece gore guncelleniyor", /71 ajan/.test(await g.locator("#sayac").innerText()));
+    await g.locator("#grup-suz .suz", { hasText: "Veri" }).first().click();
+    ol("sayac 'k / n ajan' bicimine geciyor", /^\d+ \/ 71 ajan$/.test((await g.locator("#sayac").innerText()).trim()), await g.locator("#sayac").innerText());
+    await c.close();
+  }
+
+  console.log("\n— Dil (TR / EN) —");
+  {
+    // Varsayilan: tarayici dili.
+    const c = await tarayici.newContext({ viewport: { width: 1280, height: 900 }, locale: "en-US" });
+    const g = await c.newPage();
+    const hata = [];
+    g.on("pageerror", (e) => hata.push(e.message));
+    await g.goto(ADRES, { waitUntil: "load" });
+    ol("en-US tarayici: arayuz Ingilizce basliyor", (await g.evaluate(() => document.documentElement.lang)) === "en" && /Turkish agents/i.test(await g.locator("h1").innerText()));
+    ol("EN: kurulum, arama ve suzgec metinleri Ingilizce",
+      /install/i.test(await g.locator(".kur-etiket").innerText()) &&
+      /Search/.test(await g.locator("#arama").getAttribute("placeholder")) &&
+      /All/.test(await g.locator("#grup-suz .suz").first().innerText()) &&
+      /Read-only/.test(await g.locator("#yetki-suz .suz[data-yetki=oku]").innerText()));
+    ol("EN: 'Turkce aciklamalar' durust notu gorunuyor", await g.locator("#dil-notu").isVisible());
+    ol("EN: grup adlari cevrilmis", /Security/.test(await g.locator("#grup-suz").innerText()));
+    ol("EN: ajan aciklamasi Turkce kaliyor (uydurma ceviri yok)", /[ıüğşçö]|ajan|denetle|inceler|bulur/i.test(await g.locator(".kart p").first().innerText()));
+    ol("EN: komut/beceri etiketleri cevrildi", /^(command|skill)$/i.test((await g.locator("#ekler-liste .tur").first().innerText()).trim()));
+    await g.locator(".kart").first().click();
+    await g.waitForTimeout(150);
+    ol("EN: detay penceresi Ingilizce", /what it does/i.test(await g.locator(".detay-govde").innerText()) && /install and use/i.test(await g.locator(".detay-govde").innerText()));
+    await g.keyboard.press("Escape");
+    ol("EN: altbilgi Ingilizce", /Last updated/.test(await g.locator("footer").innerText()));
+    // Elle degistirme ve hatirlama.
+    await g.click("#dil-tr");
+    ol("TR dugmesi arayuzu Turkceye ceviriyor", /türkçe ajanlar/i.test(await g.locator("h1").innerText()) && (await g.evaluate(() => document.documentElement.lang)) === "tr");
+    ol("secim localStorage'a yaziliyor", (await g.evaluate(() => localStorage.getItem("dil"))) === "tr");
+    ol("dil dugmesi aria-pressed durumunu tasiyor", (await g.locator("#dil-tr").getAttribute("aria-pressed")) === "true" && (await g.locator("#dil-en").getAttribute("aria-pressed")) === "false");
+    await g.reload({ waitUntil: "load" });
+    ol("secim yenilemeden sonra da geciyor (en-US tarayicida bile Turkce)", (await g.evaluate(() => document.documentElement.lang)) === "tr");
+    await g.click("#dil-en");
+    ol("EN dugmesi geri ceviriyor", /Turkish agents/i.test(await g.locator("h1").innerText()));
+    ol("dil degisince konsol hatasi yok", hata.length === 0, hata.join("|"));
+    await c.close();
+
+    const ct = await tarayici.newContext({ viewport: { width: 1280, height: 900 }, locale: "tr-TR" });
+    const gt = await ct.newPage();
+    await gt.goto(ADRES, { waitUntil: "load" });
+    ol("tr-TR tarayici: arayuz Turkce basliyor", (await gt.evaluate(() => document.documentElement.lang)) === "tr");
+    ol("TR: 'Turkce aciklamalar' notu gizli", await gt.locator("#dil-notu").isHidden());
+    await ct.close();
+  }
+
+  console.log("\n— Kontrast (WCAG 2.1 AA, en az 4.5:1) —");
+  for (const [tema, dil] of [["dark", "tr-TR"], ["light", "tr-TR"], ["dark", "en-US"], ["light", "en-US"]]) {
+    const c = await tarayici.newContext({ viewport: { width: 1280, height: 900 }, locale: dil });
+    const g = await c.newPage();
+    await g.addInitScript((t) => { try { localStorage.setItem("tema", t); } catch {} }, tema);
+    await g.goto(ADRES, { waitUntil: "load" });
+    const dusuk = [];
+    for (const s of KONTRAST_SECICILER) {
+      for (const o of await kontrastOlc(g, s)) if (o.oran < 4.5) dusuk.push(s + "=" + o.oran.toFixed(2));
+    }
+    // acik detay penceresi de
+    await g.locator(".kart").first().click();
+    await g.waitForTimeout(650);
+    for (const s of [".detay-govde h3", "#d-aciklama", ".meta", "ul.tetik li", ".adim-baslik", ".adim-alt", "pre", "ol.adimlar > li.etkin .adim-baslik", ".satir-kod code", ".detay-ust h2"]) {
+      for (const o of await kontrastOlc(g, s)) if (o.oran < 4.5) dusuk.push(s + "=" + o.oran.toFixed(2));
+    }
+    ol("kontrast: " + tema + " tema, " + dil + " (tum metin >= 4.5:1)", dusuk.length === 0, dusuk.join(", "));
+    await c.close();
+  }
+
+  console.log("\n— Sade hareket ve klavye —");
+  {
+    const c = await tarayici.newContext({ viewport: { width: 1280, height: 900 }, locale: "tr-TR", reducedMotion: "reduce" });
+    const g = await c.newPage();
+    await g.goto(ADRES, { waitUntil: "load" });
+    await g.locator(".kart").first().click();
+    await g.waitForTimeout(100);
+    const an = await g.evaluate(() => getComputedStyle(document.querySelector("dialog")).animationName);
+    ol("prefers-reduced-motion: detay penceresi animasyonsuz", an === "none", an);
+    const gec = await g.evaluate(() => getComputedStyle(document.querySelector(".kart")).transitionDuration);
+    ol("prefers-reduced-motion: kart gecisi kapali", /^0s(, 0s)*$/.test(gec), gec);
+    await c.close();
+
+    const c2 = await tarayici.newContext({ viewport: { width: 1280, height: 900 }, locale: "tr-TR" });
+    const g2 = await c2.newPage();
+    await g2.goto(ADRES, { waitUntil: "load" });
+    const an2 = await (async () => { await g2.locator(".kart").first().click(); await g2.waitForTimeout(80); return g2.evaluate(() => getComputedStyle(document.querySelector("dialog")).animationName); })();
+    ol("normal modda detay penceresi iris animasyonu kullaniyor", an2 === "iris", an2);
+    await g2.keyboard.press("Escape");
+    // Klavye yolu: Tab ile atla baglantisi -> dil -> tema -> kur dugmesi.
+    await g2.goto(ADRES, { waitUntil: "load" });
+    await g2.keyboard.press("Tab");
+    ol("ilk Tab 'icerige atla' baglantisina gidiyor", (await g2.evaluate(() => document.activeElement.className)) === "atla");
+    const sira = [];
+    for (let i = 0; i < 4; i++) { await g2.keyboard.press("Tab"); sira.push(await g2.evaluate(() => document.activeElement.id || document.activeElement.tagName)); }
+    ol("Tab sirasi: TR, EN, tema, kurulum kopyala", sira.join(",") === "dil-tr,dil-en,tema,kur-kopyala", sira.join(","));
+    const halka2 = await g2.evaluate(() => { const s = getComputedStyle(document.activeElement); return s.outlineStyle + " " + s.outlineWidth; });
+    ol("odaktaki kopyala dugmesinin gorunur halkasi var", /solid/.test(halka2) && parseFloat(halka2.split(" ")[1]) >= 2, halka2);
+    await c2.close();
+  }
 
   await tarayici.close();
 

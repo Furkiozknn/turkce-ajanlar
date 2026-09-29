@@ -57,7 +57,7 @@ const CHROME = process.env.CHROME_YOL || undefined;
 
     await sayfa.goto(ADRES, { waitUntil: "networkidle" });
     // Tema secimi localStorage'da hatirlaniyor; her cekim temiz baslasin.
-    await sayfa.evaluate(() => { try { localStorage.clear(); } catch {} });
+    await sayfa.evaluate((t) => { try { localStorage.clear(); localStorage.setItem('tema', t); } catch {} }, c.tema); // site sistem tercihini izlemiyor (FRK-OS siyah varsayilan)
     await sayfa.reload({ waitUntil: "networkidle" });
     await sayfa.waitForTimeout(400);
 
