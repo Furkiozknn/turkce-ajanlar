@@ -9,6 +9,34 @@ version" der ve yeni ajanlar kullanıcıya hiç ulaşmaz. Bu yüzden `agents/`,
 Biçim Keep a Changelog düzenine yakındır; sürümler SemVer izler (`0.x`
 boyunca küçük sürüm uyumu bozabilir).
 
+## [0.4.1] — 29 Eylül 2026
+
+Güvenlik düzeltmesi. 0.4.0'daki 41 ajan dosyasında tırnaksız `description:`
+değeri `: ` içeriyordu ve YAML bu satırda bozuluyordu. Claude Code bu
+ajanları yalnızca dosya adıyla yüklüyor, frontmatter'ın geri kalanını sessizce
+düşürüyordu: `description`, `skills`, `tools` ve `disallowedTools`. Bu yüzden
+salt okur olması gereken 34 ajan da Write ve Edit dahil bütün araçları
+devralıyordu. 0.4.0'ı kuranlar düzeltmeyi `claude plugin update` ile alır.
+
+### Düzeltildi
+- 41 ajanın `description` satırı çift tırnağa alındı. Metin birebir aynı kaldı.
+- `arac/` altındaki ayrıştırıcılar artık tırnaklı değeri çözüyor. Katalog ve
+  dışa aktarılan kopyalarda içerik değişmedi.
+- `arac/web-uret.js` satır sonlarını CRLF'den LF'ye çeviriyor. Windows'ta
+  üretilen katalog artık CI'dakiyle aynı çıkıyor.
+
+### Eklendi
+- CI'ya "Frontmatter gerçek YAML mi" kapısı eklendi. `yaml.safe_load` ile
+  agents, commands ve skills klasörlerini ve dışa aktarılan kopyaları okuyor;
+  bozuk bir dosya bulursa kırmızı yanıyor.
+- `KATKIDA-BULUNMA.md`'ye `: ` içeren açıklamanın nasıl yazılacağını anlatan
+  bir not eklendi.
+
+### Doğrulandı
+- `claude plugin validate .claude-plugin/plugin.json --strict`: 0.4.0'da 41 hata, bu sürümde 0.
+- 71 ajanın 71'inin frontmatter'ı ayrışıyor. `tools` 71 ajanda,
+  `disallowedTools` 56 ajanda liste olarak okunuyor.
+
 ## [0.4.0] — 25 Eylül 2026
 
 0.3.0'dan bu yana kadro sekiz ajandan 71'e çıktı ama sürüm numarası
