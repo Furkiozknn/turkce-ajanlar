@@ -38,7 +38,7 @@
     "turkish",
     "windows"
   ],
-  "summary": "71 Claude Code sub-agents that think in Turkish rather than translate into it - they know PowerShell 5.1 has no &&, that cp1254 kills a Python tool before its first line prints, and that a heredoc eats backslashes. Plus 3 commands, 2 skills and an eval suite. One source, exported to Cursor, OpenCode, Copilot and Codex.",
+  "summary": "Claude Code sub-agents that write in Turkish and know the traps of Turkish Windows (PowerShell 5.1, cp1254), plus commands, skills and an eval suite. Exported to Cursor, OpenCode, Copilot and Codex.",
   "key_features": [
     "71 sub-agents that think in Turkish rather than translate into it",
     "Encodes the traps that actually bite on Turkish Windows: no && in PowerShell 5.1, cp1254 killing a tool before its first line, heredocs eating backslashes",
