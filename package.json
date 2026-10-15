@@ -7,7 +7,7 @@
   "type": "commonjs",
   "license": "MIT",
   "scripts": {
-    "test": "node arac/dogrula.js && node arac/eklenti-dogrula.js && node arac/sinir-denetle.js --kati && node arac/tetik-cakisma.js && node arac/dogrula-test.js && node arac/sinir-denetle-test.js && node arac/tetik-cakisma-test.js && node arac/bicim-kontrol-test.js && node arac/modul-turu-test.js && node arac/ekip-kos-test.js && node arac/sunucu-test.js && node arac/banner-uret-test.js && node arac/disari-aktar-test.js",
+    "test": "node arac/dogrula.js && node arac/eklenti-dogrula.js && node arac/sinir-denetle.js --kati && node arac/tetik-cakisma.js && node arac/dogrula-test.js && node arac/sinir-denetle-test.js && node arac/tetik-cakisma-test.js && node arac/bicim-kontrol-test.js && node arac/modul-turu-test.js && node arac/ekip-kos-test.js && node arac/sunucu-test.js && node arac/banner-uret-test.js && node arac/disari-aktar-test.js && node arac/grup-eklentileri-test.js",
     "test:web": "node arac/web-test.js"
   }
 }

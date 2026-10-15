@@ -1,7 +1,7 @@
 {
   "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
   "name": "turkce-ajanlar",
-  "description": "Turkce alt-ajanlar icin tek eklentilik pazar yeri.",
+  "description": "Turkce alt-ajanlar: tam set (turkce-ajanlar) ve README gruplarindan uretilen on bir grup eklentisi (turkce-ajanlar-<grup>).",
   "owner": {
     "name": "Furkiozknn",
     "email": "121863222+Furkiozknn@users.noreply.github.com"
@@ -14,7 +14,177 @@
       "version": "0.4.1",
       "license": "MIT",
       "category": "development",
-      "keywords": ["turkce", "turkish", "agents", "subagents"]
+      "keywords": [
+        "turkce",
+        "turkish",
+        "agents",
+        "subagents"
+      ]
+    },
+    {
+      "name": "turkce-ajanlar-koordinasyon",
+      "source": "./eklentiler/koordinasyon",
+      "description": "Türkçe alt-ajanlar, yalnız 'Koordinasyon' grubu (1 ajan): proje-koordinatoru. Tam set (71 ajan, komutlar ve kanca) için turkce-ajanlar eklentisi.",
+      "version": "0.4.1",
+      "license": "MIT",
+      "category": "development",
+      "keywords": [
+        "turkce",
+        "turkish",
+        "agents",
+        "subagents",
+        "koordinasyon"
+      ]
+    },
+    {
+      "name": "turkce-ajanlar-kesif",
+      "source": "./eklentiler/kesif",
+      "description": "Türkçe alt-ajanlar, yalnız 'Keşif' grubu (9 ajan): kod-haritacisi, bagimlilik-envanteri, yapilandirma-denetci, veri-modeli-cikarici, surum-gecmisi-analisti, teknik-borc-analisti, surum-uyum-denetci, repo-denetci, mimari-degerlendirici. Tam set (71 ajan, komutlar ve kanca) için turkce-ajanlar eklentisi.",
+      "version": "0.4.1",
+      "license": "MIT",
+      "category": "development",
+      "keywords": [
+        "turkce",
+        "turkish",
+        "agents",
+        "subagents",
+        "kesif"
+      ]
+    },
+    {
+      "name": "turkce-ajanlar-dogruluk",
+      "source": "./eklentiler/dogruluk",
+      "description": "Türkçe alt-ajanlar, yalnız 'Doğruluk' grubu (10 ajan): kod-gozden-gecirici, test-doktoru, test-yazari, kapsam-analisti, sinir-durum-avcisi, tip-denetci, eszamanlilik-denetci, tekrar-avcisi, zaman-denetci, hata-avcisi. Tam set (71 ajan, komutlar ve kanca) için turkce-ajanlar eklentisi.",
+      "version": "0.4.1",
+      "license": "MIT",
+      "category": "development",
+      "keywords": [
+        "turkce",
+        "turkish",
+        "agents",
+        "subagents",
+        "dogruluk"
+      ]
+    },
+    {
+      "name": "turkce-ajanlar-guvenlik",
+      "source": "./eklentiler/guvenlik",
+      "description": "Türkçe alt-ajanlar, yalnız 'Güvenlik ve gizlilik' grubu (7 ajan): guvenlik-denetci, sir-avcisi, girdi-dogrulama-denetci, yetki-denetci, bagimlilik-guvenligi, gizlilik-denetci, mcp-denetci. Tam set (71 ajan, komutlar ve kanca) için turkce-ajanlar eklentisi.",
+      "version": "0.4.1",
+      "license": "MIT",
+      "category": "development",
+      "keywords": [
+        "turkce",
+        "turkish",
+        "agents",
+        "subagents",
+        "guvenlik"
+      ]
+    },
+    {
+      "name": "turkce-ajanlar-basarim",
+      "source": "./eklentiler/basarim",
+      "description": "Türkçe alt-ajanlar, yalnız 'Başarım' grubu (5 ajan): performans-olcumcu, bellek-avcisi, web-performans, sorgu-optimizasyoncu, onbellek-denetci. Tam set (71 ajan, komutlar ve kanca) için turkce-ajanlar eklentisi.",
+      "version": "0.4.1",
+      "license": "MIT",
+      "category": "development",
+      "keywords": [
+        "turkce",
+        "turkish",
+        "agents",
+        "subagents",
+        "basarim"
+      ]
+    },
+    {
+      "name": "turkce-ajanlar-arayuz",
+      "source": "./eklentiler/arayuz",
+      "description": "Türkçe alt-ajanlar, yalnız 'Arayüz ve ürün' grubu (9 ajan): arayuz-gozden-gecirici, erisilebilirlik-denetci, responsive-denetci, tasarim-sistemi-bekcisi, kullanilabilirlik-denetci, hata-mesaji-denetci, yerellestirme-denetci, seo-denetci, oyun-denetci. Tam set (71 ajan, komutlar ve kanca) için turkce-ajanlar eklentisi.",
+      "version": "0.4.1",
+      "license": "MIT",
+      "category": "development",
+      "keywords": [
+        "turkce",
+        "turkish",
+        "agents",
+        "subagents",
+        "arayuz"
+      ]
+    },
+    {
+      "name": "turkce-ajanlar-veri",
+      "source": "./eklentiler/veri",
+      "description": "Türkçe alt-ajanlar, yalnız 'Veri' grubu (4 ajan): veritabani-tasarimci, veri-gocu-ustasi, veri-kalite-denetci, veri-raporcu. Tam set (71 ajan, komutlar ve kanca) için turkce-ajanlar eklentisi.",
+      "version": "0.4.1",
+      "license": "MIT",
+      "category": "development",
+      "keywords": [
+        "turkce",
+        "turkish",
+        "agents",
+        "subagents",
+        "veri"
+      ]
+    },
+    {
+      "name": "turkce-ajanlar-api",
+      "source": "./eklentiler/api",
+      "description": "Türkçe alt-ajanlar, yalnız 'API ve dayanıklılık' grubu (4 ajan): api-tasarimci, api-sozlesme-denetci, dayaniklilik-denetci, gozlemlenebilirlik-mimari. Tam set (71 ajan, komutlar ve kanca) için turkce-ajanlar eklentisi.",
+      "version": "0.4.1",
+      "license": "MIT",
+      "category": "development",
+      "keywords": [
+        "turkce",
+        "turkish",
+        "agents",
+        "subagents",
+        "api"
+      ]
+    },
+    {
+      "name": "turkce-ajanlar-teslim",
+      "source": "./eklentiler/teslim",
+      "description": "Türkçe alt-ajanlar, yalnız 'Teslim ve işletme' grubu (9 ajan): ci-doktoru, paketleme-denetci, surum-yayinci, dagitim-planlayici, geri-alma-planlayici, konteyner-denetci, altyapi-denetci, yedekleme-denetci, maliyet-denetci. Tam set (71 ajan, komutlar ve kanca) için turkce-ajanlar eklentisi.",
+      "version": "0.4.1",
+      "license": "MIT",
+      "category": "development",
+      "keywords": [
+        "turkce",
+        "turkish",
+        "agents",
+        "subagents",
+        "teslim"
+      ]
+    },
+    {
+      "name": "turkce-ajanlar-belge",
+      "source": "./eklentiler/belge",
+      "description": "Türkçe alt-ajanlar, yalnız 'Belge ve dil' grubu (8 ajan): readme-doktoru, belge-yazari, degisiklik-gunlugu-yazari, ornek-kod-denetci, turkce-metin-denetci, lisans-denetci, yeni-katilan-rehberi, prompt-denetci. Tam set (71 ajan, komutlar ve kanca) için turkce-ajanlar eklentisi.",
+      "version": "0.4.1",
+      "license": "MIT",
+      "category": "development",
+      "keywords": [
+        "turkce",
+        "turkish",
+        "agents",
+        "subagents",
+        "belge"
+      ]
+    },
+    {
+      "name": "turkce-ajanlar-surec",
+      "source": "./eklentiler/surec",
+      "description": "Türkçe alt-ajanlar, yalnız 'Süreç ve ortam' grubu (5 ajan): arastirmaci, betik-ustasi, git-ustasi, gorev-yazari, dosya-duzenleyici. Tam set (71 ajan, komutlar ve kanca) için turkce-ajanlar eklentisi.",
+      "version": "0.4.1",
+      "license": "MIT",
+      "category": "development",
+      "keywords": [
+        "turkce",
+        "turkish",
+        "agents",
+        "subagents",
+        "surec"
+      ]
     }
   ]
 }

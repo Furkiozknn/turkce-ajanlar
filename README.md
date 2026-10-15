@@ -99,6 +99,13 @@ yerine yalnız onları `.claude/agents/` altına kopyala
 ([Dosya kopyalayarak](#dosya-kopyalayarak)); ölçümü kendi sürümünde aynı
 komutla tekrarlayabilirsin.
 
+Aynı komut 15 Ekim 2026'da Claude Code 2.1.292 ile tam seti **~7.533
+token** gösteriyor; tahmin yöntemi sürümler arasında değişti, ajanlar
+değişmedi. Hangi sürüm olursa olsun maliyet ajan sayısıyla büyüyor. Bu
+yüzden kadro artık on bir **grup eklentisi** olarak da kuruluyor: yalnızca
+güvenlik ajanlarını isteyen ~848 token öder, arayüz ve veri ekiplerini
+taşımaz ([Yalnızca ihtiyacın olan grup](#yalnızca-ihtiyacın-olan-grup)).
+
 Asıl değişen şu: artık ajanı sen seçmiyorsun. `proje-koordinatoru` projeyi
 ölçüyor, hangi uzmanların gerektiğine karar veriyor ve işi bağımlılık
 sırasına göre dalgalar hâlinde dağıtıyor — arayüzü olmayan bir projede
@@ -319,6 +326,62 @@ claude plugin update turkce-ajanlar@turkce-ajanlar   # sonra Claude Code'u yenid
 
 Kaldırmak için `claude plugin uninstall turkce-ajanlar@turkce-ajanlar`.
 
+### Yalnızca ihtiyacın olan grup
+
+Aynı pazar yerinde, [Ajanlar](#ajanlar) bölümündeki on bir grubun her biri
+ayrı bir eklenti olarak da duruyor. Ajan dosyaları birebir aynı; fark,
+oturuma yalnız o grubun ajanlarının yüklenmesi:
+
+```powershell
+claude plugin marketplace add Furkiozknn/turkce-ajanlar
+claude plugin install turkce-ajanlar-guvenlik@turkce-ajanlar
+claude plugin install turkce-ajanlar-dogruluk@turkce-ajanlar   # istediğin kadar grup
+```
+
+Her oturuma eklenen bağlam. Ölçüm: `claude plugin details <eklenti>`,
+Claude Code 2.1.292, 15 Ekim 2026. Her eklenti ayrı ve yalıtılmış bir
+yapılandırma klasörüne kurulup ölçüldü.
+
+| Eklenti | Ajan | Her oturuma |
+|---|---:|---:|
+| `turkce-ajanlar` (tam set, komutlar ve kanca dahil) | 71 | ~7.533 token |
+| `turkce-ajanlar-koordinasyon` | 1 | ~210 token |
+| `turkce-ajanlar-kesif` | 9 | ~1.008 token |
+| `turkce-ajanlar-dogruluk` | 10 | ~1.241 token |
+| `turkce-ajanlar-guvenlik` | 7 | ~848 token |
+| `turkce-ajanlar-basarim` | 5 | ~560 token |
+| `turkce-ajanlar-arayuz` | 9 | ~1.060 token |
+| `turkce-ajanlar-veri` | 4 | ~450 token |
+| `turkce-ajanlar-api` | 4 | ~481 token |
+| `turkce-ajanlar-teslim` | 9 | ~1.027 token |
+| `turkce-ajanlar-belge` | 8 | ~951 token |
+| `turkce-ajanlar-surec` | 5 | ~711 token |
+
+Bilmen gerekenler:
+
+- Grup eklentisi, ajanlarının kullandığı becerileri de taşır
+  (`turkce-rapor`; `dogruluk` ve `surec` grupları ayrıca
+  `windows-tuzaklari`). Slash komutları ve Türkçe biçim kancası yalnız tam
+  sette var.
+- Ajan adları eklentiye göre ad-alanlıdır: `turkce-ajanlar-guvenlik:sir-avcisi`.
+  Aynı ajanı iki kez yüklememek için tam seti **ya da** grupları kur, ikisini
+  birden değil.
+- `proje-koordinatoru` yalnızca kurulu ajanlara iş dağıtabilir. Tek başına
+  kurulan `koordinasyon` grubu, ancak yanında kurduğun gruplar kadar ekip
+  bulur.
+- Kaynak tek: `eklentiler/<grup>/` klasörleri `agents/`, `skills/` ve
+  `evals/` altından `node arac/grup-eklentileri.js` ile üretilir; gruplar bu
+  README'deki `### ` başlıklarından okunur. Elle düzenleme. Bayat bir kopya
+  CI'da `arac/eklenti-dogrula.js` adımını kırmızıya çevirir.
+  `node arac/grup-eklentileri-test.js` 13 kontrolle bölünmeyi sınar: her ajan
+  tam bir grupta mı, beceriler gruba gitti mi, hiçbir grup tam setin
+  açıklama metninin %25'inden fazlasını taşıyor mu, bayat ya da artık dosya
+  yakalanıyor mu.
+- Her grubun eval vakaları da gruba kopyalanır. `claude plugin eval
+  eklentiler/dogruluk` ajanın, öbür altmış bir ajan yokken de sınırında
+  durup durmadığını ölçer. Bu koşu model çağırır ve para harcar; CI'a
+  bağlı değil, henüz koşulmadı.
+
 ### Dosya kopyalayarak
 
 Eklenti istemiyorsan `kur.ps1` ajan dosyalarını doğrudan
@@ -336,6 +399,9 @@ powershell -ExecutionPolicy Bypass -File kur.ps1 -Kullanici
 
 # Once ne yapacagini gor
 powershell -ExecutionPolicy Bypass -File kur.ps1 -Deneme
+
+# Yalniz bir grubun ajanlari (eklentiler/ altindaki klasor adi)
+powershell -ExecutionPolicy Bypass -File kur.ps1 -Grup guvenlik
 ```
 
 Ajanlar `.claude/agents/` altına kopyalanır. Yeni bir Claude oturumunda

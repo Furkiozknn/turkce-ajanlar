@@ -14,6 +14,28 @@ boyunca küçük sürüm uyumu bozabilir).
 Web arayüzü ve README ilk ekranı yenilendi; ajan, komut, beceri ve kanca
 davranışı değişmedi (sürüm numarası artmadı).
 
+### Eklendi
+- **On bir grup eklentisi** (`turkce-ajanlar-<grup>`, aynı pazar yerinde).
+  README'deki her ajan grubu ayrı kurulabiliyor. Ölçüm `claude plugin
+  details` ile yapıldı (Claude Code 2.1.292, 15 Ekim 2026): tam set her
+  oturuma ~7.533 token ekliyor, gruplar ~210 (koordinasyon) ile ~1.241
+  (doğruluk) arasında. Ajan dosyaları birebir aynı. Grup, ajanlarının
+  kullandığı becerileri ve eval vakalarını taşıyor; komutlar ve kanca
+  yalnız tam sette kalıyor. Tam set (`turkce-ajanlar`) değişmedi ve ilk
+  sırada duruyor.
+- `arac/grup-eklentileri.js` grupları README'den okuyup `eklentiler/`
+  altına üretiyor; `--check` hiçbir şey yazmadan bayatlığı söylüyor ve CI'da
+  `arac/eklenti-dogrula.js` içinden koşuyor.
+- `arac/grup-eklentileri-test.js` (13 kontrol, `npm test`): her ajan tam bir
+  grupta mı, kopyalar birebir mi, beceriler gruba gitti mi, hiçbir grup
+  açıklama metninin %25'inden fazlasını taşıyor mu, bayat ya da artık dosya
+  ve README'den düşen ajan yakalanıyor mu.
+- `kur.ps1 -Grup <ad>`: dosya kopyalayarak kurarken yalnızca bir grubun
+  ajanları.
+- README "Neden bu var": aynı ölçüm komutu Claude Code 2.1.292'de tam set
+  için ~16.320 yerine ~7.533 token gösteriyor; değişen ajanlar değil, tahmin
+  yöntemi.
+
 ### Değişti
 - Site FRK-OS kimliğinde: siyah zemin, krem yazı, sarı vurgu, League Gothic
   başlık, JetBrains Mono etiket (ikisi de gömülü, OFL: `arac/yazi/`).
