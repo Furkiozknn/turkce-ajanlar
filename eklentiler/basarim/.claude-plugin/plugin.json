@@ -1,0 +1,18 @@
+{
+  "$schema": "https://anthropic.com/claude-code/plugin.schema.json",
+  "name": "turkce-ajanlar-basarim",
+  "version": "0.4.1",
+  "description": "Türkçe alt-ajanlar, yalnız 'Başarım' grubu (5 ajan): performans-olcumcu, bellek-avcisi, web-performans, sorgu-optimizasyoncu, onbellek-denetci. Tam set (71 ajan, komutlar ve kanca) için turkce-ajanlar eklentisi.",
+  "author": {
+    "name": "Furkiozknn",
+    "email": "121863222+Furkiozknn@users.noreply.github.com"
+  },
+  "license": "MIT",
+  "keywords": [
+    "turkce",
+    "turkish",
+    "agents",
+    "subagents",
+    "basarim"
+  ]
+}
