@@ -125,6 +125,11 @@ jobs:
       - name: Banner ve sosyal kart
         run: node arac/banner-uret-test.js
 
+      # Group plugins (eklentiler/) are generated from agents/, skills/ and the
+      # README groups; the test proves the split is complete and up to date.
+      - name: Grup eklentileri
+        run: node arac/grup-eklentileri-test.js
+
       - name: Web arayuzu guncel mi
         run: |
           node arac/web-uret.js

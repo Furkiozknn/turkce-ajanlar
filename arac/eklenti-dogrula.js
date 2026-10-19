@@ -5,6 +5,8 @@
  * Kurallar: frontmatter var ve kapaniyor; description dolu (>= 40 karakter);
  * beceri adi klasor adiyla ayni ve kebab-case; govde bos degil ve Turkce.
  * Hata varsa cikis kodu 1. (Ajan dosyalari icin: arac/dogrula.js)
+ * Also runs `arac/grup-eklentileri.js --check`: the group plugins under
+ * eklentiler/ must match the sources they are copied from.
  */
 "use strict";
 const fs = require("fs");
@@ -55,6 +57,11 @@ if (fs.existsSync(beceriler))
     if (fs.existsSync(skill)) dogrula(skill, ad);
     else hatalar.push("skills/" + ad + ": SKILL.md yok");
   }
+
+// Group plugins (eklentiler/<group>/) are generated copies of agents/ and skills/, one per README agent group. This step runs in CI, so a change to
+// a source that was not regenerated turns CI red here.
+const grupSorunlari = require("./grup-eklentileri.js").check(KOK);
+for (const s of grupSorunlari) hatalar.push("eklentiler: " + s);
 
 if (sayilan === 0) { console.error("Dogrulanacak komut/beceri bulunamadi."); process.exit(1); }
 for (const h of hatalar) console.error("HATA " + h);

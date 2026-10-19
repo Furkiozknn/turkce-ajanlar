@@ -1,0 +1,18 @@
+{
+  "$schema": "https://anthropic.com/claude-code/plugin.schema.json",
+  "name": "turkce-ajanlar-kesif",
+  "version": "0.4.1",
+  "description": "Türkçe alt-ajanlar, yalnız 'Keşif' grubu (9 ajan): kod-haritacisi, bagimlilik-envanteri, yapilandirma-denetci, veri-modeli-cikarici, surum-gecmisi-analisti, teknik-borc-analisti, surum-uyum-denetci, repo-denetci, mimari-degerlendirici. Tam set (71 ajan, komutlar ve kanca) için turkce-ajanlar eklentisi.",
+  "author": {
+    "name": "Furkiozknn",
+    "email": "121863222+Furkiozknn@users.noreply.github.com"
+  },
+  "license": "MIT",
+  "keywords": [
+    "turkce",
+    "turkish",
+    "agents",
+    "subagents",
+    "kesif"
+  ]
+}
