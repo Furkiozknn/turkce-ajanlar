@@ -13,6 +13,9 @@
 
       # Ne yapacagini goster, dokunma
       powershell -ExecutionPolicy Bypass -File kur.ps1 -Deneme
+
+      # Yalniz bir grubun ajanlari (eklentiler/<grup>/agents)
+      powershell -ExecutionPolicy Bypass -File kur.ps1 -Grup guvenlik
 #>
 
 param(
@@ -20,12 +23,22 @@ param(
     # sabit bir yol degil -- baskasinin makinesinde o yol yok.
     [string]$Proje = $PWD.Path,
     [switch]$Kullanici,
-    [switch]$Deneme
+    [switch]$Deneme,
+    # Only one README group: the folder name under eklentiler/ (guvenlik, veri, ...).
+    [string]$Grup = ""
 )
 
 $ErrorActionPreference = "Stop"
 
 $Kaynak = Join-Path $PSScriptRoot "agents"
+if ($Grup) {
+    # The group plugins are generated copies of agents/ (arac/grup-eklentileri.js).
+    $Kaynak = Join-Path (Join-Path (Join-Path $PSScriptRoot "eklentiler") $Grup) "agents"
+    if (-not (Test-Path $Kaynak)) {
+        $gruplar = (Get-ChildItem -Path (Join-Path $PSScriptRoot "eklentiler") -Directory | ForEach-Object { $_.Name }) -join ", "
+        throw "Grup bulunamadi: $Grup (gruplar: $gruplar)"
+    }
+}
 if (-not (Test-Path $Kaynak)) { throw "agents klasoru bulunamadi: $Kaynak" }
 
 if ($Kullanici) {
